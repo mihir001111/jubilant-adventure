@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch referral code and populate the link
         try {
           const currentU = await window.SupabaseAuth.getCurrentUser();
-          const targetId = user ? user.id : (currentU ? currentU.id : null);
+          const targetId = currentU ? currentU.id : null;
           if (targetId) {
             const refCode = await window.SupabaseAuth.getReferralCode(targetId);
             if (refCode) {
