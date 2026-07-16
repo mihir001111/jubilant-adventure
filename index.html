@@ -7,7 +7,8 @@
   <meta name="description"
     content="After Trials Founding Community. Uniting medical students and physicians into a sovereign collective front. Standing together, protecting our own.">
   <title>After Trials Founding Community</title>
-  <link rel="stylesheet" href="style.css?v=35">
+  <link rel="stylesheet" href="style.css?v=74">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -43,11 +44,8 @@
         <!-- Cell 5 (Center CTA Box) -->
         <div class="poster-cell cell-cta">
           <div class="cta-inner">
-            <span class="bar-logo">A F T E R T R I A L S</span>
-            <p class="cta-desc">We are the collective front. A secure sovereign network uniting students, residents, and
-              doctors to reclaim our autonomy, defend our profession, and ensure no physician stands isolated.</p>
+            <h2 class="cta-brand-title">after trials</h2>
             <a href="#onboarding" class="btn-primary" id="startOnboardingBtn">Unite With Us &rarr;</a>
-            <span class="cta-subnote">Sovereign registry. 100% verified practitioners only.</span>
           </div>
         </div>
 
@@ -90,7 +88,7 @@
             <span class="nobrk">the power of the</span> <br>
             <span>collective.</span>
           </h2>
-          <a href="#onboarding" class="crisis-email-link">support@after-trials.community &rarr;</a>
+          <a href="#onboarding" class="crisis-email-link">Claim access key &rarr;</a>
           <p class="crisis-small-desc">
             Isolated, we are expendable. The healthcare apparatus thrives on our fragmentation, exploiting the goodwill
             of medical students and the exhaustion of senior doctors. Together, we are an unbreakable, self-defending
@@ -416,46 +414,214 @@
       </div>
     </section>
 
-    <!-- 6. Signup / Onboarding Section (Typeform Experience) -->
+    <!-- 6. Signup / Onboarding Section (Prose Form + Post-Submit Steps) -->
     <section class="onboarding-section" id="onboarding">
       <div class="onboarding-content reveal">
 
-        <form id="onboardingForm" onsubmit="event.preventDefault();">
+        <form id="onboardingForm" onsubmit="event.preventDefault();" autocomplete="off">
+          
+          <!-- PHASE 1: Editorial Prose Intake -->
+          <div id="phase-prose" class="onboarding-phase">
+            <!-- Prose Statement Group -->
+            <div class="petition-prose" id="petitionProse">
+              I, <input type="text" id="input-name" class="inline-input" placeholder="your full name" required
+                autocomplete="name">,
+              hereby pledge my commitment to professional unity and request admission to the After Trials registry as a
+              <select id="input-role" class="inline-select" required>
+                <option value="" disabled selected>select your role</option>
+                <option value="Student">Medical Student</option>
+                <option value="Doctor">Doctor</option>
+              </select>
+              affiliated with
+              <select id="input-affiliation" class="inline-select" required style="max-width: 320px;">
+                <option value="" disabled selected>select university</option>
+                <option value="University of Bari Aldo Moro">University of Bari Aldo Moro</option>
+                <option value="University of Brescia">University of Brescia</option>
+                <option value="Biomedical University of Rome">Biomedical University of Rome</option>
+                <option value="University of Bologna">University of Bologna</option>
+                <option value="University of Cagliari">University of Cagliari</option>
+                <option value="University of Catania">University of Catania</option>
+                <option value="University of Catanzaro (Magna Graecia)">University of Catanzaro (Magna Graecia)</option>
+                <option value="Università Cattolica del Sacro Cuore">Università Cattolica del Sacro Cuore</option>
+                <option value="University of Chieti-Pescara (G. d'Annunzio)">University of Chieti-Pescara (G. d'Annunzio)</option>
+                <option value="University of Eastern Piedmont (Novara)">University of Eastern Piedmont (Novara)</option>
+                <option value="University of Ferrara">University of Ferrara</option>
+                <option value="University of Florence">University of Florence</option>
+                <option value="University of Foggia">University of Foggia</option>
+                <option value="University of Genoa">University of Genoa</option>
+                <option value="University of Insubria (Varese/Como)">University of Insubria (Varese/Como)</option>
+                <option value="University of L'Aquila">University of L'Aquila</option>
+                <option value="Marche Polytechnic University (Ancona)">Marche Polytechnic University (Ancona)</option>
+                <option value="University of Messina">University of Messina</option>
+                <option value="University of Milan">University of Milan</option>
+                <option value="University of Milan-Bicocca (Monza)">University of Milan-Bicocca (Monza)</option>
+                <option value="University of Modena and Reggio Emilia">University of Modena and Reggio Emilia</option>
+                <option value="University of Naples Federico II">University of Naples Federico II</option>
+                <option value="University of Naples Luigi Vanvitelli">University of Naples Luigi Vanvitelli</option>
+                <option value="University of Padua">University of Padua</option>
+                <option value="University of Palermo">University of Palermo</option>
+                <option value="University of Parma">University of Parma</option>
+                <option value="University of Pavia">University of Pavia</option>
+                <option value="University of Perugia">University of Perugia</option>
+                <option value="University of Pisa">University of Pisa</option>
+                <option value="Sapienza University of Rome">Sapienza University of Rome</option>
+                <option value="University of Rome Tor Vergata">University of Rome Tor Vergata</option>
+                <option value="University of Salerno">University of Salerno</option>
+                <option value="University of Sassari">University of Sassari</option>
+                <option value="University of Siena">University of Siena</option>
+                <option value="University of Trieste">University of Trieste</option>
+                <option value="University of Turin">University of Turin</option>
+                <option value="University of Udine">University of Udine</option>
+                <option value="University of Verona">University of Verona</option>
+                <option value="Vita-Salute San Raffaele University">Vita-Salute San Raffaele University</option>
+                <option value="Humanitas University">Humanitas University</option>
+                <option value="Università Campus Bio-Medico di Roma">Università Campus Bio-Medico di Roma</option>
+                <option value="Saint Camillus International University of Health Sciences">Saint Camillus International University of Health Sciences</option>
+                <option value="University of Molise">University of Molise</option>
+              </select>,
+              with my course of studies in
+              <select id="input-course" class="inline-select" required>
+                <option value="" disabled selected>select course</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Dentistry">Dentistry</option>
+                <option value="Nursing">Nursing</option>
+                <option value="Physiotherapy">Physiotherapy</option>
+                <option value="Others">Others</option>
+              </select>
+              and my specialty field of
+              <span id="specialty-select-container">
+                <select id="input-specialty" class="inline-select" required>
+                  <option value="" disabled selected>select specialty</option>
+                </select>
+              </span>
+              <span id="specialty-text-container" style="display: none;">
+                <input type="text" id="input-specialty-custom" class="inline-input" placeholder="type specialty">
+              </span>.
+              Register my secure verification key to <input type="email" id="input-email" class="inline-input"
+                placeholder="name@domain.com" required autocomplete="email"> to initiate entry.
+            </div>
 
-          <!-- Prose Statement Group -->
-          <div class="petition-prose" id="petitionProse">
-            I, <input type="text" id="input-name" class="inline-input" placeholder="your full name" required
-              autocomplete="name">,
-            hereby pledge my commitment to professional unity and request admission to the After Trials registry as a
-            <select id="input-role" class="inline-select" required>
-              <option value="" disabled selected>select your role</option>
-              <option value="Student">Medical Student</option>
-              <option value="Resident">Resident Physician</option>
-              <option value="Doctor">Attending Physician</option>
-              <option value="Consultant">Clinical Consultant</option>
-            </select>
-            affiliated with <input type="text" id="input-affiliation" class="inline-input"
-              placeholder="hospital or university" required>,
-            standing with my peers in the field of <input type="text" id="input-specialty" class="inline-input"
-              placeholder="specialty field" required>
-            based in <input type="text" id="input-city" class="inline-input" placeholder="city location" required>.
-            Register my secure verification key to <input type="email" id="input-email" class="inline-input"
-              placeholder="name@domain.com" required autocomplete="email"> to initiate entry.
+            <!-- Submit Action -->
+            <div class="petition-actions" id="petitionActions" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; width: 100%;">
+              <button type="submit" class="btn-primary btn-submit-petition" id="submitPetitionBtn">Join the Collective Front &rarr;</button>
+              <button type="button" class="btn-link-toggle" onclick="showSigninPhase()">Already registered? Sign in &rarr;</button>
+            </div>
           </div>
 
-          <!-- Submit Action -->
-          <div class="petition-actions" id="petitionActions">
-            <button type="submit" class="btn-primary btn-submit-petition" id="submitPetitionBtn">Join the Collective
-              Front &rarr;</button>
+          <!-- PHASE: Sign In (In-place, Hidden initially) -->
+          <div id="phase-signin" class="onboarding-phase hidden">
+            <div class="petition-prose">
+              Verify my identity by providing my secure email address
+              <input type="email" id="login-email" class="inline-input" placeholder="name@domain.com" autocomplete="email">
+              and validating entry credentials with passcode
+              <span class="password-input-wrapper-inline">
+                <input type="password" id="login-password" class="inline-input" placeholder="enter passcode" autocomplete="current-password">
+                <button type="button" class="toggle-password-btn" data-target="login-password" tabindex="-1">show</button>
+              </span>
+              to access the ledger.
+            </div>
+
+            <div style="margin-top: 1rem; min-height: 1.5rem;">
+              <span class="error-msg" id="err-login"></span>
+            </div>
+
+            <div class="petition-actions" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; width: 100%;">
+              <div>
+                <button type="button" class="btn-secondary btn-back-inline" onclick="showProsePhase()">&larr; Back</button>
+                <button type="button" class="btn-primary btn-submit-petition" id="btn-login-submit" onclick="submitLogin()">Sign In &rarr;</button>
+              </div>
+            </div>
           </div>
 
-          <!-- Dynamic Success Screen -->
+          <!-- PHASE: Authenticated Vault (In-place, Hidden initially) -->
+          <div id="phase-authenticated" class="onboarding-phase hidden">
+            <div class="authenticated-vault">
+              <span class="vault-label">AUTHENTICATED REGISTRY IDENTIFIER</span>
+              <h3 class="vault-email" id="auth-email-display" style="color: var(--text-secondary); margin-bottom: 0.5rem;">—</h3>
+              <p style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; font-style: italic; line-height: 1.2; color: var(--text); margin: 0; max-width: 800px;">Invite your trusted peers. Medicine can only reclaim its autonomy when we unite together.</p>
+              <div class="vault-actions" style="flex-direction: column; gap: 1rem;">
+                <span class="vault-label" style="margin-bottom: -0.5rem; display: block; text-align: left;">YOUR INVITE LINK</span>
+                <div style="display: flex; align-items: stretch; width: 100%;">
+                  <input type="text" id="auth-ref-link" class="inline-input" readonly style="flex: 1; border-radius: 4px 0 0 4px; margin: 0; padding: 1rem;" placeholder="Loading your link...">
+                  <button type="button" class="btn-primary" id="btn-auth-copy" style="border-radius: 0 4px 4px 0; padding: 1rem 1.5rem; margin-left: -1px; min-width: 120px;">Copy</button>
+                </div>
+                <button type="button" class="btn-secondary btn-back-inline" id="btn-auth-signout" onclick="signOutFromMain()" style="align-self: flex-start;">Sign Out</button>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- PHASE 2: Password Creation (In-place, Hidden initially) -->
+          <div id="phase-password" class="onboarding-phase hidden">
+            <div class="petition-prose">
+              Secure my access key by establishing a personal passcode of
+              <span class="password-input-wrapper-inline">
+                <input type="password" id="reg-password" class="inline-input" placeholder="minimum 6 characters" autocomplete="new-password">
+                <button type="button" class="toggle-password-btn" data-target="reg-password" tabindex="-1">show</button>
+              </span>,
+              confirming the credential key code as
+              <span class="password-input-wrapper-inline">
+                <input type="password" id="reg-confirm-password" class="inline-input" placeholder="confirm passcode" autocomplete="new-password">
+                <button type="button" class="toggle-password-btn" data-target="reg-confirm-password" tabindex="-1">show</button>
+              </span>
+              to encrypt my identity vault.
+            </div>
+
+            <div style="margin-top: 1rem; min-height: 1.5rem;">
+              <span class="error-msg" id="err-password" style="display: inline-block; margin-right: 1.5rem;"></span>
+              <span class="error-msg" id="err-confirm-password" style="display: inline-block;"></span>
+              <span class="error-msg" id="err-signup"></span>
+            </div>
+            
+            <div class="petition-actions">
+              <button type="button" class="btn-secondary btn-back-inline" onclick="backToProse()">&larr; Back</button>
+              <button type="button" class="btn-primary btn-submit-petition" id="btn-create-account" onclick="submitPasswordStep()">Create Account &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PHASE 3: OTP Verification (In-place, Hidden initially) -->
+          <div id="phase-otp" class="onboarding-phase hidden">
+            <div id="otp-notification" class="otp-notification"></div>
+            <div class="petition-prose">
+              A 6-digit verification code has been sent to <span id="otp-target-email" style="text-decoration: underline;">your email</span>. Enter it below to confirm your identity:
+            </div>
+            
+            <div class="otp-inputs-wrapper-inline">
+              <div class="otp-inputs-container">
+                <input type="text" class="otp-digit" maxlength="1" data-index="0" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" class="otp-digit" maxlength="1" data-index="1" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" class="otp-digit" maxlength="1" data-index="2" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" class="otp-digit" maxlength="1" data-index="3" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" class="otp-digit" maxlength="1" data-index="4" inputmode="numeric" pattern="[0-9]*">
+                <input type="text" class="otp-digit" maxlength="1" data-index="5" inputmode="numeric" pattern="[0-9]*">
+              </div>
+              <input type="hidden" id="full-otp">
+              <span class="error-msg" id="err-otp"></span>
+            </div>
+            
+            <div class="otp-resend-wrapper-inline">
+              <span id="otp-timer-text">Resend code in 00:60</span>
+              <button type="button" id="btn-resend-otp" class="btn-link hidden" onclick="resendOTP()">Resend code</button>
+            </div>
+            
+            <div class="petition-actions">
+              <button type="button" class="btn-primary btn-submit-petition" id="btn-verify-otp" onclick="verifyOTPStep()">Verify Code &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PHASE 4: Success Splash (Hidden initially) -->
           <div class="complete-splash" id="successSlide" style="display: none;">
             <div class="complete-icon">✓</div>
-            <h3 class="complete-title">Petition Received. The Front Grows.</h3>
-            <p class="complete-desc">Your pledge has been logged into the sovereign registry. We are reviewing your
-              medical credentials. Your secure access key will be transmitted to your email upon confirmation. We stand
-              together.</p>
+            <h3 class="complete-title">Onboarding Complete.</h3>
+            <p class="complete-desc">Your profile has been synchronized with the sovereign After Trials registry. Share your secure invite link to grow the front:</p>
+            <div style="margin-top: 2.5rem; display: flex; align-items: stretch; justify-content: center; max-width: 600px; margin-inline: auto;">
+              <input type="text" id="success-ref-link" class="inline-input" readonly style="flex: 1; border-radius: 4px 0 0 4px; margin: 0; padding: 1rem; text-align: center; font-size: 1.1rem; border-color: var(--border);" placeholder="Loading your link...">
+              <button type="button" class="btn-primary" id="btn-success-copy" style="border-radius: 0 4px 4px 0; padding: 1rem 2rem; border-left: none; min-width: 120px; font-size: 1.1rem;">Copy</button>
+            </div>
+            <div style="margin-top: 3rem;">
+               <button type="button" class="btn-link-toggle" onclick="location.reload()">Return to Registry &rarr;</button>
+            </div>
           </div>
 
         </form>
@@ -540,10 +706,10 @@
         <span class="cell-btn-text">Hospital Systems &rarr;</span>
       </a>
 
-      <!-- Cell 10: Support Portal -->
-      <a href="#" class="footer-cell cell-link document-trigger" data-doc="support">
-        <span class="cell-label">COMMUNITY SUPPORT</span>
-        <span class="cell-btn-text">Support Portal &rarr;</span>
+      <!-- Cell 10: Referral Campaign -->
+      <a href="campaign.html" class="footer-cell cell-link">
+        <span class="cell-label">SYNDICATE CAMPAIGN</span>
+        <span class="cell-btn-text">Referral Ledger →</span>
       </a>
 
       <!-- Cell 11: Coordinates -->
@@ -578,6 +744,8 @@
     </div>
   </div>
 
+
+
   <!-- Floating Bottom Navigation Dock -->
   <nav class="floating-nav-dock">
     <div class="nav-links">
@@ -592,7 +760,8 @@
     </div>
   </nav>
 
-  <script src="main.js?v=8"></script>
+  <script src="supabase-auth.js?v=2"></script>
+  <script src="main.js?v=27"></script>
 </body>
 
 </html>
