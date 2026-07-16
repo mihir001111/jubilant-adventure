@@ -1314,67 +1314,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const cells = Array.from(document.querySelectorAll('.poster-cell'));
     if (cells.length < 9) return;
     
-    const statementPairs = [
-      ["THE", "COLLECTIVE"],
-      ["JOIN", "TODAY"],
-      ["UNITE", "NOW"],
-      ["OUR", "FRONT"],
-      ["STAND", "TOGETHER"],
-      ["SECURE", "NETWORK"]
+    const fullSentences = [
+      ["EVERY", "SINGLE", "HEALTHCARE", "PROFESSIONAL", "MUST", "STAND", "UNITED", "TOGETHER"],
+      ["THE", "ONLY", "SECURE", "NETWORK", "FOR", "ALL", "MEDICAL", "DOCTORS"],
+      ["WE", "ARE", "THE", "SOVEREIGN", "COLLECTIVE", "DEFENDING", "OUR", "PROFESSION"]
     ];
     const colorClasses = ['bg-crayon-blue', 'bg-crayon-orange', 'bg-crayon-green', 'bg-crayon-pink', 'bg-crayon-yellow', 'bg-crayon-purple'];
     
-    // Store original text
-    const originalTexts = cells.map(cell => {
-      const textSpan = cell.querySelector('.cell-text');
-      return textSpan ? textSpan.innerHTML : '';
-    });
-
     setInterval(() => {
-      // 1. Reset all cells
-      cells.forEach((cell, idx) => {
-        // Reset color classes
+      // 1. Reset color classes on all cells
+      cells.forEach(cell => {
         colorClasses.forEach(cls => cell.classList.remove(cls));
-        // Reset text
-        const textSpan = cell.querySelector('.cell-text');
-        if (textSpan && idx !== 4) { // idx 4 is cell 5
-          textSpan.innerHTML = originalTexts[idx];
+      });
+
+      // 2. Pick a random sentence
+      const currentSentence = fullSentences[Math.floor(Math.random() * fullSentences.length)];
+
+      // 3. Update all outer texts to form the 9-word sentence
+      const outerIndices = [0, 1, 2, 3, 5, 6, 7, 8];
+      outerIndices.forEach((idx, i) => {
+        const textSpan = cells[idx].querySelector('.cell-text');
+        if (textSpan) {
+          textSpan.innerHTML = currentSentence[i];
         }
       });
 
-      // 2. Pick 2 random cells (excluding Cell 5, which is idx 4)
-      const availableIndices = [0, 1, 2, 3, 5, 6, 7, 8];
-      
-      // Shuffle available indices to pick 2 random cells
+      // 4. Pick 2 random outer cells for the color highlight
+      const availableIndices = [...outerIndices];
       for (let i = availableIndices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [availableIndices[i], availableIndices[j]] = [availableIndices[j], availableIndices[i]];
       }
-      
       const randomIdx1 = availableIndices[0];
       const randomIdx2 = availableIndices[1];
       
-      // The 3 active indices (sorted so the text reads naturally based on grid flow)
-      const activeIndices = [randomIdx1, 4, randomIdx2].sort((a, b) => a - b);
+      // The 3 active colored indices (always including center cell 4)
+      const activeColoredIndices = [randomIdx1, 4, randomIdx2];
       
-      // Assign words and colors
-      const currentWords = statementPairs[Math.floor(Math.random() * statementPairs.length)];
-      let wordCounter = 0;
-      activeIndices.forEach(idx => {
+      // Assign random colors
+      activeColoredIndices.forEach(idx => {
         const cell = cells[idx];
-        // Assign random color
         const randomColor = colorClasses[Math.floor(Math.random() * colorClasses.length)];
         cell.classList.add(randomColor);
-        
-        // Update text for the non-center cells
-        if (idx !== 4) {
-          const textSpan = cell.querySelector('.cell-text');
-          if (textSpan) {
-            textSpan.innerHTML = currentWords[wordCounter];
-            wordCounter++;
-          }
-        }
       });
+
     }, 4000); // Change every 4 seconds
   };
   
