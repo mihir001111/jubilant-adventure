@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Dynamic SEO meta — titles, canonical, OG injected by JS at runtime -->
+  <title>Legal & Policy Documents | After Trials</title>
+  <meta name="description" id="meta-description" content="After Trials legal documents, policies, and platform information.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="meta-canonical" href="https://aftertrials.com/">
+  <meta name="author" content="After Trials">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph (updated by JS) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="After Trials">
+  <meta property="og:title" id="og-title" content="After Trials">
+  <meta property="og:description" id="og-description" content="Legal and policy documents for After Trials.">
+  <meta property="og:image" content="https://aftertrials.com/assets/social-banner.jpg">
+  <meta property="og:url" id="og-url" content="https://aftertrials.com/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@aftertrials">
+  <meta name="twitter:title" id="tw-title" content="After Trials">
+  <meta name="twitter:description" id="tw-description" content="Legal and policy documents for After Trials.">
+  <meta name="twitter:image" content="https://aftertrials.com/assets/social-banner.jpg">
+
+  <!-- Structured data injected dynamically per document -->
+  <script id="json-ld-breadcrumb" type="application/ld+json">{}</script>
+  <script id="json-ld-webpage" type="application/ld+json">{}</script>
+
+  <link rel="stylesheet" href="/style.css?v=76">
+  <style>
+    html, body {
+      scroll-snap-type: none !important;
+      height: auto !important;
+      overflow-y: auto !important;
+    }
+
+    .doc-page {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .doc-nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-back {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .nav-back:hover {
+      color: var(--text);
+    }
+
+    .doc-header {
+      max-width: 1000px;
+      margin: 4rem auto 2rem;
+      padding: 0 2rem;
+    }
+
+    .doc-category {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+      display: block;
+      font-family: var(--font-mono);
+    }
+
+    .doc-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    .doc-layout {
+      max-width: 1000px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .doc-layout {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .doc-content h2, .doc-content h3, .doc-content h4 {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .doc-content h2 { font-size: 1.5rem; }
+    .doc-content h3 { font-size: 1.3rem; }
+    .doc-content h4 { font-size: 1.1rem; }
+
+    .doc-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .doc-content ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    .doc-content li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .doc-content strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .doc-content a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    
+    .doc-content a:hover {
+      color: var(--text-secondary);
+    }
+    
+    .doc-content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .doc-meta-sidebar {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      height: fit-content;
+    }
+
+    .meta-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .meta-title {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-value {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body class="doc-page">
+
+  
+
+  <header class="doc-header">
+    <span class="doc-category" id="doc-category">Loading...</span>
+    <h1 class="doc-title" id="doc-title">Document View</h1>
+  </header>
+
+  <main class="doc-layout">
+    <div class="doc-content" id="doc-content">
+      <!-- Content populated here -->
+    </div>
+    
+    <aside class="doc-meta-sidebar" id="doc-meta">
+      <!-- Metadata populated here -->
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid-dashboard reveal">
+
+      <!-- Cell 1: Brand Logo -->
+      <div class="footer-cell cell-brand">
+        <span class="cell-label">PLATFORM LOGO</span>
+        <span class="footer-logo">A F T E R T R I A L S</span>
+        <p class="footer-moto">No healthcare professional should stand alone.</p>
+      </div>
+
+      <!-- Cell 2: Gateway Navigation A -->
+      <div class="footer-cell">
+        <span class="cell-label" data-i18n="foot_nav">NAVIGATION // CORE</span>
+        <div class="cell-links">
+          <a href="/index.html#hero">Index</a>
+          <a href="/index.html#crisis">The Reality</a>
+          <a href="/index.html#shift">The Shift Log</a>
+          <a href="/index.html#philosophy">Our Philosophy</a>
+          <a href="/index.html#pillars">Core Pillars</a>
+          <a href="/index.html#evidence">Verified Record</a>
+        </div>
+      </div>
+
+      <!-- Cell 3: Gateway Navigation B -->
+      <div class="footer-cell">
+        <span class="cell-label">NAVIGATION // PLATFORM</span>
+        <div class="cell-links">
+          <a href="/campaign.html">Referral Ledger</a>
+          <a href="/blogs.html">Read Dispatches</a>
+          <a href="/academic">Academic Access</a>
+          <a href="/hospitals">Hospital Systems</a>
+          <a href="/security">Security Protocols</a>
+          <a href="/architecture">Network Architecture</a>
+          <a href="/support">Support Portal</a>
+          <a href="/about">About Us</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+      <!-- Cell 4: Compliance & Legal -->
+      <div class="footer-cell">
+        <span class="cell-label">COMPLIANCE & LEGAL</span>
+        <div class="cell-links">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/cookie">Cookie Policy</a>
+          <a href="/gdpr">GDPR Compliance</a>
+          <a href="/dpa">Data Protection (DPA)</a>
+          <a href="/sla">Service Level SLA</a>
+          <a href="/refund">Refund Policy</a>
+          <a href="/cancellation">Cancellation Policy</a>
+          <a href="/account-deletion">Account Deletion</a>
+          <a href="/medical-disclaimer">Medical Disclaimer</a>
+        </div>
+      </div>
+
+      <!-- Cell 5: Platform Status -->
+      <div class="footer-cell">
+        <span class="cell-label">COLLECTIVE STATUS</span>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>ONBOARDING OPEN</span>
+        </div>
+        <span class="coords-data">VERIFIED PEERS ONLY</span>
+      </div>
+
+      <!-- Cell 6: Coordinates -->
+      <div class="footer-cell">
+        <span class="cell-label">GEOGRAPHIC ANCHOR</span>
+        <span class="cell-data-text">N 41&deg;54' - E 12&deg;29'</span>
+      </div>
+
+      <!-- Cell 7: Copyright -->
+      <div class="footer-cell">
+        <span class="cell-label">LEGAL COPY</span>
+        <span class="cell-data-text font-small" data-i18n="foot_copyright">&copy; 2026 AFTER TRIALS INC.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Bottom Navigation Dock -->
+  <nav class="floating-nav-dock">
+    <div class="nav-links">
+      <a href="/index.html#hero" class="nav-link-item active">Index</a>
+      <a href="/index.html#shift" class="nav-link-item" data-i18n="nav_philosophy">Philosophy</a>
+      <a href="/index.html#crisis" class="nav-link-item" data-i18n="nav_mission">Crisis</a>
+      <a href="/index.html#pillars" class="nav-link-item" data-i18n="nav_pillars">Pillars</a>
+      <a href="/index.html#evidence" class="nav-link-item" data-i18n="nav_evidence">Evidence</a>
+      <a href="/index.html#community" class="nav-link-item" data-i18n="nav_community">Community</a>
+      <a href="/index.html#onboarding" class="nav-btn-cta">Claim</a>
+    </div>
+
+    <div class="lang-switcher-dock" style="display: none;">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+  </nav>
+
+  <script>
+    const documentData = {
+  "privacy": {
+    "category": "COMPLIANCE // PRIVACY",
+    "title": "Privacy Policy",
+    "meta": {
+      "effective": "March 2026",
+      "jurisdiction": "Global",
+      "classification": "Public"
+    },
+    "content": "<p><strong>Global Privacy Policy</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>LEGAL NOTICE</h3>\n<p>This Privacy Policy contains important information regarding how we collect, use, share, and protect your personal data, including your rights under applicable privacy laws such as GDPR, CCPA/CPRA, and the Indian DPDP Act. Please read this carefully.</p>\n<hr>\n<h3>1. Introduction</h3>\n<p>This Privacy Policy (&quot;Policy&quot;) explains how After Trials (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, discloses, and safeguards your information when you use our website (<strong><a href=\"https://aftertrials.com\">https://aftertrials.com</a></strong>) and mobile application (the “Service”).</p>\n<p>By using the Service, you agree to the terms of this Policy.</p>\n<hr>\n<h3>2. Information We Collect</h3>\n<h4>A. Personal Data</h4>\n<p>Information you provide directly:</p>\n<ul>\n<li><strong>Identity Data:</strong> Name, medical license (if applicable), institution, specialization</li>\n<li><strong>Contact Data:</strong> Email address, phone number</li>\n<li><strong>Profile Data:</strong> Username, password (hashed), bio, profile image</li>\n<li><strong>Professional Data:</strong> Education, experience, qualifications</li>\n</ul>\n<hr>\n<h4>B. Usage &amp; Technical Data</h4>\n<p>Automatically collected data:</p>\n<ul>\n<li>Device type, OS, and identifiers</li>\n<li>IP address and log data</li>\n<li>App usage behavior and crash reports</li>\n</ul>\n<hr>\n<h4>C. Permissions</h4>\n<p>We may request access to:</p>\n<ul>\n<li>Camera / Gallery (for uploads)</li>\n<li>Storage (app functionality)</li>\n<li>Notifications (updates and activity alerts)</li>\n</ul>\n<hr>\n<h3>3. How We Use Your Information</h3>\n<p>We use your data to:</p>\n<ul>\n<li>Create and manage your account</li>\n<li>Enable professional networking and collaboration</li>\n<li>Facilitate job opportunities and recruiter access</li>\n<li>Improve platform performance and user experience</li>\n<li>Provide support and communicate updates</li>\n<li>Prevent fraud and ensure platform security</li>\n<li>Deliver relevant content, opportunities, and advertisements</li>\n</ul>\n<hr>\n<h3>4. Legal Basis for Processing (GDPR)</h3>\n<p>We process your data based on:</p>\n<ul>\n<li><strong>Consent</strong> (e.g., marketing, optional features)</li>\n<li><strong>Contractual necessity</strong> (account services)</li>\n<li><strong>Legitimate interests</strong> (platform improvement, security)</li>\n<li><strong>Legal obligations</strong></li>\n</ul>\n<hr>\n<h3>5. Sharing of Your Information</h3>\n<p>We may share your data in the following cases:</p>\n<h4>A. Service Providers</h4>\n<p>With trusted partners for:</p>\n<ul>\n<li>Hosting (e.g., Supabase)</li>\n<li>Analytics (e.g., Firebase)</li>\n<li>Payment processing (Razorpay, Apple, Google)</li>\n</ul>\n<hr>\n<h4>B. Professional &amp; Recruitment Use</h4>\n<p>We may share <strong>limited professional profile information</strong> with:</p>\n<ul>\n<li>Recruiters</li>\n<li>Employers</li>\n<li>Partners offering career opportunities</li>\n</ul>\n<p>This is done to enable job matching and professional growth.</p>\n<hr>\n<h4>C. Legal Requirements</h4>\n<p>If required by law, regulation, or legal process.</p>\n<hr>\n<h4>D. Business Transfers</h4>\n<p>In case of merger, acquisition, or sale of assets.</p>\n<hr>\n<h3>6. Clinical Content &amp; Patient Privacy</h3>\n<p>IMPORTANT:</p>\n<ul>\n<li>You must <strong>not upload identifiable patient data</strong></li>\n<li>All clinical content must be <strong>fully anonymized</strong></li>\n<li>You are solely responsible for compliance with medical privacy laws</li>\n</ul>\n<p>We act as a platform provider and do not verify all uploaded content.</p>\n<hr>\n<h3>7. Cookies &amp; Tracking Technologies</h3>\n<p>We use cookies and similar technologies to:</p>\n<ul>\n<li>Maintain sessions</li>\n<li>Analyze usage</li>\n<li>Improve experience</li>\n</ul>\n<p>Please refer to our Cookie Policy for full details.</p>\n<hr>\n<h3>8. Data Security</h3>\n<p>We implement industry-standard security measures:</p>\n<ul>\n<li>Encryption in transit (TLS 1.2+)</li>\n<li>Secure storage practices</li>\n<li>Access controls and monitoring</li>\n</ul>\n<p>However, no system is completely secure.</p>\n<hr>\n<h3>9. Data Retention</h3>\n<ul>\n<li>Account data: retained until deletion request</li>\n<li>Usage logs: retained for security and analytics</li>\n<li>Backup data: retained temporarily (up to 30 days)</li>\n</ul>\n<hr>\n<h3>10. International Data Transfers</h3>\n<p>Your data may be processed in countries including India and the United States.</p>\n<p>By using the Service, you consent to such transfers.</p>\n<hr>\n<h3>11. Your Privacy Rights</h3>\n<h4>A. GDPR (EU/EEA Users)</h4>\n<p>You have the right to:</p>\n<ul>\n<li>Access your data</li>\n<li>Correct inaccurate data</li>\n<li>Request deletion</li>\n<li>Restrict or object to processing</li>\n<li>Data portability</li>\n</ul>\n<hr>\n<h4>B. CCPA/CPRA (California Users)</h4>\n<p>You have the right to:</p>\n<ul>\n<li>Know what data is collected</li>\n<li>Request deletion</li>\n<li>Opt-out of data sharing (where applicable)</li>\n<li>Non-discrimination</li>\n</ul>\n<p>We do <strong>not sell personal data</strong>.</p>\n<hr>\n<h4>C. India DPDP Act</h4>\n<p>You have the right to:</p>\n<ul>\n<li>Access and correct data</li>\n<li>Request erasure</li>\n<li>Withdraw consent</li>\n</ul>\n<p>For grievances, contact us at the email below.</p>\n<hr>\n<h3>12. User Rights &amp; Controls</h3>\n<p>You may:</p>\n<ul>\n<li>Edit your profile at any time</li>\n<li>Request account deletion</li>\n<li>Manage notification and communication preferences</li>\n</ul>\n<hr>\n<h3>13. Children’s Privacy</h3>\n<p>Our Service is intended for professionals and students. We do not knowingly collect data from individuals under 18.</p>\n<hr>\n<h3>14. Do Not Track</h3>\n<p>We do not currently respond to “Do Not Track” signals.</p>\n<hr>\n<h3>15. Updates to This Policy</h3>\n<p>We may update this Policy periodically. Changes will be reflected with an updated “Last Updated” date.</p>\n<hr>\n<h3>16. Contact Us</h3>\n<p>For any privacy-related questions or requests:</p>\n<p><strong>After Trials Team</strong><br>📧 <a href=\"mailto:team@aftertrials.com\">team@aftertrials.com</a><br>📍 Jamshedpur, Jharkhand, India<br>🌐 <a href=\"https://aftertrials.com\">https://aftertrials.com</a></p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "terms": {
+    "category": "REGULATORY // CONDUCT",
+    "title": "Terms of Service",
+    "meta": {
+      "effective": "March 2026",
+      "compliance": "App Usage Guidelines",
+      "scope": "All Users"
+    },
+    "content": "<p><strong>Terms of Service</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>IMPORTANT LEGAL NOTICE</h3>\n<p>These Terms of Service include provisions regarding dispute resolution, limitations of liability, and user responsibilities. Please read carefully before using the Service.</p>\n<hr>\n<h3>1. Acceptance of Terms</h3>\n<p>By accessing or using the After Trials website (<strong><a href=\"https://aftertrials.com\">https://aftertrials.com</a></strong>) and mobile application (the “Service”), you agree to be bound by these Terms.</p>\n<p>By registering or using the Service, you provide your electronic consent to this Agreement.</p>\n<hr>\n<h3>2. Eligibility and Account Security</h3>\n<h4>2.1 Eligibility</h4>\n<p>The Service is intended for:</p>\n<ul>\n<li>Verified healthcare professionals</li>\n<li>Medical students</li>\n<li>Authorized academic users</li>\n</ul>\n<p>By using the Service, you represent that the information you provide is accurate and that you meet eligibility requirements.</p>\n<hr>\n<h4>2.2 Account Responsibility</h4>\n<p>You are responsible for:</p>\n<ul>\n<li>Maintaining confidentiality of your credentials</li>\n<li>All activities under your account</li>\n</ul>\n<p>You must notify us immediately of any unauthorized access.</p>\n<hr>\n<h3>3. Medical Disclaimer</h3>\n<p>The Service is provided for <strong>educational and informational purposes only</strong>.</p>\n<ul>\n<li>It does not provide medical advice</li>\n<li>It is not a diagnostic or treatment tool</li>\n<li>It does not create a doctor–patient relationship</li>\n</ul>\n<p>You remain fully responsible for all clinical decisions.</p>\n<hr>\n<h3>4. User Content and License</h3>\n<h4>4.1 Ownership</h4>\n<p>You retain ownership of content you upload (“User Content”).</p>\n<hr>\n<h4>4.2 License Grant</h4>\n<p>By submitting content, you grant After Trials a:</p>\n<ul>\n<li>Worldwide</li>\n<li>Non-exclusive</li>\n<li>Royalty-free</li>\n<li>Transferable and sublicensable license</li>\n</ul>\n<p>to use, display, distribute, and improve the Service.</p>\n<hr>\n<h4>4.3 Responsibility</h4>\n<p>You are solely responsible for the content you upload.</p>\n<hr>\n<h3>5. Patient Privacy and Compliance</h3>\n<p>You agree:</p>\n<ul>\n<li>Not to upload identifiable patient data</li>\n<li>To fully anonymize all clinical content</li>\n<li>To comply with applicable privacy laws (e.g., GDPR, HIPAA-equivalent standards, India IT laws)</li>\n</ul>\n<p>We reserve the right to remove content and suspend accounts for violations.</p>\n<hr>\n<h3>6. Prohibited Activities</h3>\n<p>You agree not to:</p>\n<ul>\n<li>Reverse engineer or copy the platform</li>\n<li>Scrape or extract data using automated tools</li>\n<li>Use the platform to build competing services</li>\n<li>Harass, abuse, or mislead users</li>\n<li>Share unlawful, harmful, or misleading content</li>\n</ul>\n<hr>\n<h3>7. Intellectual Property</h3>\n<p>All platform content (excluding user content) is the property of After Trials and its licensors.</p>\n<p>You may not reproduce or distribute platform materials without permission.</p>\n<hr>\n<h3>8. Payments and Subscriptions</h3>\n<ul>\n<li>Subscriptions are billed in advance and renew automatically</li>\n<li>You are responsible for managing cancellations</li>\n<li>Payments are generally non-refundable (see Refund Policy)</li>\n<li>Payments are processed through secure third-party providers</li>\n</ul>\n<hr>\n<h3>9. Privacy</h3>\n<p>Your use of the Service is also governed by our Privacy Policy and Cookie Policy.</p>\n<hr>\n<h3>10. Disclaimers of Warranties</h3>\n<p>The Service is provided “as is” and “as available.”</p>\n<p>We do not guarantee:</p>\n<ul>\n<li>Accuracy of user-generated content</li>\n<li>Continuous or error-free operation</li>\n<li>Suitability for specific purposes</li>\n</ul>\n<hr>\n<h3>11. Limitation of Liability</h3>\n<p>To the maximum extent permitted by law:</p>\n<ul>\n<li>We are not liable for indirect, incidental, or consequential damages</li>\n<li>Total liability shall not exceed the amount paid by you in the past 6 months or ₹1,000 (whichever is higher)</li>\n</ul>\n<hr>\n<h3>12. Indemnification</h3>\n<p>You agree to indemnify and hold harmless After Trials from any claims arising from:</p>\n<ul>\n<li>Your use of the Service</li>\n<li>Your content</li>\n<li>Violation of laws or these Terms</li>\n</ul>\n<hr>\n<h3>13. Termination</h3>\n<p>We may suspend or terminate your account at any time if:</p>\n<ul>\n<li>You violate these Terms</li>\n<li>You misuse the platform</li>\n<li>Required by law or security reasons</li>\n</ul>\n<hr>\n<h3>14. Governing Law and Dispute Resolution</h3>\n<ul>\n<li>These Terms are governed by the laws of Jharkhand, India</li>\n<li>Disputes shall be resolved through binding arbitration in Jamshedpur</li>\n</ul>\n<p>You agree to resolve disputes individually and not as part of a class action, where permitted by law.</p>\n<hr>\n<h3>15. Changes to Terms</h3>\n<p>We may update these Terms from time to time. Continued use of the Service constitutes acceptance of updated Terms.</p>\n<hr>\n<h3>16. General Provisions</h3>\n<ul>\n<li>If any provision is found invalid, the rest remain enforceable</li>\n<li>These Terms constitute the entire agreement between you and After Trials</li>\n</ul>\n<hr>\n<h3>17. Contact Information</h3>\n<p><strong>After Trials Team</strong><br>📧 <a href=\"mailto:team@aftertrials.com\">team@aftertrials.com</a><br>📍 Jamshedpur, Jharkhand, India<br>🌐 <a href=\"https://aftertrials.com\">https://aftertrials.com</a></p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "cookie": {
+    "category": "PREFERENCES // CACHE",
+    "title": "Cookie Policy",
+    "meta": {
+      "effective": "March 2026"
+    },
+    "content": "<p><strong>Cookie Policy</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<p>This Cookie Policy explains how After Trials (&quot;Company&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar tracking technologies when you visit our website <strong><a href=\"https://aftertrials.com\">https://aftertrials.com</a></strong> (the &quot;Site&quot;) and use our mobile application (the &quot;App&quot;).</p>\n<p>It explains what these technologies are, why we use them, and your rights to control their use.</p>\n<hr>\n<h3>1. What Are Cookies?</h3>\n<p>Cookies are small data files that are placed on your computer or mobile device when you visit a website or use an application. They are widely used to make digital services function efficiently and to provide reporting and analytics information.</p>\n<ul>\n<li><strong>First-party cookies:</strong> Set directly by After Trials</li>\n<li><strong>Third-party cookies:</strong> Set by external providers (such as analytics or service partners)</li>\n</ul>\n<hr>\n<h3>2. Why We Use Cookies</h3>\n<p>We use cookies for several purposes:</p>\n<ul>\n<li>To ensure the proper functioning of our platform</li>\n<li>To improve performance and user experience</li>\n<li>To understand how users interact with our services</li>\n<li>To support security, authentication, and fraud prevention</li>\n<li>To deliver relevant content and features</li>\n</ul>\n<p>Some cookies are <strong>essential</strong>, while others require your consent.</p>\n<hr>\n<h3>3. Types of Cookies We Use</h3>\n<h4>A. Essential Cookies</h4>\n<p>These cookies are strictly necessary for the operation of our Site and App.</p>\n<ul>\n<li><strong>Purpose:</strong> Authentication, security, session management</li>\n<li><strong>Provider:</strong> After Trials (e.g., Supabase or internal systems)</li>\n<li><strong>Legal basis:</strong> Legitimate interest (these cannot be disabled)</li>\n</ul>\n<hr>\n<h4>B. Performance &amp; Functionality Cookies</h4>\n<p>These cookies enhance usability and performance.</p>\n<ul>\n<li><strong>Purpose:</strong> Remember preferences, improve user experience</li>\n<li><strong>Example:</strong> Saved settings, login sessions</li>\n<li><strong>Legal basis:</strong> Consent (where required)</li>\n</ul>\n<hr>\n<h4>C. Analytics &amp; Customization Cookies</h4>\n<p>These cookies help us understand how users interact with our platform.</p>\n<ul>\n<li><strong>Purpose:</strong> Usage analytics, crash reporting, feature optimization</li>\n<li><strong>Provider:</strong> Google Analytics for Firebase (or similar tools)</li>\n<li><strong>Legal basis:</strong> Consent (where required)</li>\n</ul>\n<hr>\n<h4>D. Advertising &amp; Targeting Cookies (if applicable)</h4>\n<p>We may use cookies to deliver relevant job opportunities, content, or advertisements.</p>\n<ul>\n<li><strong>Purpose:</strong> Personalized content and targeted communication</li>\n<li><strong>Legal basis:</strong> Consent (where required)</li>\n</ul>\n<hr>\n<h3>4. Other Tracking Technologies</h3>\n<p>We may use similar technologies such as:</p>\n<ul>\n<li><strong>Web beacons / tracking pixels</strong></li>\n<li><strong>SDKs in mobile applications</strong></li>\n</ul>\n<p>These help us measure engagement, monitor traffic, and understand user behavior.</p>\n<hr>\n<h3>5. Your Choices &amp; Consent</h3>\n<h4>Cookie Consent</h4>\n<p>Where required by law (such as in the European Economic Area), we will request your consent before placing non-essential cookies.</p>\n<p>You can manage your preferences through:</p>\n<ul>\n<li>Cookie consent banner (on website)</li>\n<li>Device settings (for mobile apps)</li>\n<li>Browser settings</li>\n</ul>\n<hr>\n<h4>Browser Controls</h4>\n<p>You can configure your browser to:</p>\n<ul>\n<li>Accept or reject cookies</li>\n<li>Delete existing cookies</li>\n</ul>\n<p>Please note: disabling cookies may affect functionality.</p>\n<hr>\n<h4>Mobile Device Controls</h4>\n<p>You can manage tracking preferences via:</p>\n<ul>\n<li>iOS: “Allow Apps to Track”</li>\n<li>Android: “Opt out of Ads Personalization”</li>\n</ul>\n<hr>\n<h3>6. Do Not Track</h3>\n<p>We currently do not respond to “Do Not Track” (DNT) signals due to lack of a consistent industry standard.</p>\n<hr>\n<h3>7. Data Sharing</h3>\n<p>Information collected via cookies may be shared with trusted service providers (such as analytics partners) to operate and improve our services. We do not sell personal data obtained through cookies.</p>\n<hr>\n<h3>8. Updates to This Policy</h3>\n<p>We may update this Cookie Policy from time to time to reflect changes in technology, legal requirements, or our practices. Updates will be posted with a revised &quot;Last Updated&quot; date.</p>\n<hr>\n<h3>9. Contact Us</h3>\n<p>If you have any questions about this Cookie Policy or our data practices, please contact:</p>\n<p><strong>After Trials Team</strong><br>📧 <a href=\"mailto:team@aftertrials.com\">team@aftertrials.com</a><br>🌐 <a href=\"https://aftertrials.com\">https://aftertrials.com</a></p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "refund": {
+    "category": "COMMERCE // REFUND",
+    "title": "Refund Policy",
+    "meta": {
+      "status": "Active",
+      "access": "Public"
+    },
+    "content": "<p><strong>Refund Policy</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>1. General Refund Policy</h3>\n<p>All purchases made on After Trials are generally <strong>non-refundable</strong>.</p>\n<p>Due to the nature of our Service—which provides immediate access to premium features, clinical content, and professional networking tools—we do not offer refunds or credits for:</p>\n<ul>\n<li>Partially used subscription periods</li>\n<li>Unused features</li>\n<li>Change of mind after purchase</li>\n</ul>\n<hr>\n<h3>2. Exceptions</h3>\n<p>Refunds may be considered in limited circumstances, including:</p>\n<ul>\n<li>Duplicate or accidental multiple charges</li>\n<li>Technical errors resulting in incorrect billing</li>\n<li>Failure of the Service to function as intended (verified case)</li>\n</ul>\n<p>All eligible refund requests are reviewed on a <strong>case-by-case basis</strong>.</p>\n<hr>\n<h3>3. App Store Purchases (Apple &amp; Google)</h3>\n<p>If you subscribed via:</p>\n<ul>\n<li>Apple App Store</li>\n<li>Google Play Store</li>\n</ul>\n<p>Your purchase is governed by their respective billing policies.</p>\n<p>After Trials does <strong>not have the ability to process refunds</strong> for these transactions. You must request a refund directly through the platform:</p>\n<ul>\n<li>Apple: via your Apple ID subscription settings</li>\n<li>Google: via Google Play account</li>\n</ul>\n<hr>\n<h3>4. Web Purchases (Razorpay, Stripe, PayPal)</h3>\n<p>For subscriptions made through our website:</p>\n<ul>\n<li>Refunds are only issued in cases of verified billing errors or system failures</li>\n<li>Requests must be submitted within <strong>7 days of the charge</strong></li>\n<li>Renewal charges are <strong>not refundable</strong> if cancellation was not completed before the billing date</li>\n</ul>\n<hr>\n<h3>5. No Guarantee of Refund Approval</h3>\n<p>Submitting a refund request does not guarantee approval. We reserve the right to deny requests that do not meet the criteria outlined in this policy.</p>\n<hr>\n<h3>6. Subscription Responsibility</h3>\n<p>By purchasing a subscription, you agree to:</p>\n<ul>\n<li>Review billing terms before purchase</li>\n<li>Manage and cancel your subscription before renewal if you do not wish to continue</li>\n</ul>\n<hr>\n<h3>7. Contact for Refund Requests</h3>\n<p>For billing issues or refund inquiries, please contact:</p>\n<p>📧 <strong><a href=\"mailto:team@aftertrials.com\">team@aftertrials.com</a></strong></p>\n<p>Please include:</p>\n<ul>\n<li>Your registered email</li>\n<li>Transaction details</li>\n<li>Description of the issue</li>\n</ul>\n<hr>\n<h3>8. Compliance with Applicable Law</h3>\n<p>Nothing in this policy overrides any rights you may have under applicable consumer protection laws. Where required by law, refunds will be provided accordingly.</p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "cancellation": {
+    "category": "COMMERCE // CANCELLATION",
+    "title": "Cancellation Policy",
+    "meta": {
+      "status": "Active",
+      "access": "Public"
+    },
+    "content": "<p><strong>Cancellation &amp; Subscription Policy</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>1. Cancellation Rights</h3>\n<p>You may cancel your subscription to After Trials at any time. Upon cancellation:</p>\n<ul>\n<li>Future billing will be stopped</li>\n<li>You will continue to have access to premium features until the end of your current billing cycle</li>\n<li>No further charges will be applied after cancellation</li>\n</ul>\n<hr>\n<h3>2. How to Cancel</h3>\n<p>You can cancel your subscription through the platform you used to subscribe:</p>\n<p><strong>iOS (Apple App Store):</strong><br>Go to <em>Settings</em> &gt; [Your Name] &gt; <em>Subscriptions</em> &gt; Select <em>After Trials</em> &gt; <em>Cancel Subscription</em></p>\n<p><strong>Android (Google Play Store):</strong><br>Open <em>Google Play Store</em> &gt; Menu &gt; <em>Subscriptions</em> &gt; Select <em>After Trials</em> &gt; <em>Cancel Subscription</em></p>\n<p><strong>Web (via payment providers such as Razorpay, Stripe, or PayPal):</strong><br>Log in to your account at <strong><a href=\"https://aftertrials.com\">https://aftertrials.com</a></strong> → Navigate to <em>Subscription Settings</em> → Select <em>Cancel Subscription / Disable Auto-Renewal</em></p>\n<hr>\n<h3>3. Auto-Renewal Terms</h3>\n<p>All subscriptions are automatically renewed at the end of each billing cycle unless cancelled prior to the renewal date.</p>\n<p>By purchasing a subscription, you authorize us (or our payment partners) to charge the applicable subscription fee on a recurring basis.</p>\n<p>You may disable auto-renewal at any time by following the cancellation steps above.</p>\n<hr>\n<h3>4. No Partial Refunds</h3>\n<p>Unless required by applicable law or explicitly stated otherwise:</p>\n<ul>\n<li>Subscription fees are <strong>non-refundable</strong></li>\n<li>We do not provide refunds or credits for partially used billing periods</li>\n</ul>\n<hr>\n<h3>5. Data &amp; Feature Access After Cancellation</h3>\n<p>After your subscription expires:</p>\n<ul>\n<li>Your account will revert to the <strong>free or restricted tier</strong></li>\n<li>Access to premium features and content will be removed</li>\n<li>Your account data will remain محفوظ (stored) unless you choose to delete your account</li>\n</ul>\n<hr>\n<h3>6. Billing Issues &amp; Exceptions</h3>\n<p>If you believe you have been charged in error or experience billing issues, please contact us promptly at:</p>\n<p><strong><a href=\"mailto:team@aftertrials.com\">team@aftertrials.com</a></strong></p>\n<p>We will review requests on a case-by-case basis in accordance with applicable laws and platform policies.</p>\n<hr>\n<h3>7. Platform-Specific Policies</h3>\n<p>If you subscribed via Apple App Store or Google Play, your subscription is also subject to their respective billing and refund policies:</p>\n<ul>\n<li><a href=\"https://www.apple.com/legal/internet-services/itunes/dev/stdeula/?utm_source=chatgpt.com\">Apple Subscriptions Policy</a></li>\n<li><a href=\"https://support.google.com/googleplay/answer/7018481?utm_source=chatgpt.com\">Google Play Subscriptions Policy</a></li>\n</ul>\n<hr>\n<h3>8. Changes to This Policy</h3>\n<p>We may update this Cancellation &amp; Subscription Policy from time to time. Any changes will be posted on this page with an updated &quot;Last Updated&quot; date.</p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "account-deletion": {
+    "category": "ACCOUNT // DELETION",
+    "title": "Account Deletion Request",
+    "meta": {
+      "status": "Active",
+      "access": "Public"
+    },
+    "content": "<p><strong>Account Deletion Policy</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>1. Right to Delete Your Account</h3>\n<p>You have the right to request deletion of your account and all associated personal data at any time. Once your account is deleted, this action is <strong>permanent and cannot be reversed</strong>.</p>\n<hr>\n<h3>2. What Happens When You Delete Your Account</h3>\n<p>Upon successful deletion request:</p>\n<ul>\n<li>Your profile information, including name, contact details, professional and educational data, will be permanently removed</li>\n<li>Your activity history, including posts, messages, and interactions, will be deleted or anonymized</li>\n<li>Your account will no longer be accessible</li>\n</ul>\n<p>Please note that some content you shared may remain in anonymized form where it does not identify you personally.</p>\n<hr>\n<h3>3. How to Request Account Deletion</h3>\n<p>To delete your account, you may:</p>\n<ul>\n<li>Use the in-app account deletion option (if available), OR</li>\n<li>Send an email request to <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong> with the subject line:<br><strong>&quot;Account Deletion Request&quot;</strong></li>\n</ul>\n<p>For security purposes, requests must be sent from the email address associated with your account. We may request additional verification if needed.</p>\n<hr>\n<h3>4. Processing Time</h3>\n<p>We will process your request within <strong>7–14 business days</strong>, subject to verification. You will receive confirmation once your account has been deleted.</p>\n<hr>\n<h3>5. Data Retention After Deletion</h3>\n<p>We may retain limited information after account deletion where necessary:</p>\n<ul>\n<li>To comply with legal obligations</li>\n<li>To prevent fraud, abuse, or security threats</li>\n<li>To enforce our Terms of Service</li>\n<li>For legitimate business and audit purposes</li>\n</ul>\n<p>Any retained data will be <strong>restricted, minimized, and securely stored</strong>, and will not be used for marketing or profiling purposes.</p>\n<hr>\n<h3>6. Third-Party Data</h3>\n<p>If your data has been shared with trusted partners (such as recruiters or employers) as part of platform functionality, we will take reasonable steps to notify them of your deletion request where applicable. However, we cannot guarantee deletion of data already accessed or downloaded by such third parties.</p>\n<hr>\n<h3>7. Your Data Rights</h3>\n<p>Depending on your location, you may have the right to:</p>\n<ul>\n<li>Access the personal data we hold about you</li>\n<li>Request correction of inaccurate data</li>\n<li>Request deletion of your data</li>\n<li>Restrict or object to certain processing activities</li>\n</ul>\n<p>To exercise these rights, contact us at <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong>.</p>\n<hr>\n<h3>8. Contact Us</h3>\n<p>If you have any questions or concerns regarding this policy, please contact us at:<br><strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong></p>\n<hr>\n"
+  },
+  "medical-disclaimer": {
+    "category": "LEGAL // MEDICAL",
+    "title": "Medical Disclaimer",
+    "meta": {
+      "status": "Active",
+      "access": "Public"
+    },
+    "content": "<p><strong>Medical Disclaimer</strong><br><strong>Last Updated: March 2026</strong></p>\n<hr>\n<h3>1. No Medical Advice</h3>\n<p>The content available on the After Trials mobile application and website (collectively, the “Service”), including but not limited to text, graphics, images, clinical cases, and other material, is provided for <strong>educational, scientific, and informational purposes only</strong>.</p>\n<p>The Service does <strong>not</strong> provide medical advice and is <strong>not intended to be a substitute</strong> for professional medical advice, diagnosis, or treatment.</p>\n<p>Always seek the advice of a qualified healthcare provider with any questions you may have regarding a medical condition. Never disregard or delay seeking professional medical advice because of information obtained through the Service.</p>\n<hr>\n<h3>2. Platform for Professional Exchange</h3>\n<p>After Trials is a platform designed to facilitate the exchange of medical knowledge among healthcare professionals and medical students.</p>\n<p>By using the Service, you acknowledge that:</p>\n<ul>\n<li>The platform is intended for <strong>peer-to-peer educational discussion only</strong></li>\n<li>It is <strong>not a clinical decision-making tool</strong></li>\n<li>Content shared may reflect individual opinions, experiences, or interpretations</li>\n</ul>\n<hr>\n<h3>3. Professional Responsibility</h3>\n<p>If you are a licensed healthcare professional:</p>\n<ul>\n<li>You remain <strong>solely responsible</strong> for all medical decisions, diagnoses, and patient care</li>\n<li>You must exercise independent clinical judgment at all times</li>\n<li>You must verify any information before applying it in a real-world clinical setting</li>\n</ul>\n<p>Under no circumstances should the Service replace your professional responsibility or duty of care.</p>\n<hr>\n<h3>4. No Doctor–Patient Relationship</h3>\n<p>Use of the Service does <strong>not</strong> create:</p>\n<ul>\n<li>A doctor–patient relationship between users</li>\n<li>A doctor–patient relationship between any user and After Trials</li>\n<li>Any form of telemedicine or clinical service relationship</li>\n</ul>\n<p>The Service must <strong>not be used for diagnosing, treating, or managing real patients</strong>.</p>\n<hr>\n<h3>5. User-Generated Content &amp; Accuracy</h3>\n<p>The Service contains content generated and shared by users (“User-Generated Content”).</p>\n<p>After Trials:</p>\n<ul>\n<li>Does <strong>not guarantee</strong> the accuracy, completeness, or reliability of any content</li>\n<li>Does <strong>not pre-verify</strong> all clinical, diagnostic, or treatment-related information</li>\n<li>Is <strong>not responsible</strong> for errors, omissions, or outdated medical information</li>\n</ul>\n<p>Medical knowledge evolves continuously, and reliance on any content from the Service is <strong>at your own risk</strong>.</p>\n<hr>\n<h3>6. Clinical Images &amp; Patient Data</h3>\n<p>Clinical images and case materials shared on the platform:</p>\n<ul>\n<li>Are intended strictly for <strong>educational and peer discussion purposes</strong></li>\n<li>Represent <strong>specific individual cases</strong> and may not be generalizable</li>\n<li>Must be <strong>fully anonymized</strong> by the user before sharing</li>\n</ul>\n<p>After Trials does not control user submissions and is <strong>not liable for any failure by users to properly de-identify patient information</strong>.</p>\n<p>Users are solely responsible for complying with applicable privacy and medical confidentiality laws.</p>\n<hr>\n<h3>7. Prohibited Use</h3>\n<p>You agree <strong>not to use the Service</strong> for:</p>\n<ul>\n<li>Providing direct medical advice to patients</li>\n<li>Diagnosing or treating real-world medical conditions through the platform</li>\n<li>Sharing identifiable patient information</li>\n</ul>\n<p>Violation of these terms may result in account suspension or termination.</p>\n<hr>\n<h3>8. Limitation of Liability</h3>\n<p>To the maximum extent permitted by applicable law, After Trials, its affiliates, and its operators shall <strong>not be held liable</strong> for any direct, indirect, incidental, consequential, or special damages arising out of or related to:</p>\n<ul>\n<li>Use or misuse of the Service</li>\n<li>Reliance on any content available on the platform</li>\n<li>Medical decisions or outcomes influenced by platform content</li>\n</ul>\n<p>This includes, but is not limited to, medical errors, misdiagnosis, treatment failures, or patient harm.</p>\n<hr>\n<h3>9. Acceptance of This Disclaimer</h3>\n<p>By using the Service, you acknowledge that you have read, understood, and agree to this Medical Disclaimer.</p>\n<p>If you do not agree, you should not use the platform.</p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "support": {
+    "category": "HELP // DISPATCH",
+    "title": "Support Portal & Resolution Centers",
+    "meta": {
+      "channel": "team@aftertrials.com",
+      "responseWindow": "< 24 Hours"
+    },
+    "content": "<h1><strong>Support Center</strong></h1>\n<p>Find answers to common questions and get help with your After Trials account.</p>\n<hr>\n<h2>🔐 Account &amp; Verification</h2>\n<h3>How do I verify my medical credentials?</h3>\n<p>After signing up, you will be asked to submit your credentials (such as medical license, university ID, or institutional affiliation). Our team reviews submissions manually or via verification systems. Once approved, your account will be marked as <strong>verified</strong>.</p>\n<hr>\n<h3>Who can join After Trials?</h3>\n<p>After Trials is designed for:</p>\n<ul>\n<li>Verified healthcare professionals</li>\n<li>Medical students</li>\n<li>Academic and research professionals</li>\n</ul>\n<p>Access may be restricted if verification requirements are not met.</p>\n<hr>\n<h3>I submitted my documents but I’m not verified yet</h3>\n<p>Verification may take <strong>24–72 hours</strong>. If delayed, contact support with your registered email.</p>\n<hr>\n<h2>💳 Subscriptions &amp; Billing</h2>\n<h3>Is After Trials free to use?</h3>\n<p>Yes, After Trials offers a <strong>free tier</strong> with basic features. Premium plans unlock additional tools such as advanced networking, visibility, and opportunities.</p>\n<hr>\n<h3>How do I cancel my subscription?</h3>\n<p>You can cancel anytime:</p>\n<ul>\n<li><strong>iOS:</strong> Settings → Subscriptions</li>\n<li><strong>Android:</strong> Google Play → Subscriptions</li>\n<li><strong>Web:</strong> Account → Subscription Settings</li>\n</ul>\n<p>You will retain access until the end of your billing cycle.</p>\n<hr>\n<h3>Do you offer refunds?</h3>\n<p>Subscriptions are generally non-refundable. However, billing errors or technical issues may be reviewed on a case-by-case basis. See our Refund Policy for details.</p>\n<hr>\n<h2>🔒 Privacy &amp; Data</h2>\n<h3>How is my data protected?</h3>\n<p>We use industry-standard security measures, including:</p>\n<ul>\n<li>Encrypted data transmission (TLS)</li>\n<li>Secure storage systems</li>\n<li>Restricted internal access</li>\n</ul>\n<p>We do not sell your personal data.</p>\n<hr>\n<h3>Will my data be shared with others?</h3>\n<p>Your <strong>professional profile information</strong> may be shared with:</p>\n<ul>\n<li>Recruiters</li>\n<li>Employers</li>\n<li>Platform partners</li>\n</ul>\n<p>This is done to enable job opportunities and professional networking. Sensitive personal data is handled in accordance with our Privacy Policy.</p>\n<hr>\n<h3>Can I delete my account?</h3>\n<p>Yes. You can request account deletion anytime via:</p>\n<ul>\n<li>In-app settings, OR</li>\n<li>Email: <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong></li>\n</ul>\n<p>Deletion is permanent and cannot be reversed.</p>\n<hr>\n<h2>🏥 Medical Content &amp; Safety</h2>\n<h3>Can I share clinical cases or images?</h3>\n<p>Yes, but <strong>strict rules apply</strong>:</p>\n<ul>\n<li>No identifiable patient information</li>\n<li>All data must be fully anonymized</li>\n<li>You must have proper authorization</li>\n</ul>\n<p>Violations may lead to account suspension.</p>\n<hr>\n<h3>Is this platform for medical advice?</h3>\n<p>No. After Trials is for <strong>educational and professional discussion only</strong>. It is not a diagnostic or treatment platform.</p>\n<hr>\n<h2>⚙️ Technical Support</h2>\n<h3>The app is not working properly</h3>\n<p>Try:</p>\n<ul>\n<li>Updating the app</li>\n<li>Restarting your device</li>\n<li>Checking your internet connection</li>\n</ul>\n<p>If the issue continues, contact support with details.</p>\n<hr>\n<h3>I forgot my password</h3>\n<p>Use the “Forgot Password” option on the login screen and follow the instructions.</p>\n<hr>\n<h2>🚨 Reporting &amp; Safety</h2>\n<h3>How do I report a user or content?</h3>\n<p>You can use the <strong>Report</strong> button available on profiles or posts. Our team reviews reports and takes appropriate action.</p>\n<hr>\n<h3>What happens if someone violates the rules?</h3>\n<p>We may:</p>\n<ul>\n<li>Remove content</li>\n<li>Suspend accounts</li>\n<li>Permanently ban users</li>\n</ul>\n<hr>\n<h2>📩 Still Need Help?</h2>\n<p>If you couldn’t find what you’re looking for, our support team is here to help.</p>\n<p>📧 <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong><br>🌐 <a href=\"https://aftertrials.com\">https://aftertrials.com</a></p>\n<p>We typically respond within <strong>24–48 hours</strong>.</p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "contact": {
+    "category": "HELP // CONTACT",
+    "title": "Contact Us",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<h1><strong>Support Center</strong></h1>\n<p>Find answers to common questions and get help with your After Trials account.</p>\n<hr>\n<h2>🔐 Account &amp; Verification</h2>\n<h3>How do I verify my medical credentials?</h3>\n<p>After signing up, you will be asked to submit your credentials (such as medical license, university ID, or institutional affiliation). Our team reviews submissions manually or via verification systems. Once approved, your account will be marked as <strong>verified</strong>.</p>\n<hr>\n<h3>Who can join After Trials?</h3>\n<p>After Trials is designed for:</p>\n<ul>\n<li>Verified healthcare professionals</li>\n<li>Medical students</li>\n<li>Academic and research professionals</li>\n</ul>\n<p>Access may be restricted if verification requirements are not met.</p>\n<hr>\n<h3>I submitted my documents but I’m not verified yet</h3>\n<p>Verification may take <strong>24–72 hours</strong>. If delayed, contact support with your registered email.</p>\n<hr>\n<h2>💳 Subscriptions &amp; Billing</h2>\n<h3>Is After Trials free to use?</h3>\n<p>Yes, After Trials offers a <strong>free tier</strong> with basic features. Premium plans unlock additional tools such as advanced networking, visibility, and opportunities.</p>\n<hr>\n<h3>How do I cancel my subscription?</h3>\n<p>You can cancel anytime:</p>\n<ul>\n<li><strong>iOS:</strong> Settings → Subscriptions</li>\n<li><strong>Android:</strong> Google Play → Subscriptions</li>\n<li><strong>Web:</strong> Account → Subscription Settings</li>\n</ul>\n<p>You will retain access until the end of your billing cycle.</p>\n<hr>\n<h3>Do you offer refunds?</h3>\n<p>Subscriptions are generally non-refundable. However, billing errors or technical issues may be reviewed on a case-by-case basis. See our Refund Policy for details.</p>\n<hr>\n<h2>🔒 Privacy &amp; Data</h2>\n<h3>How is my data protected?</h3>\n<p>We use industry-standard security measures, including:</p>\n<ul>\n<li>Encrypted data transmission (TLS)</li>\n<li>Secure storage systems</li>\n<li>Restricted internal access</li>\n</ul>\n<p>We do not sell your personal data.</p>\n<hr>\n<h3>Will my data be shared with others?</h3>\n<p>Your <strong>professional profile information</strong> may be shared with:</p>\n<ul>\n<li>Recruiters</li>\n<li>Employers</li>\n<li>Platform partners</li>\n</ul>\n<p>This is done to enable job opportunities and professional networking. Sensitive personal data is handled in accordance with our Privacy Policy.</p>\n<hr>\n<h3>Can I delete my account?</h3>\n<p>Yes. You can request account deletion anytime via:</p>\n<ul>\n<li>In-app settings, OR</li>\n<li>Email: <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong></li>\n</ul>\n<p>Deletion is permanent and cannot be reversed.</p>\n<hr>\n<h2>🏥 Medical Content &amp; Safety</h2>\n<h3>Can I share clinical cases or images?</h3>\n<p>Yes, but <strong>strict rules apply</strong>:</p>\n<ul>\n<li>No identifiable patient information</li>\n<li>All data must be fully anonymized</li>\n<li>You must have proper authorization</li>\n</ul>\n<p>Violations may lead to account suspension.</p>\n<hr>\n<h3>Is this platform for medical advice?</h3>\n<p>No. After Trials is for <strong>educational and professional discussion only</strong>. It is not a diagnostic or treatment platform.</p>\n<hr>\n<h2>⚙️ Technical Support</h2>\n<h3>The app is not working properly</h3>\n<p>Try:</p>\n<ul>\n<li>Updating the app</li>\n<li>Restarting your device</li>\n<li>Checking your internet connection</li>\n</ul>\n<p>If the issue continues, contact support with details.</p>\n<hr>\n<h3>I forgot my password</h3>\n<p>Use the “Forgot Password” option on the login screen and follow the instructions.</p>\n<hr>\n<h2>🚨 Reporting &amp; Safety</h2>\n<h3>How do I report a user or content?</h3>\n<p>You can use the <strong>Report</strong> button available on profiles or posts. Our team reviews reports and takes appropriate action.</p>\n<hr>\n<h3>What happens if someone violates the rules?</h3>\n<p>We may:</p>\n<ul>\n<li>Remove content</li>\n<li>Suspend accounts</li>\n<li>Permanently ban users</li>\n</ul>\n<hr>\n<h2>📩 Still Need Help?</h2>\n<p>If you couldn’t find what you’re looking for, our support team is here to help.</p>\n<p>📧 <strong><a href=\"mailto:support@aftertrials.com\">support@aftertrials.com</a></strong><br>🌐 <a href=\"https://aftertrials.com\">https://aftertrials.com</a></p>\n<p>We typically respond within <strong>24–48 hours</strong>.</p>\n<hr>\n<p>© 2026 After Trials. All rights reserved.</p>\n"
+  },
+  "about": {
+    "category": "PLATFORM // ABOUT",
+    "title": "About After Trials",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Information about the platform will be published here.</p>"
+  },
+  "gdpr": {
+    "category": "COMPLIANCE // REGULATION",
+    "title": "GDPR Compliance Statement",
+    "meta": {
+      "standard": "EU 2016/679"
+    },
+    "content": "<p>Information available in the main Privacy Policy.</p>"
+  },
+  "dpa": {
+    "category": "DATA PRIVACY // DPA",
+    "title": "Data Processing Addendum",
+    "meta": {
+      "status": "Available on Request"
+    },
+    "content": "<p>Information available in the main Privacy Policy.</p>"
+  },
+  "sla": {
+    "category": "INFRASTRUCTURE // SLA",
+    "title": "Service Level Agreement",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Service levels are guaranteed at 99.9% uptime.</p>"
+  },
+  "academic": {
+    "category": "ACCESS // ACADEMIC",
+    "title": "Academic Access",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Details for medical students and academic institutions.</p>"
+  },
+  "hospitals": {
+    "category": "ACCESS // ENTERPRISE",
+    "title": "Hospital Systems",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Details for verified hospital networks.</p>"
+  },
+  "security": {
+    "category": "PLATFORM // SECURITY",
+    "title": "Security Protocols",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Security architecture details.</p>"
+  },
+  "architecture": {
+    "category": "PLATFORM // ARCHITECTURE",
+    "title": "Network Architecture",
+    "meta": {
+      "status": "Active"
+    },
+    "content": "<p>Details on zero-knowledge encryption architecture.</p>"
+  }
+};
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let docKey = urlParams.get('doc');
+      
+      if (!docKey) {
+        const path = window.location.pathname.replace(/\/$/, '').split('/').pop();
+        if (path && documentData[path]) {
+          docKey = path;
+        }
+      }
+      
+      const doc = documentData[docKey];
+      if (doc) {
+        // ── Core content ───────────────────────────────────────────
+        document.title = doc.title + " | After Trials";
+        document.getElementById('doc-category').textContent = doc.category;
+        document.getElementById('doc-title').textContent = doc.title;
+        document.getElementById('doc-content').innerHTML = doc.content;
+
+        // ── Dynamic SEO meta update ────────────────────────────────
+        const pageUrl = `https://aftertrials.com/${docKey}`;
+        const descriptionMap = {
+          privacy: "Read the After Trials Global Privacy Policy. Understand how we collect, use, and protect your personal data under GDPR, CCPA, and India's DPDP Act.",
+          terms: "Review After Trials Terms of Service — user responsibilities, content licensing, medical disclaimers, and platform usage guidelines.",
+          cookie: "After Trials Cookie Policy. Learn how we use cookies and tracking technologies on our website and mobile application.",
+          refund: "After Trials Refund Policy — guidelines for subscription refunds, exceptions, and how to submit a refund request.",
+          cancellation: "After Trials Cancellation Policy — how to cancel your subscription and what happens to your account.",
+          "account-deletion": "Request account deletion from After Trials. Understand what data is removed and how the process works.",
+          "medical-disclaimer": "Important medical disclaimer for After Trials. The platform is for educational purposes only and does not constitute medical advice.",
+          support: "Contact After Trials support. We respond within 24 hours via email at team@aftertrials.com.",
+          about: "Learn about After Trials — our mission to build a sovereign professional network for the global medical community.",
+          contact: "Get in touch with the After Trials team for support, partnerships, or general enquiries.",
+          gdpr: "After Trials GDPR Compliance Statement. How we handle EU user data under the General Data Protection Regulation.",
+          dpa: "After Trials Data Processing Addendum. Legal basis for data processing activities.",
+          sla: "After Trials Service Level Agreement. We guarantee 99.9% platform uptime.",
+          academic: "Academic access program for medical students and universities on After Trials.",
+          hospitals: "Enterprise access for hospital systems and healthcare institutions on After Trials.",
+          security: "After Trials security architecture and protocols protecting your data.",
+          architecture: "After Trials network architecture — zero-knowledge encryption and sovereign infrastructure."
+        };
+        const description = descriptionMap[docKey] || `${doc.title} — After Trials platform document.`;
+
+        document.getElementById('meta-description').setAttribute('content', description);
+        document.getElementById('meta-canonical').setAttribute('href', pageUrl);
+        document.getElementById('og-title').setAttribute('content', `${doc.title} | After Trials`);
+        document.getElementById('og-description').setAttribute('content', description);
+        document.getElementById('og-url').setAttribute('content', pageUrl);
+        document.getElementById('tw-title').setAttribute('content', `${doc.title} | After Trials`);
+        document.getElementById('tw-description').setAttribute('content', description);
+
+        // ── Dynamic JSON-LD: BreadcrumbList ───────────────────────
+        const breadcrumb = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aftertrials.com/" },
+            { "@type": "ListItem", "position": 2, "name": doc.title, "item": pageUrl }
+          ]
+        };
+        document.getElementById('json-ld-breadcrumb').textContent = JSON.stringify(breadcrumb);
+
+        // ── Dynamic JSON-LD: WebPage ───────────────────────────────
+        const webpage = {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": doc.title + " | After Trials",
+          "url": pageUrl,
+          "description": description,
+          "isPartOf": { "@type": "WebSite", "name": "After Trials", "url": "https://aftertrials.com/" },
+          "breadcrumb": breadcrumb,
+          "publisher": {
+            "@type": "Organization",
+            "name": "After Trials",
+            "url": "https://aftertrials.com/",
+            "logo": "https://aftertrials.com/assets/logo.png"
+          },
+          "inLanguage": "en",
+          "dateModified": "2026-07-17"
+        };
+        document.getElementById('json-ld-webpage').textContent = JSON.stringify(webpage);
+
+        // ── Meta sidebar ───────────────────────────────────────────
+        let metaHTML = '';
+        for (const [key, value] of Object.entries(doc.meta)) {
+          const label = key.replace(/([A-Z])/g, ' $1').toUpperCase();
+          metaHTML += `
+            <div class="meta-item">
+              <span class="meta-title">${label}</span>
+              <span class="meta-value">${value}</span>
+            </div>
+          `;
+        }
+        document.getElementById('doc-meta').innerHTML = metaHTML;
+
+      } else {
+        document.getElementById('doc-category').textContent = "ERROR";
+        document.getElementById('doc-title').textContent = "Document Not Found";
+        document.getElementById('doc-content').innerHTML = "<p>The requested document could not be located in our registry.</p>";
+      }
+    });
+
+  </script>
+</body>
+</html>

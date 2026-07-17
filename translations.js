@@ -1,0 +1,228 @@
+const translations = {
+  en: {
+    // Nav
+    nav_mission: "Mission",
+    nav_philosophy: "Philosophy",
+    nav_pillars: "Pillars",
+    nav_evidence: "Evidence",
+    nav_community: "Community",
+
+    // Hero
+    hero_cell_1: "EVERY",
+    hero_cell_2_label: "FOUNDING INVITATION",
+    hero_cell_2: "MEDICAL",
+    hero_cell_3_label: "PRE-LAUNCH OPEN",
+    hero_cell_3: "STUDENT",
+    hero_cell_4_label: "STATUS",
+    hero_cell_4: "&amp; DOCTOR",
+    hero_brand: "after trials",
+    hero_cta: "Unite With Us &rarr;",
+    hero_cell_6_label: "MISSION",
+    hero_cell_6: "MUST",
+    hero_cell_7_label: "THE VOICE",
+    hero_cell_7: "STAND",
+    hero_cell_8_label: "COORDINATES",
+    hero_cell_8: "UNITED",
+    hero_cell_9_label: "NAVIGATION",
+    hero_cell_9: "TOGETHER",
+
+    // Crisis
+    crisis_title_1: "the unity of",
+    crisis_title_2: "medicine.",
+    crisis_cta: "Claim access key &rarr;",
+    crisis_desc: "The future of medicine belongs to us, but only if we stand united. The current system relies on academic isolation to exploit medical students and exhaust residents. It is time to break the toxic cycle. Together, we are an unbreakable, unified front.",
+    crisis_col1_header: "THE PRICE OF ISOLATION",
+    crisis_col1_li1: "Academic Bullying",
+    crisis_col1_li2: "Systemic Burnout",
+    crisis_col1_li3: "Institutional Exploitation",
+    crisis_col2_header: "THE POWER OF UNITY",
+    crisis_col2_li1: "Sovereign Peer Support",
+    crisis_col2_li2: "Unified Bargaining",
+    crisis_col2_li3: "Safe Clinical Training",
+    crisis_watermark: "AFTER TRIALS.",
+
+    // Shift
+    shift_title: "The Student's Burden.",
+    shift_desc: "From day one of medical school, you are taught to survive the wards alone. The toxic hierarchy of medicine isolates students and exploits residents. We survive the same rotations in silence, divided by hospital walls. It is time to merge our voices.",
+    shift_time1_label: "Siloed Rotations",
+    shift_time1_text: "We start rounds as isolated numbers. The academic hierarchy forces medical students to hide their struggles and compete rather than collaborate.",
+    shift_time2_label: "Unassisted Pressure",
+    shift_time2_text: "Expectations mount. Systemic pressures leave trainees exposed while attendings are overwhelmed. We suffer the brunt of it in silence.",
+    shift_time3_label: "The Weight of the Wards",
+    shift_time3_text: "You carry the clinical and emotional trauma home alone, divided from the very peers who understand your reality.",
+    shift_time4_label: "The Vigil",
+    shift_time4_text: "Studying or working through the night, the isolation is deafening. But across the country, thousands of students are fighting the exact same battle.",
+    shift_time5_label: "The Realization",
+    shift_time5_text: "We are taught that asking for help is a weakness. This division is what breaks us. Our only true shield is the absolute unity of medicine.",
+
+    // Philosophy
+    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">united, we are the authority.</span>",
+
+    // Pillars
+    pillar_1_num: "01 / THE ALLIANCE",
+    pillar_1_title: "Unbreakable Unity",
+    pillar_1_desc: "A sovereign digital sanctuary built strictly for medical students and residents. Free from academic surveillance, grading retaliation, and institutional administrators. Our safe house to align, organize, and speak as one.",
+    pillar_2_num: "02 / THE SHIELD",
+    pillar_2_title: "Protecting Our Own",
+    pillar_2_desc: "Mutual defense is our law. When a medical student is bullied on rotations, or a resident is scapegoated, the network deploys guidance, collective support, and unified advocacy. No student stands alone.",
+    pillar_3_num: "03 / THE LEVERAGE",
+    pillar_3_title: "Systemic Change",
+    pillar_3_desc: "Crowdsourcing our collective strength. We collect raw data on toxic rotations, abusive attendings, and program violations. We warn the next generation and pressure institutions through absolute unity.",
+    pillar_explore: "EXPLORE +",
+
+    // Evidence
+    ev_title: "Why We Must Unite.",
+    ev_desc: "The data is clear. Divided, we are stats in reports on medical burnout, resident depression, and institutional neglect. Read the evidence of why isolation is fatal and unity is our only exit.",
+    ev_scroll: "swipe horizontally &rarr;",
+    ev_read: "Read Press &rarr;",
+    ev_join: "Join Debate &rarr;",
+    ev_1_head: "La Repubblica: Ambulance staff face mounting assaults",
+    ev_2_head: "ANSA: In aumento le aggressioni ai sanitari nel 2025",
+    ev_3_head: "ANSA: Ministry reports 18,000 attacks on health workers in 2025",
+    ev_4_head: "Sky TG24: Aggressioni medici e infermieri, i dati del 2025",
+    ev_5_head: "RaiNews: Oltre 23mila operatori sanitari picchiati o minacciati",
+    ev_6_head: "Reuters: Italy faces calls for hospital security crackdown",
+    ev_7_head: "The Guardian: Call for army to protect Italian hospital staff after assaults",
+    ev_8_head: "r/Europe Discussion: The reality of emergency rooms in southern Italy",
+    ev_9_head: "r/Premed Forum: Medical student training reality and misconceptions",
+
+    // Community
+    com_title: "The Sovereign Network.",
+    com_desc: "We are currently operating in stealth pre-launch. Invitations are strictly controlled to ensure the integrity of the network.",
+    com_1: "Founding Students",
+    com_2: "Waitlisted Residents",
+    com_3: "Hospitals Represented",
+    com_4: "Medical Specialties",
+    com_5: "Abuse Reports Verified",
+    com_6: "Sovereign Connections",
+
+    // Onboarding
+    on_title_1: "break",
+    on_title_2: "isolation.",
+    on_label: "SECURE PRE-LAUNCH ONBOARDING",
+    on_placeholder: "enter secure access code...",
+    on_btn: "VERIFY IDENTITY",
+    on_status: "SYSTEM STATUS: ENCRYPTED. PEER-TO-PEER ENCLAVE ACTIVE.",
+
+    // Footer
+    foot_nav: "SECURE NAVIGATION",
+    foot_legal: "SOVEREIGNTY & TERMS",
+    foot_manifesto: "THE MANIFESTO",
+    foot_reports: "THE ARCHIVE // REPORTS",
+    foot_privacy: "DATA PRIVACY",
+    foot_copyright: "© 2026 AFTER TRIALS. BUILT BY DOCTORS FOR DOCTORS. NO ADMINS ALLOWED."
+  },
+  it: {
+    // Nav
+    nav_mission: "Missione",
+    nav_philosophy: "Filosofia",
+    nav_pillars: "Pilastri",
+    nav_evidence: "Prove",
+    nav_community: "Comunità",
+
+    // Hero
+    hero_cell_1: "OGNI",
+    hero_cell_2_label: "INVITO DEI FONDATORI",
+    hero_cell_2: "STUDENTE",
+    hero_cell_3_label: "ACCESSO PRE-LANCIO",
+    hero_cell_3: "DI MEDICINA",
+    hero_cell_4_label: "STATUS",
+    hero_cell_4: "&amp; MEDICO",
+    hero_brand: "after trials",
+    hero_cta: "Unisciti a Noi &rarr;",
+    hero_cell_6_label: "MISSIONE",
+    hero_cell_6: "DEVE",
+    hero_cell_7_label: "LA VOCE",
+    hero_cell_7: "RESTARE",
+    hero_cell_8_label: "COORDINATE",
+    hero_cell_8: "UNITO",
+    hero_cell_9_label: "NAVIGAZIONE",
+    hero_cell_9: "AGLI ALTRI",
+
+    // Crisis
+    crisis_title_1: "l'unità della",
+    crisis_title_2: "medicina.",
+    crisis_cta: "Richiedi chiave d'accesso &rarr;",
+    crisis_desc: "Il futuro della medicina ci appartiene, ma solo se restiamo uniti. Il sistema attuale sfrutta l'isolamento accademico per spremere gli studenti di medicina ed esaurire gli specializzandi. È ora di spezzare questo ciclo tossico. Insieme, siamo un fronte unito e indistruttibile.",
+    crisis_col1_header: "IL PREZZO DELL'ISOLAMENTO",
+    crisis_col1_li1: "Bullismo Accademico",
+    crisis_col1_li2: "Burnout Sistemico",
+    crisis_col1_li3: "Sfruttamento Istituzionale",
+    crisis_col2_header: "IL POTERE DELL'UNITÀ",
+    crisis_col2_li1: "Supporto Sovrano tra Pari",
+    crisis_col2_li2: "Contrattazione Unita",
+    crisis_col2_li3: "Formazione Clinica Sicura",
+    crisis_watermark: "AFTER TRIALS.",
+
+    // Shift
+    shift_title: "Il Fardello dello Studente.",
+    shift_desc: "Fin dal primo giorno di medicina, ti viene insegnato a sopravvivere nei reparti da solo. La gerarchia tossica isola gli studenti e sfrutta gli specializzandi. Sopravviviamo agli stessi turni in silenzio, divisi dalle mura dell'ospedale. È il momento di unire le nostre voci.",
+    shift_time1_label: "Reparti a Compartimenti Stagni",
+    shift_time1_text: "Iniziamo i giri visite come numeri isolati. La gerarchia accademica costringe gli studenti a nascondere le proprie difficoltà e a competere anziché collaborare.",
+    shift_time2_label: "Pressione senza Supporto",
+    shift_time2_text: "Le aspettative salgono. Le pressioni di sistema lasciano i tirocinanti esposti mentre gli strutturati sono sopraffatti. Ne subiamo il peso in silenzio.",
+    shift_time3_label: "Il Peso del Reparto",
+    shift_time3_text: "Ti porti a casa da solo il trauma clinico ed emotivo, diviso proprio da quei colleghi che comprendono la tua realtà.",
+    shift_time4_label: "La Veglia",
+    shift_time4_text: "Mentre studi o lavori durante la notte, l'isolamento è assordante. Ma in tutto il Paese, migliaia di studenti stanno combattendo la tua stessa identica battaglia.",
+    shift_time5_label: "La Presa di Coscienza",
+    shift_time5_text: "Ci insegnano che chiedere aiuto è una debolezza. Questa divisione è ciò che ci spezza. Il nostro unico vero scudo è l'unità assoluta della medicina.",
+
+    // Philosophy
+    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">uniti, siamo l'autorità.</span>",
+
+    // Pillars
+    pillar_1_num: "01 / L'ALLEANZA",
+    pillar_1_title: "Unità Indistruttibile",
+    pillar_1_desc: "Un santuario digitale sovrano costruito rigorosamente per studenti di medicina e specializzandi. Libero dalla sorveglianza accademica, dalle ritorsioni sui voti e dagli amministratori. La nostra casa sicura per allinearci, organizzarci e parlare come una sola voce.",
+    pillar_2_num: "02 / LO SCUDO",
+    pillar_2_title: "Proteggere i Nostri",
+    pillar_2_desc: "La difesa reciproca è la nostra legge. Quando uno studente viene bullizzato in reparto, o uno specializzando diventa il capro espiatorio, la rete dispiega supporto collettivo e difesa unificata. Nessuno studente resta solo.",
+    pillar_3_num: "03 / LA LEVA",
+    pillar_3_title: "Cambiamento Sistemico",
+    pillar_3_desc: "Sfruttiamo la nostra forza collettiva in crowdsourcing. Raccogliamo dati grezzi su reparti tossici, strutturati abusanti e violazioni dei programmi. Avvertiamo la prossima generazione e facciamo pressione sulle istituzioni attraverso un'unità assoluta.",
+    pillar_explore: "ESPLORA +",
+
+    // Evidence
+    ev_title: "Perché Dobbiamo Unirci.",
+    ev_desc: "I dati parlano chiaro. Divisi, siamo solo statistiche nei report su burnout medico, depressione degli specializzandi e negligenza istituzionale. Leggi le prove del perché l'isolamento è fatale e l'unità è la nostra unica via d'uscita.",
+    ev_scroll: "scorri orizzontalmente &rarr;",
+    ev_read: "Leggi la Stampa &rarr;",
+    ev_join: "Partecipa al Dibattito &rarr;",
+    ev_1_head: "La Repubblica: Operatori delle ambulanze affrontano aggressioni crescenti",
+    ev_2_head: "ANSA: In aumento le aggressioni ai sanitari nel 2025",
+    ev_3_head: "ANSA: Il ministero segnala 18.000 attacchi agli operatori sanitari nel 2025",
+    ev_4_head: "Sky TG24: Aggressioni medici e infermieri, i dati del 2025",
+    ev_5_head: "RaiNews: Oltre 23mila operatori sanitari picchiati o minacciati",
+    ev_6_head: "Reuters: L'Italia affronta richieste di maggiore sicurezza negli ospedali",
+    ev_7_head: "The Guardian: Richiesta di intervento dell'esercito per proteggere il personale",
+    ev_8_head: "Discussione r/Europe: La realtà dei pronto soccorso nel sud Italia",
+    ev_9_head: "Forum r/Premed: La realtà della formazione medica e i falsi miti",
+
+    // Community
+    com_title: "La Rete Sovrana.",
+    com_desc: "Attualmente stiamo operando in modalità pre-lancio riservata. Gli inviti sono rigorosamente controllati per garantire l'integrità della rete.",
+    com_1: "Studenti Fondatori",
+    com_2: "Specializzandi in Lista",
+    com_3: "Ospedali Rappresentati",
+    com_4: "Specializzazioni Mediche",
+    com_5: "Abusi Verificati",
+    com_6: "Connessioni Sovrane",
+
+    // Onboarding
+    on_title_1: "spezza",
+    on_title_2: "l'isolamento.",
+    on_label: "ONBOARDING SICURO DI PRE-LANCIO",
+    on_placeholder: "inserisci il codice di accesso sicuro...",
+    on_btn: "VERIFICA IDENTITÀ",
+    on_status: "STATO SISTEMA: CRIPTATO. ENCLAVE PEER-TO-PEER ATTIVA.",
+
+    // Footer
+    foot_nav: "NAVIGAZIONE SICURA",
+    foot_legal: "SOVRANITÀ & TERMINI",
+    foot_manifesto: "IL MANIFESTO",
+    foot_reports: "L'ARCHIVIO // REPORT",
+    foot_privacy: "PRIVACY DEI DATI",
+    foot_copyright: "© 2026 AFTER TRIALS. COSTRUITO DA MEDICI PER I MEDICI. NESSUN AMMINISTRATORE AMMESSO."
+  }
+};

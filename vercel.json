@@ -1,0 +1,39 @@
+{
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog-post.html"
+    },
+    { "source": "/privacy", "destination": "/document.html" },
+    { "source": "/terms", "destination": "/document.html" },
+    { "source": "/cookie", "destination": "/document.html" },
+    { "source": "/gdpr", "destination": "/document.html" },
+    { "source": "/dpa", "destination": "/document.html" },
+    { "source": "/sla", "destination": "/document.html" },
+    { "source": "/academic", "destination": "/document.html" },
+    { "source": "/hospitals", "destination": "/document.html" },
+    { "source": "/security", "destination": "/document.html" },
+    { "source": "/architecture", "destination": "/document.html" },
+    { "source": "/support", "destination": "/document.html" },
+    { "source": "/about", "destination": "/document.html" },
+    { "source": "/contact", "destination": "/document.html" },
+    { "source": "/refund", "destination": "/document.html" },
+    { "source": "/cancellation", "destination": "/document.html" },
+    { "source": "/account-deletion", "destination": "/document.html" },
+    { "source": "/medical-disclaimer", "destination": "/document.html" }
+  ]
+}

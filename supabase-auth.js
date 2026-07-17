@@ -98,7 +98,7 @@ async function verifySignupOTP(email, token) {
 // --------------------------------------------------------------------------
 // 3. Create Profile — upserts into the profiles table after OTP verification
 // --------------------------------------------------------------------------
-async function createProfile({ fullName, userType, institution, course, specialization }) {
+async function createProfile({ fullName, userType, institution, course, specialization, phone }) {
   const { data: { user } } = await _supabaseClient.auth.getUser();
 
   if (!user) {
@@ -139,12 +139,27 @@ async function createProfile({ fullName, userType, institution, course, speciali
     }
   }
 
-  const { error } = await _supabaseClient
+  const { error: profileError } = await _supabaseClient
     .from('profiles')
     .upsert(profileData);
 
-  if (error) {
-    throw new Error(error.message);
+  if (profileError) {
+    throw new Error(profileError.message);
+  }
+
+  // Save secure private info
+  if (phone) {
+    const { error: privateInfoError } = await _supabaseClient
+      .from('user_private_info')
+      .upsert({
+        id: user.id,
+        phone_number: phone
+      });
+
+    if (privateInfoError) {
+      console.error('Failed to save private info:', privateInfoError);
+      throw new Error('Profile created but failed to save secure contact details: ' + privateInfoError.message);
+    }
   }
 
   // Clear referral code on successful profile creation
@@ -224,6 +239,36 @@ async function signIn(email, password) {
   return data;
 }
 
+// Fetch published blogs
+async function getPublishedBlogs() {
+  const { data, error } = await _supabaseClient
+    .from('blogs')
+    .select('title, slug, excerpt, cover_image, published_at, read_time_minutes')
+    .eq('published', true)
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching blogs:', error.message);
+    return [];
+  }
+  return data;
+}
+
+// Fetch a single blog by slug
+async function getBlogBySlug(slug) {
+  const { data, error } = await _supabaseClient
+    .from('blogs')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    console.error('Error fetching blog:', error.message);
+    return null;
+  }
+  return data;
+}
+
 // Sign out the current user
 async function signOut() {
   const { error } = await _supabaseClient.auth.signOut();
@@ -246,6 +291,8 @@ window.SupabaseAuth = {
   getWaitlistStats,
   getReferrals,
   getReferralCode,
+  getPublishedBlogs,
+  getBlogBySlug,
   signOut,
   signIn,
 };

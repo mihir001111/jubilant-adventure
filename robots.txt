@@ -1,0 +1,21 @@
+# robots.txt — After Trials (https://aftertrials.com)
+# Last updated: 2026-07-17
+
+User-agent: *
+Allow: /
+
+# Disallow internal/auth paths
+Disallow: /api/
+Disallow: /_vercel/
+Disallow: /supabase-auth.js
+Disallow: /main.js
+Disallow: /translations.js
+Disallow: /i18n.js
+Disallow: /convert.js
+Disallow: /update_doc.js
+
+# Sitemap declaration
+Sitemap: https://aftertrials.com/sitemap.xml
+
+# Crawl rate hint (optional, respected by some crawlers)
+Crawl-delay: 1

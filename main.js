@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. PRELOADER FADE OUT
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('global-preloader');
+    if (preloader) {
+      preloader.classList.add('loaded');
+      setTimeout(() => preloader.remove(), 1200);
+    }
+  });
+
   console.log('After Trials landing page initialized.');
 
   // Capture referral code from URL query string
@@ -81,7 +90,88 @@ document.addEventListener('DOMContentLoaded', () => {
     counterObserver.observe(communitySection);
   }
 
+  // ==========================================================================
+  // 2B. EDITORIAL DYNAMIC BOX ANIMATION
+  // ==========================================================================
+  const initEditorialAnimation = () => {
+    const box = document.getElementById('editorialDynamicBox');
+    if (!box) return;
 
+    const icon = document.getElementById('edIcon');
+    const title = document.getElementById('edTitle');
+    const li1 = document.getElementById('edLi1');
+    const li2 = document.getElementById('edLi2');
+    const li3 = document.getElementById('edLi3');
+
+    let state = 0; // 0: negative, 1: positive
+    let loopTimeout;
+
+    const runLoop = () => {
+      // 1. Initial Negative State (Price of Isolation) is set. Wait 2 seconds.
+      loopTimeout = setTimeout(() => {
+        // 2. Add 'cut' class (draws strikethrough lines)
+        box.classList.add('ed-state-cut');
+
+        loopTimeout = setTimeout(() => {
+          // 3. Fade out
+          box.classList.add('ed-state-fade');
+
+          loopTimeout = setTimeout(() => {
+            // 4. Swap to Positive State
+            const trans = window.translations ? window.translations[window.currentLanguage] : null;
+            if (trans) {
+              title.textContent = trans.crisis_col2_header || "THE POWER OF UNITY";
+              li1.textContent = trans.crisis_col2_li1 || "Sovereign Peer Support";
+              li2.textContent = trans.crisis_col2_li2 || "Unified Bargaining";
+              li3.textContent = trans.crisis_col2_li3 || "Safe Clinical Training";
+            } else {
+              title.textContent = "THE POWER OF UNITY";
+              li1.textContent = "Sovereign Peer Support";
+              li2.textContent = "Unified Bargaining";
+              li3.textContent = "Safe Clinical Training";
+            }
+            icon.textContent = "✓";
+
+            box.classList.remove('ed-state-cut');
+            box.classList.add('ed-state-positive');
+            box.classList.remove('ed-state-fade'); // Fade in
+
+            loopTimeout = setTimeout(() => {
+              // 5. Fade out
+              box.classList.add('ed-state-fade');
+
+              loopTimeout = setTimeout(() => {
+                // 6. Swap to Negative State
+                if (trans) {
+                  title.textContent = trans.crisis_col1_header || "THE PRICE OF ISOLATION";
+                  li1.textContent = trans.crisis_col1_li1 || "Academic Bullying";
+                  li2.textContent = trans.crisis_col1_li2 || "Systemic Burnout";
+                  li3.textContent = trans.crisis_col1_li3 || "Institutional Exploitation";
+                } else {
+                  title.textContent = "THE PRICE OF ISOLATION";
+                  li1.textContent = "Academic Bullying";
+                  li2.textContent = "Systemic Burnout";
+                  li3.textContent = "Institutional Exploitation";
+                }
+                icon.textContent = "✕";
+
+                box.classList.remove('ed-state-positive');
+                box.classList.remove('ed-state-fade'); // Fade in
+
+                // Restart Loop
+                runLoop();
+              }, 400); // Wait for fade out
+            }, 3000); // Stay on positive for 3s
+          }, 400); // Wait for fade out
+        }, 1500); // Stay with cut lines for 1.5s
+      }, 2500); // Stay on negative for 2.5s
+    };
+
+    // Start loop
+    runLoop();
+  };
+
+  initEditorialAnimation();
   // ==========================================================================
   // 3. EDITORIAL PROSE ONBOARDING INTAKE + SUPABASE AUTH WIZARD LOGIC
   // ==========================================================================
@@ -101,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     course: '',
     specialty: '',
     email: '',
+    phone: '',
   };
 
   // Course to Specialties Mapping
@@ -284,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.affiliation = document.getElementById('input-affiliation').value;
         formData.course = document.getElementById('input-course').value;
         formData.email = document.getElementById('input-email').value.trim();
+        formData.phone = document.getElementById('input-phone').value.trim();
 
         // Determine specialization field
         if (formData.course === 'Others') {
@@ -373,7 +465,8 @@ document.addEventListener('DOMContentLoaded', () => {
         userType: mappedUserType,
         institution: formData.affiliation,
         course: formData.course,
-        specialization: formData.specialty
+        specialization: formData.specialty,
+        phone: formData.phone
       });
 
       // 3. Stop timer and show success
@@ -593,270 +686,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 6. DYNAMIC ENTERPRISE MODAL LOGIC
+  // 6. CAMPAIGN DASHBOARD LOGIC (moved up since modal was removed)
   // ==========================================================================
-  const documentData = {
-    privacy: {
-      category: "COMPLIANCE // PRIVACY",
-      title: "Privacy & Identity Charter",
-      meta: {
-        effective: "July 2026",
-        version: "v2.4.1",
-        jurisdiction: "EU (Rome/Lisbon/Brussels)",
-        classification: "Highly Confidential (Restricted)"
-      },
-      content: `
-        <h4>1. Scope and Commitments</h4>
-        <p>After Trials is built to ensure absolute anonymity and security for physicians, residents, and medical students. We process credentials and telemetry with zero-knowledge encryption models.</p>
-        
-        <h4>2. Practitioner Identity Protection</h4>
-        <p>Your license credentials and ID verification materials are hashed immediately upon checks and stored under local client-side vaults. We do not store plain-text copies of National Registry IDs or hospital access cards on centralised relay nodes.</p>
-        
-        <h4>3. Zero hospital database links</h4>
-        <p>We maintain no data agreements, API hooks, or background directory syncs with public or private hospital employer databases. Your presence on this platform is shielded from institutional authorities.</p>
-      `
-    },
-    terms: {
-      category: "REGULATORY // CONDUCT",
-      title: "Terms of Membership Agreement",
-      meta: {
-        effective: "July 2026",
-        version: "v2.0.2",
-        compliance: "Medical Code of Conduct",
-        scope: "Founding Registrants"
-      },
-      content: `
-        <h4>1. Admission Criteria</h4>
-        <p>Membership is limited strictly to active healthcare practitioners, medical students, and residents. Sponsoring organizations do not receive account credentials for sponsored individuals.</p>
-        
-        <h4>2. Absolute Confidentiality</h4>
-        <p>Practitioners must not take screenshots, extract chat logs, or disclose statements made inside peer channels. Violating peer confidentiality results in immediate revocation of access keys and permanent IP blocking.</p>
-        
-        <h4>3. Liability Exemptions</h4>
-        <p>After Trials provides secure channels for venting and collaboration. Clinical guidelines discussed inside channels do not replace formal consultations or hospital policy guidelines.</p>
-      `
-    },
-    gdpr: {
-      category: "COMPLIANCE // GDPR",
-      title: "General Data Protection Compliance",
-      meta: {
-        authority: "EU GDPR Regulation 2016/679",
-        dataHost: "Rome, IT / Milan, IT",
-        retention: "Zero log policy",
-        encryption: "AES-GCM 256-bit"
-      },
-      content: `
-        <h4>1. Right to Permanent Erasure</h4>
-        <p>Every member holds an absolute right to wipe their entire data presence instantly. Deleting an account executes a cryptographic shredding routine that wipes messaging indices across all peer nodes.</p>
-        
-        <h4>2. Local Data Processing</h4>
-        <p>In accordance with GDPR requirements, all medical telemetry and chat messages are hosted exclusively on European soil (Rome and Milan database clusters).</p>
-        
-        <h4>3. Cookie-Free Architecture</h4>
-        <p>Our platform does not use tracking cookies, analytics pixels, or advertisement tokens. We use session-only local vaults to preserve onboarding states.</p>
-      `
-    },
-    cookies: {
-      category: "PREFERENCES // CACHE",
-      title: "Cookie & Session Preferences",
-      meta: {
-        cookiesUsed: "0 (Zero Tracking Cookies)",
-        storageType: "SessionStorage / LocalStorage",
-        dataShared: "None",
-        audit: "Verified July 2026"
-      },
-      content: `
-        <h4>1. Zero-Tracking Architecture</h4>
-        <p>After Trials has intentionally removed all cookies from its network code. We reject tracking pixels, analytical scripts, and marketing integrations.</p>
-        
-        <h4>2. What We Store Locally</h4>
-        <p>To enable the onboarding wizard, we use the browser's <code>localStorage</code> to cache progress states. Sessional data is wiped instantly once onboarding verification is concluded.</p>
-      `
-    },
-    dpa: {
-      category: "DATA PROTECTION // DPA",
-      title: "Data Processing Addendum",
-      meta: {
-        standard: "EU Standard Contractual Clauses (SCC)",
-        processor: "After Trials Inc.",
-        auditCycle: "Semi-Annual",
-        securityLevel: "Tier 4 Military Grade"
-      },
-      content: `
-        <h4>1. Purpose of Processing</h4>
-        <p>Data processing is confined strictly to securing physician validation credentials and routing encrypted peer communication packets.</p>
-        
-        <h4>2. Cryptographic Security Standards</h4>
-        <p>Data is encrypted in-transit using TLS 1.3 and at-rest using AES-GCM 256-bit keys. Keys are rotated dynamically every 24 hours.</p>
-        
-        <h4>3. Third-Party Sub-Processors</h4>
-        <p>We do not delegate database tasks to third-party sub-processors. Sessional database relays are owned and managed by After Trials directly.</p>
-      `
-    },
-    sla: {
-      category: "SERVICE LEVEL // SLA",
-      title: "Service Level Agreement Commitment",
-      meta: {
-        uptimeCommitment: "99.9% Network Availability",
-        backupInterval: "Hourly Cryptographic Backups",
-        supportResponse: "< 2 Hours Response",
-        classification: "Enterprise Standards"
-      },
-      content: `
-        <h4>1. Availability Objectives</h4>
-        <p>We commit to maintaining a secure, low-latency messaging network. In case of localized infrastructure failures, network traffic redirects dynamically to backup clusters.</p>
-        
-        <h4>2. Maintenance Windows</h4>
-        <p>System updates are rolled out in hot-swap intervals. No scheduled downtime will impact peer communications during hospital peak shift hours.</p>
-      `
-    },
-    hospitals: {
-      category: "ENTERPRISE // HOSPITALS",
-      title: "Hospital Systems & Institutional Access",
-      meta: {
-        audience: "Clinical Admins, Health Boards",
-        securitySponsor: "Double-Blind Verification",
-        readAccess: "Strictly Restricted (Zero Read Access)",
-        deployment: "Cloud Hybrid Gateway"
-      },
-      content: `
-        <h4>1. Institutional Sponsorship</h4>
-        <p>Hospital networks can purchase bulk license credits to sponsor their residents and physicians. However, sponsored members retain absolute private credentials that are completely decoupled from administrative oversight.</p>
-        
-        <h4>2. Zero-Trust Admin Dashboards</h4>
-        <p>Administrators receive telemetry reporting on registration volumes and active usage metrics. However, they receive <strong>zero read access</strong> to actual peer chats, message contents, or practitioner identities.</p>
-      `
-    },
-    academic: {
-      category: "ENTERPRISE // ACADEMIC",
-      title: "Academic & Residency Programs",
-      meta: {
-        target: "Medical Students, Residency Directors",
-        discountRate: "100% Free for verified trainees",
-        verification: "Academic Domain Check",
-        partners: "European Medical Faculties"
-      },
-      content: `
-        <h4>1. Residency Support Gateways</h4>
-        <p>Resident burnout is at an all-time high. Sponsoring university directors can provision private venting nodes to help residents coordinate safely without fearing academic or professional repercussions.</p>
-        
-        <h4>2. Student Integration</h4>
-        <p>Medical students receive access to mentor channels. Trainee credentials are verified via institutional university domains to ensure safe learning buffers.</p>
-      `
-    },
-    security: {
-      category: "SECURITY // PROTOCOLS",
-      title: "Cryptographic Security Protocol Charter",
-      meta: {
-        encryptionMode: "Zero-Knowledge Proofs",
-        authFactor: "Biometric WebAuthn Keys",
-        databaseType: "Decentralised Peer Relays",
-        auditRating: "A+ Certified Class"
-      },
-      content: `
-        <h4>1. Message Isolation</h4>
-        <p>Our messaging architecture runs in sandboxed virtual layers. Once a message is fetched by a peer device, it is wiped from intermediate routing servers immediately.</p>
-        
-        <h4>2. Hardware Cryptography</h4>
-        <p>Practitioners can bind their access keys to local secure enclaves (TouchID, FaceID, or physical YubiKeys) to protect against device theft.</p>
-      `
-    },
-    architecture: {
-      category: "NETWORK // ARCHITECTURE",
-      title: "Local-First Network Architecture",
-      meta: {
-        protocol: "P2P Secure WebSocket Relays",
-        latencyTarget: "< 35ms within EU",
-        nodes: "Milan / Lisbon / Rome / Amsterdam",
-        classification: "Enterprise Mesh Network"
-      },
-      content: `
-        <h4>1. Low Latency Shift Support</h4>
-        <p>Hospitals have poor connectivity layers. Our network uses local-first protocols to queue message sends, syncing instantly when connection becomes active.</p>
-        
-        <h4>2. Multi-Region Failover</h4>
-        <p>The network spans multiple edge database nodes, guaranteeing message delivery even during severe fiber-optic cuts or server failures.</p>
-      `
-    },
-    support: {
-      category: "HELP // DISPATCH",
-      title: "Support Portal & Resolution Centers",
-      meta: {
-        channel: "verification@after-trials.community",
-        responseWindow: "< 2 Hours Response",
-        activeHours: "24/7 Clinical Emergency Support",
-        priority: "Physician Access Recovery"
-      },
-      content: `
-        <h4>1. Credential Verification Help</h4>
-        <p>If you face difficulty uploading your practitioner credentials or validating your license registry number, contact our direct dispatch at <code>verification@after-trials.community</code>.</p>
-        
-        <h4>2. Account Recoveries</h4>
-        <p>Because accounts are encrypted with double-blind local key rings, losing your secure enclave configuration requires manual key reset approval from three verified peers.</p>
-      `
-    }
-  };
-
-  const docModal = document.getElementById('enterprise-modal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const modalCategory = document.getElementById('modal-category');
-  const modalTitle = document.getElementById('modal-title');
-  const modalBodyLeft = document.getElementById('modal-body-left');
-  const modalBodyRight = document.getElementById('modal-body-right');
-
-  const openDocument = (docKey) => {
-    const doc = documentData[docKey];
-    if (!doc) return;
-
-    modalCategory.textContent = doc.category;
-    modalTitle.textContent = doc.title;
-    modalBodyLeft.innerHTML = doc.content;
-
-    // Generate right sidebar metadata
-    let metaHTML = '';
-    for (const [key, value] of Object.entries(doc.meta)) {
-      // camelCase to spaced uppercase
-      const label = key.replace(/([A-Z])/g, ' $1').toUpperCase();
-      metaHTML += `
-        <span class="meta-title">${label}</span>
-        <span class="meta-value">${value}</span>
-      `;
-    }
-    modalBodyRight.innerHTML = metaHTML;
-
-    // Show modal
-    docModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // prevent backdrop scrolling
-  };
-
-  const closeDocument = () => {
-    if (docModal) {
-      docModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  };
-
-  // Click triggers
-  document.querySelectorAll('.document-trigger').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const docKey = trigger.getAttribute('data-doc');
-      openDocument(docKey);
-    });
-  });
-
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closeDocument);
-  }
-
-  // Close modal when clicking backdrop
-  if (docModal) {
-    docModal.addEventListener('click', (e) => {
-      if (e.target === docModal) {
-        closeDocument();
-      }
-    });
-  }
 
   // Campaign Modal & Dashboard Logic
   const campaignModal = document.getElementById('campaign-modal');
@@ -1118,7 +949,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  window.addEventListener('scroll', scrollspy);
+  let isScrollspyTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isScrollspyTicking) {
+      window.requestAnimationFrame(() => {
+        scrollspy();
+        isScrollspyTicking = false;
+      });
+      isScrollspyTicking = true;
+    }
+  }, { passive: true });
 
   // ==========================================================================
   // AUTHENTICATION STATE & LOG IN / LOG OUT LOGIC FOR MAIN LANDING
@@ -1314,11 +1154,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const cells = Array.from(document.querySelectorAll('.poster-cell'));
     if (cells.length < 9) return;
     
-    const fullSentences = [
-      ["EVERY", "SINGLE", "HEALTHCARE", "PROFESSIONAL", "MUST", "STAND", "UNITED", "TOGETHER"],
-      ["THE", "ONLY", "SECURE", "NETWORK", "FOR", "ALL", "MEDICAL", "DOCTORS"],
-      ["WE", "ARE", "THE", "SOVEREIGN", "COLLECTIVE", "DEFENDING", "OUR", "PROFESSION"]
-    ];
+    const fullSentences = {
+      en: [
+        ["EVERY", "MEDICAL", "STUDENT", "& DOCTOR", "MUST", "STAND", "UNITED", "TOGETHER"],
+        ["THE", "ONLY", "SECURE", "NETWORK", "FOR", "ALL", "MEDICAL", "DOCTORS"],
+        ["WE", "ARE", "THE", "SOVEREIGN", "COLLECTIVE", "DEFENDING", "OUR", "PROFESSION"]
+      ],
+      it: [
+        ["OGNI", "STUDENTE", "DI MEDICINA", "& MEDICO", "DEVE", "RESTARE", "UNITO", "AGLI ALTRI"],
+        ["L'UNICA", "RETE", "SICURA", "PER", "TUTTI", "I", "MEDICI", "ITALIANI"],
+        ["SIAMO", "IL", "COLLETTIVO", "SOVRANO", "A", "DIFESA", "DELLA", "PROFESSIONE"]
+      ]
+    };
     const colorClasses = ['bg-crayon-blue', 'bg-crayon-orange', 'bg-crayon-green', 'bg-crayon-pink', 'bg-crayon-yellow', 'bg-crayon-purple'];
     
     setInterval(() => {
@@ -1327,8 +1174,10 @@ document.addEventListener('DOMContentLoaded', () => {
         colorClasses.forEach(cls => cell.classList.remove(cls));
       });
 
-      // 2. Pick a random sentence
-      const currentSentence = fullSentences[Math.floor(Math.random() * fullSentences.length)];
+      // 2. Pick a random sentence based on current language
+      const lang = window.currentLanguage || 'en';
+      const sentences = fullSentences[lang] || fullSentences['en'];
+      const currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
 
       // 3. Update all outer texts to form the 9-word sentence
       const outerIndices = [0, 1, 2, 3, 5, 6, 7, 8];
@@ -1336,6 +1185,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const textSpan = cells[idx].querySelector('.cell-text');
         if (textSpan) {
           textSpan.innerHTML = currentSentence[i];
+          // Update the data-i18n attribute dynamically too so it's correct
+          textSpan.setAttribute('data-i18n', `hero_dynamic_${i}`);
         }
       });
 
