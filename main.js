@@ -1168,4 +1168,209 @@ document.addEventListener('DOMContentLoaded', () => {
   
   startGridRandomizer();
 
+  // ==========================================================================
+  // XI. INTERACTIVE BLOODSTREAM ANIMATION
+  // ==========================================================================
+  const initBloodstream = () => {
+    const container = document.getElementById('bloodstreamContainer');
+    const poster = document.querySelector('.hero-grid-poster');
+    if (!container || !poster) return;
+
+    const svg = container.querySelector('.bloodstream-svg');
+    const paths = Array.from(svg.querySelectorAll('.blood-vessel'));
+    
+    const cellsList = [];
+    
+    // Mouse state relative to poster
+    let mouseX = null;
+    let mouseY = null;
+
+    poster.addEventListener('mousemove', (e) => {
+      const rect = poster.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    poster.addEventListener('mouseleave', () => {
+      mouseX = null;
+      mouseY = null;
+    });
+
+    // Helper to create cell element
+    function createCellElement(type) {
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.style.transition = "opacity 0.4s ease";
+      
+      if (type === 'rbc') {
+        const cellOuter = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        cellOuter.setAttribute("rx", "7.5");
+        cellOuter.setAttribute("ry", "6");
+        cellOuter.setAttribute("fill", "rgba(198, 90, 90, 0.28)");
+        cellOuter.setAttribute("stroke", "rgba(198, 90, 90, 0.55)");
+        cellOuter.setAttribute("stroke-width", "1");
+        
+        const cellInner = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        cellInner.setAttribute("rx", "3.5");
+        cellInner.setAttribute("ry", "2.5");
+        cellInner.setAttribute("fill", "rgba(198, 90, 90, 0.1)");
+        cellInner.setAttribute("stroke", "rgba(198, 90, 90, 0.3)");
+        cellInner.setAttribute("stroke-width", "0.5");
+        
+        g.appendChild(cellOuter);
+        g.appendChild(cellInner);
+      } else if (type === 'wbc') {
+        const cellOuter = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        cellOuter.setAttribute("r", "10");
+        cellOuter.setAttribute("fill", "rgba(100, 149, 237, 0.12)");
+        cellOuter.setAttribute("stroke", "rgba(100, 149, 237, 0.35)");
+        cellOuter.setAttribute("stroke-width", "1.2");
+        
+        // Add small granules inside
+        for (let i = 0; i < 4; i++) {
+          const gDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          const angle = (i * Math.PI) / 2;
+          gDot.setAttribute("cx", (Math.cos(angle) * 3.5).toFixed(1));
+          gDot.setAttribute("cy", (Math.sin(angle) * 3.5).toFixed(1));
+          gDot.setAttribute("r", "1.2");
+          gDot.setAttribute("fill", "rgba(100, 149, 237, 0.3)");
+          g.appendChild(gDot);
+        }
+        g.appendChild(cellOuter);
+      } else {
+        // Platelet
+        const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        poly.setAttribute("points", "0,-3 1.2,-1.2 3,-1.5 1.5,0 2.2,2.2 0,1.2 -2.2,2.2 -1.5,0 -3,-1.5 -1.2,-1.2");
+        poly.setAttribute("fill", "rgba(150, 160, 170, 0.25)");
+        poly.setAttribute("stroke", "rgba(150, 160, 170, 0.5)");
+        poly.setAttribute("stroke-width", "0.5");
+        g.appendChild(poly);
+      }
+      return g;
+    }
+
+    // Populate paths with cells
+    paths.forEach((path) => {
+      const pathLength = path.getTotalLength();
+      const numCells = Math.floor(pathLength / 70); // density
+      
+      for (let i = 0; i < numCells; i++) {
+        const progress = i / numCells;
+        
+        const rand = Math.random();
+        let type = 'rbc';
+        if (rand > 0.88) {
+          type = 'wbc';
+        } else if (rand > 0.72) {
+          type = 'platelet';
+        }
+        
+        const el = createCellElement(type);
+        svg.appendChild(el);
+
+        // Slow traveling speed (e.g. 25-45s loop)
+        const baseSpeed = (type === 'wbc' ? 0.00010 : type === 'platelet' ? 0.00005 : 0.00007);
+        const speed = baseSpeed * (0.85 + Math.random() * 0.3);
+        
+        cellsList.push({
+          path,
+          pathLength,
+          progress,
+          speed,
+          speedMultiplier: 1.0,
+          scale: 0.8 + Math.random() * 0.4,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 0.4,
+          type,
+          el
+        });
+      }
+    });
+
+    // Animation Loop
+    const animate = () => {
+      let svgMouseX = null;
+      let svgMouseY = null;
+      if (mouseX !== null && mouseY !== null) {
+        const rect = poster.getBoundingClientRect();
+        svgMouseX = (mouseX / rect.width) * 1200;
+        svgMouseY = (mouseY / rect.height) * 800;
+      }
+
+      // Initialize path closest distances for glow calculation
+      const pathMinDistances = {
+        'vessel-main': Infinity,
+        'vessel-branch-1': Infinity,
+        'vessel-branch-2': Infinity
+      };
+
+      cellsList.forEach((cell) => {
+        // Update progress
+        cell.progress += cell.speed * cell.speedMultiplier;
+        if (cell.progress >= 1.0) cell.progress = 0.0;
+        
+        // Calculate point on path
+        const currentLength = cell.progress * cell.pathLength;
+        const pt = cell.path.getPointAtLength(currentLength);
+        
+        // Subtle rotation update
+        cell.rotation += cell.rotationSpeed;
+        
+        // React to mouse proximity
+        let opacity = cell.type === 'wbc' ? 0.75 : cell.type === 'platelet' ? 0.65 : 0.85;
+        let scaleModifier = 1.0;
+        
+        if (svgMouseX !== null && svgMouseY !== null) {
+          const dx = pt.x - svgMouseX;
+          const dy = pt.y - svgMouseY;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          
+          const pathId = cell.path.id;
+          if (dist < pathMinDistances[pathId]) {
+            pathMinDistances[pathId] = dist;
+          }
+
+          if (dist < 180) {
+            const influence = 1.0 - dist / 180;
+            // Accelerate flow speed
+            cell.speedMultiplier += ((1.0 + influence * 3.8) - cell.speedMultiplier) * 0.15;
+            // Highlight nearby cells opacity
+            opacity = Math.min(1.0, opacity + influence * 0.3);
+            scaleModifier = 1.0 + influence * 0.15;
+          } else {
+            cell.speedMultiplier += (1.0 - cell.speedMultiplier) * 0.08;
+          }
+        } else {
+          cell.speedMultiplier += (1.0 - cell.speedMultiplier) * 0.08;
+        }
+
+        // Apply 3D-accelerated translate transform
+        const s = cell.scale * scaleModifier;
+        cell.el.setAttribute("transform", `translate(${pt.x.toFixed(1)}, ${pt.y.toFixed(1)}) rotate(${cell.rotation.toFixed(1)}) scale(${s.toFixed(2)})`);
+        cell.el.style.opacity = opacity.toString();
+      });
+
+      // Update path glow (opacity & width) based on closest cell distance to cursor
+      paths.forEach((path) => {
+        const dist = pathMinDistances[path.id];
+        let baseOpacity = path.id === 'vessel-main' ? 0.14 : path.id === 'vessel-branch-1' ? 0.09 : 0.07;
+        let strokeWidth = path.id === 'vessel-main' ? 2.5 : path.id === 'vessel-branch-1' ? 2.0 : 1.5;
+        
+        if (dist !== Infinity && dist < 180) {
+          const influence = 1.0 - dist / 180;
+          path.style.stroke = `rgba(198, 90, 90, ${baseOpacity + influence * 0.15})`;
+          path.style.strokeWidth = `${strokeWidth + influence * 1.2}px`;
+        } else {
+          path.style.stroke = `rgba(198, 90, 90, ${baseOpacity})`;
+          path.style.strokeWidth = `${strokeWidth}px`;
+        }
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  };
+
+  initBloodstream();
+
 });
