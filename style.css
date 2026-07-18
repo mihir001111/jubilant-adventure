@@ -1426,18 +1426,18 @@ section.evidence-section {
 .shift-title {
   font-family: var(--font-serif);
   font-size: clamp(2.2rem, 4vw, 3rem);
-  color: var(--text);
+  color: #d62828 !important; /* Bold red accent */
   margin-bottom: 1.5rem;
   line-height: 1.15;
-  font-style: italic;
-  font-weight: 300;
+  font-style: normal; /* upright */
+  font-weight: 700; /* bold */
 }
 
 .shift-desc {
   font-family: var(--font-sans);
   font-size: 0.88rem;
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: #000000 !important; /* pure black */
 }
 
 .shift-timeline {

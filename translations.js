@@ -57,7 +57,7 @@ const translations = {
     shift_time5_text: "We are taught that asking for help is a weakness. This division is what breaks us. Our only true shield is the absolute unity of medicine.",
 
     // Philosophy
-    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">united, we are the authority.</span>",
+    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">united, we are the <span class=\"highlight-red\">authority.</span></span>",
 
     // Pillars
     pillar_1_num: "01 / THE ALLIANCE",
@@ -171,7 +171,7 @@ const translations = {
     shift_time5_text: "Ci insegnano che chiedere aiuto è una debolezza. Questa divisione è ciò che ci spezza. Il nostro unico vero scudo è l'unità assoluta della medicina.",
 
     // Philosophy
-    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">uniti, siamo l'autorità.</span>",
+    phil_main: "<span class=\"highlight-bold\" style=\"margin-top:0;\">uniti, siamo l'<span class=\"highlight-red\">autorità.</span></span>",
 
     // Pillars
     pillar_1_num: "01 / L'ALLEANZA",
