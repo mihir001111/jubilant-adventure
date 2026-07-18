@@ -3074,7 +3074,6 @@ img { max-width: 100%; height: auto; }
 
 .ed-state-positive .ed-dynamic-list li {
   color: #000000;
-  font-weight: 600;
 }
 
 .ed-state-positive .ed-dynamic-list li::after {
