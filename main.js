@@ -1190,17 +1190,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // 4. Pick 2 random outer cells for the color highlight
-      const availableIndices = [...outerIndices];
-      for (let i = availableIndices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [availableIndices[i], availableIndices[j]] = [availableIndices[j], availableIndices[i]];
-      }
-      const randomIdx1 = availableIndices[0];
-      const randomIdx2 = availableIndices[1];
-      
-      // The 3 active colored indices (always including center cell 4)
-      const activeColoredIndices = [randomIdx1, 4, randomIdx2];
+      // Only the center cell (index 4) changes color dynamically
+      const activeColoredIndices = [4];
       
       // Assign random colors
       activeColoredIndices.forEach(idx => {
