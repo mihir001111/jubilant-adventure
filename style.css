@@ -143,52 +143,83 @@ p {
 
 .hero-grid-poster {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr 1fr;
-  grid-template-rows: 0.95fr 1.1fr 0.95fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   width: 100%;
   height: 100vh;
-  padding: 3rem;
-  gap: 2rem;
+  padding: 1.5rem;
+  gap: 1.2rem;
   border: none;
   background-color: var(--bg);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-style: preserve-3d;
+  box-sizing: border-box;
 }
 
 .poster-cell {
-  border: 1px solid var(--border) !important;
-  padding: clamp(1rem, 3vh, 2.2rem) clamp(1rem, 3vw, 2.5rem);
+  border: 2px solid var(--border) !important;
+  padding: clamp(1.2rem, 2.5vh, 2rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  transition: background-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), outline 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: visible;
   text-align: left;
   background-color: var(--bg);
+  border-radius: 8px;
 }
 
-/* Individual collage-like rotation and offset translates */
-.cell-1 { transform: rotate(-2deg) translate(-5px, -8px); z-index: 1; }
-.cell-2 { transform: rotate(1.2deg) translate(4px, 6px); z-index: 2; }
-.cell-3 { transform: rotate(-1.5deg) translate(-8px, -12px); z-index: 1; }
-.cell-4 { transform: rotate(2deg) translate(-10px, 4px); z-index: 2; }
-.cell-cta { transform: rotate(0deg) scale(1.05); z-index: 5; } /* Center CTA stands out flat & slightly scaled */
-.cell-6 { transform: rotate(-1.2deg) translate(12px, -4px); z-index: 1; }
-.cell-7 { transform: rotate(2.5deg) translate(-4px, 14px); z-index: 3; }
-.cell-8 { transform: rotate(-2.2deg) translate(8px, -8px); z-index: 2; }
-.cell-9 { transform: rotate(1.5deg) translate(14px, 10px); z-index: 1; }
+/* Bento Grid Spans mapping mathematically to a 4x4 grid */
+.cell-1 { grid-column: span 2; grid-row: span 1; background-color: #fafafa; }
+.cell-2 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
+.cell-3 { 
+  grid-column: span 1; 
+  grid-row: span 2; 
+  background-color: #fafafa;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .cell-3 .cell-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg); /* Make it read top-to-bottom */
+    font-size: clamp(2rem, 5vh, 3.5rem) !important;
+    letter-spacing: 0.15em;
+  }
+}
+.cell-4 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
+.cell-cta { 
+  grid-column: span 2; 
+  grid-row: span 2; 
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-width: 3px !important;
+}
+.cell-6 { grid-column: span 1; grid-row: span 1; background-color: #fafafa; }
+.cell-7 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
+.cell-8 { grid-column: span 2; grid-row: span 1; background-color: #fafafa; }
+.cell-9 { grid-column: span 2; grid-row: span 1; background-color: #fcfcfc; }
 
+/* Interactive Hover States */
 .poster-cell:hover {
   background-color: var(--accent-light);
-  transform: scale(1.08) rotate(0deg) translateZ(30px) !important; /* Flatten card, push forward, scale up */
-  z-index: 20 !important;
-  outline: 1px solid var(--border);
+  transform: translateY(-6px);
+  z-index: 10;
+  box-shadow: 10px 10px 0px var(--border);
+}
+
+.cell-cta:hover {
+  background-color: #ffffff;
+  transform: translateY(-6px) scale(1.01);
   box-shadow: 12px 12px 0px var(--border);
 }
 
-/* Dynamic Grid Crayon Backgrounds */
+/* Dynamic Grid Crayon Accent Overrides (Assigned in JS Loop) */
 .poster-cell.bg-crayon-blue { background-color: #e0f2fe !important; }
 .poster-cell.bg-crayon-orange { background-color: #ffedd5 !important; }
 .poster-cell.bg-crayon-green { background-color: #dcfce7 !important; }
