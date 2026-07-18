@@ -147,15 +147,16 @@ p {
   grid-template-rows: 0.95fr 1.1fr 0.95fr;
   width: 100%;
   height: 100vh;
-  border: 1px solid var(--border);
+  padding: 3rem;
+  gap: 2rem;
+  border: none;
   background-color: var(--bg);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
 }
 
 .poster-cell {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border) !important;
   padding: clamp(1rem, 3vh, 2.2rem) clamp(1rem, 3vw, 2.5rem);
   display: flex;
   flex-direction: column;
@@ -163,25 +164,28 @@ p {
   align-items: flex-start;
   position: relative;
   transition: background-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), outline 0.4s ease;
-  overflow: hidden;
+  overflow: visible;
   text-align: left;
   background-color: var(--bg);
 }
 
-.poster-cell:nth-child(3n) {
-  border-right: none;
-}
-
-.poster-cell:nth-child(n+7) {
-  border-bottom: none;
-}
+/* Individual collage-like rotation and offset translates */
+.cell-1 { transform: rotate(-2deg) translate(-5px, -8px); z-index: 1; }
+.cell-2 { transform: rotate(1.2deg) translate(4px, 6px); z-index: 2; }
+.cell-3 { transform: rotate(-1.5deg) translate(-8px, -12px); z-index: 1; }
+.cell-4 { transform: rotate(2deg) translate(-10px, 4px); z-index: 2; }
+.cell-cta { transform: rotate(0deg) scale(1.05); z-index: 5; } /* Center CTA stands out flat & slightly scaled */
+.cell-6 { transform: rotate(-1.2deg) translate(12px, -4px); z-index: 1; }
+.cell-7 { transform: rotate(2.5deg) translate(-4px, 14px); z-index: 3; }
+.cell-8 { transform: rotate(-2.2deg) translate(8px, -8px); z-index: 2; }
+.cell-9 { transform: rotate(1.5deg) translate(14px, 10px); z-index: 1; }
 
 .poster-cell:hover {
   background-color: var(--accent-light);
-  transform: scale(1.03) translateZ(20px);
-  z-index: 10;
+  transform: scale(1.08) rotate(0deg) translateZ(30px) !important; /* Flatten card, push forward, scale up */
+  z-index: 20 !important;
   outline: 1px solid var(--border);
-  box-shadow: 8px 8px 0px var(--border);
+  box-shadow: 12px 12px 0px var(--border);
 }
 
 /* Dynamic Grid Crayon Backgrounds */
