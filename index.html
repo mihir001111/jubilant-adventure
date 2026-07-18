@@ -219,28 +219,6 @@
     <section class="hero-section" id="hero">
       <div class="hero-grid-poster reveal">
 
-        <!-- One full size design representing liquid blood -->
-        <div class="liquid-blood-container">
-          <svg class="liquid-blood-svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <defs>
-              <!-- Premium Gooey Liquid Glass Filter -->
-              <filter id="liquid-glass-filter">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -12" result="goo" />
-                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-              </filter>
-            </defs>
-            
-            <!-- Group applying the gooey liquid filter -->
-            <g filter="url(#liquid-glass-filter)">
-              <circle class="liquid-blob blob-1" cx="300" cy="400" r="170" fill="rgba(255, 255, 255, 0.08)" />
-              <circle class="liquid-blob blob-2" cx="600" cy="300" r="210" fill="rgba(255, 255, 255, 0.11)" />
-              <circle class="liquid-blob blob-3" cx="900" cy="500" r="160" fill="rgba(255, 255, 255, 0.07)" />
-              <circle class="liquid-blob blob-4" cx="450" cy="200" r="130" fill="rgba(255, 255, 255, 0.09)" />
-              <circle class="liquid-blob blob-5" cx="750" cy="600" r="190" fill="rgba(255, 255, 255, 0.08)" />
-            </g>
-          </svg>
-        </div>
 
         <!-- Cell 1 -->
         <div class="poster-cell cell-1">

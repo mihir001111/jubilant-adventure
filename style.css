@@ -148,9 +148,7 @@ p {
   width: 100%;
   height: 100vh;
   border: 1px solid var(--border);
-  background-color: #d62828; /* Solid red poster background */
-  position: relative;
-  overflow: hidden;
+  background-color: #d62828;
 }
 
 .poster-cell {
@@ -165,9 +163,8 @@ p {
   transition: background-color 0.4s ease;
   overflow: hidden;
   text-align: left;
-  background-color: transparent; /* transparent to show the full-size liquid blood behind it */
+  background-color: #d62828; /* Solid red background */
   color: #ffffff;
-  z-index: 1; /* keep content above background SVG */
 }
 
 .poster-cell:nth-child(3n) {
@@ -179,12 +176,19 @@ p {
 }
 
 .poster-cell:hover {
-  background-color: rgba(255, 255, 255, 0.08) !important; /* light translucent white hover glow */
+  background-color: #b81d1d !important; /* Slightly darker red on hover */
 }
 
-/* Center CTA Card - Transparent red background but with white button */
+/* Center CTA Card (Red to match the other grid cells, with a stark white button) */
 .poster-cell.cell-cta {
-  background-color: transparent !important;
+  background-color: #d62828 !important;
+  color: #ffffff !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.poster-cell.cell-cta:hover {
+  background-color: #b81d1d !important;
 }
 
 .poster-cell.cell-cta .cta-brand-title {
@@ -202,64 +206,6 @@ p {
   color: #ffffff;
   border-color: #ffffff;
 }
-
-/* One Full-Size Design: Morphing Liquid Blood Plasma */
-.liquid-blood-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.liquid-blood-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.liquid-blob {
-  transform-origin: center center;
-}
-
-/* Smooth float animations that make gooey liquid blobs merge and divide */
-@keyframes floatBlob1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(60px, -70px) scale(1.1); }
-  66% { transform: translate(-50px, 40px) scale(0.9); }
-}
-
-@keyframes floatBlob2 {
-  0%, 100% { transform: translate(0, 0) scale(1.05); }
-  33% { transform: translate(-90px, 50px) scale(0.95); }
-  66% { transform: translate(70px, -60px) scale(1.15); }
-}
-
-@keyframes floatBlob3 {
-  0%, 100% { transform: translate(0, 0) scale(0.9); }
-  50% { transform: translate(80px, 80px) scale(1.1); }
-  75% { transform: translate(-60px, -50px) scale(1.0); }
-}
-
-@keyframes floatBlob4 {
-  0%, 100% { transform: translate(0, 0) scale(1.1); }
-  40% { transform: translate(-40px, -90px) scale(0.85); }
-  80% { transform: translate(60px, 50px) scale(1.0); }
-}
-
-@keyframes floatBlob5 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  30% { transform: translate(70px, -40px) scale(1.15); }
-  70% { transform: translate(-70px, 70px) scale(0.9); }
-}
-
-.blob-1 { animation: floatBlob1 18s ease-in-out infinite; }
-.blob-2 { animation: floatBlob2 22s ease-in-out infinite; }
-.blob-3 { animation: floatBlob3 26s ease-in-out infinite; }
-.blob-4 { animation: floatBlob4 20s ease-in-out infinite; }
-.blob-5 { animation: floatBlob5 24s ease-in-out infinite; }
 
 
 .cell-label {
