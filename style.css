@@ -142,113 +142,106 @@ p {
 }
 
 .hero-grid-poster {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
   width: 100%;
-  padding: 1.5rem;
-  gap: 1.2rem;
-  box-sizing: border-box;
+  height: 100vh;
+  border: 1px solid var(--border);
   background-color: var(--bg);
 }
 
 .poster-cell {
-  border: 2px solid var(--border) !important;
-  padding: clamp(1.2rem, 2.5vh, 2rem);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(1rem, 3vh, 2.2rem) clamp(1rem, 3vw, 2.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: visible;
+  transition: background-color 0.4s ease;
+  overflow: hidden;
   text-align: left;
-  background-color: var(--bg);
-  border-radius: 8px;
 }
 
-/* Default cells stacked on mobile */
-.cell-cta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-width: 3px !important;
+.poster-cell:nth-child(3n) {
+  border-right: none;
+}
+
+.poster-cell:nth-child(n+7) {
+  border-bottom: none;
 }
 
 .poster-cell:hover {
   background-color: var(--accent-light);
-  transform: translateY(-6px);
-  z-index: 10;
-  box-shadow: 10px 10px 0px var(--border);
 }
 
-.cell-cta:hover {
-  background-color: #ffffff;
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 12px 12px 0px var(--border);
-}
-
-/* Desktop absolute scattered paper collage layout */
-@media (min-width: 1024px) {
-  .hero-grid-poster {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    display: block; /* Turn off grid layout, use absolute canvas positioning */
-  }
-
-  .poster-cell {
-    position: absolute;
-    width: 250px;
-    height: 160px;
-    box-sizing: border-box;
-  }
-
-  /* Scattered coordinates, distinct scales & rotations mimicking an uneven collage */
-  .cell-1 { top: 10%; left: 8%; width: 230px; height: 160px; transform: rotate(-3.5deg); z-index: 1; }
-  .cell-2 { top: 7%; left: 34%; width: 250px; height: 150px; transform: rotate(2deg); z-index: 2; }
-  .cell-3 { top: 11%; left: 63%; width: 240px; height: 180px; transform: rotate(-2.5deg); z-index: 1; }
-  .cell-4 { top: 40%; left: 5%; width: 240px; height: 160px; transform: rotate(3deg); z-index: 2; }
-  
-  .cell-cta { 
-    top: 26%; 
-    left: 28%; 
-    width: 390px; 
-    height: 290px; 
-    transform: rotate(-1deg) scale(1.03); 
-    z-index: 5; 
-    box-shadow: 8px 8px 0px var(--border);
-  }
-  
-  .cell-6 { top: 42%; left: 66%; width: 230px; height: 160px; transform: rotate(-1.5deg); z-index: 1; }
-  .cell-7 { top: 70%; left: 9%; width: 230px; height: 160px; transform: rotate(2.5deg); z-index: 3; }
-  .cell-8 { top: 73%; left: 35%; width: 250px; height: 155px; transform: rotate(-3deg); z-index: 2; }
-  .cell-9 { top: 69%; left: 65%; width: 250px; height: 175px; transform: rotate(1.8deg); z-index: 1; }
-
-  /* Interactive Hover overrides to flatten, pop out, and lift card */
-  .poster-cell:hover {
-    transform: scale(1.1) rotate(0deg) translateZ(40px) !important;
-    z-index: 20 !important;
-    box-shadow: 12px 12px 0px var(--border) !important;
-  }
-  .cell-cta:hover {
-    transform: scale(1.1) rotate(0deg) translateZ(40px) !important;
-    z-index: 20 !important;
-    box-shadow: 15px 15px 0px var(--border) !important;
-  }
-}
-
-/* Dynamic Grid Crayon Accent Overrides (Assigned in JS Loop) */
+/* Dynamic Grid Crayon Backgrounds */
 .poster-cell.bg-crayon-blue { background-color: #e0f2fe !important; }
 .poster-cell.bg-crayon-orange { background-color: #ffedd5 !important; }
 .poster-cell.bg-crayon-green { background-color: #dcfce7 !important; }
 .poster-cell.bg-crayon-pink { background-color: #fce7f3 !important; }
 .poster-cell.bg-crayon-yellow { background-color: #fef3c7 !important; }
 .poster-cell.bg-crayon-purple { background-color: #f3e8ff !important; }
+
+/* Technical Blueprint Patterns */
+.bg-pattern-dot-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+.bg-pattern-dot-grid:hover {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.16) 1.5px, transparent 1.5px);
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-graph-paper {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.bg-pattern-graph-paper:hover {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-crosshair {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,0,0,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: center;
+}
+.bg-pattern-crosshair:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,0,0,0.25)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-blueprint-nodes {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='rgba(0,0,0,0.1)'/%3E%3Ccircle cx='50' cy='30' r='1.5' fill='rgba(0,0,0,0.1)'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='rgba(0,0,0,0.1)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.bg-pattern-blueprint-nodes:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(0,0,0,0.2)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(0,0,0,0.2)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(0,0,0,0.2)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-diagonal {
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 11px);
+}
+.bg-pattern-diagonal:hover {
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.06) 10px, rgba(0,0,0,0.06) 11px);
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-radar {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,0,0,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: center;
+}
+.bg-pattern-radar:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,0,0,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
+}
+
 
 .cell-label {
   font-family: var(--font-sans);
@@ -2736,7 +2729,7 @@ img { max-width: 100%; height: auto; }
   .counters-grid { grid-template-columns: repeat(3, 1fr); }
   .benefits-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid-dashboard { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; }
-  .hero-grid-poster { grid-template-rows: 0.95fr 1.1fr 0.95fr; }
+  .hero-grid-poster { grid-template-rows: 1fr 1.1fr 1fr; }
 }
 
 /* ==========================================================================
@@ -2958,7 +2951,7 @@ img { max-width: 100%; height: auto; }
   .counters-grid { grid-template-columns: repeat(3, 1fr); }
   .benefits-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid-dashboard { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; }
-  .hero-grid-poster { grid-template-rows: 0.95fr 1.1fr 0.95fr; }
+  .hero-grid-poster { grid-template-rows: 1fr 1.1fr 1fr; }
 }
 
 /* ==========================================================================
