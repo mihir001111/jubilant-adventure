@@ -142,16 +142,13 @@ p {
 }
 
 .hero-grid-poster {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
   padding: 1.5rem;
   gap: 1.2rem;
-  border: none;
-  background-color: var(--bg);
   box-sizing: border-box;
+  background-color: var(--bg);
 }
 
 .poster-cell {
@@ -169,30 +166,8 @@ p {
   border-radius: 8px;
 }
 
-/* Bento Grid Spans mapping mathematically to a 4x4 grid */
-.cell-1 { grid-column: span 2; grid-row: span 1; background-color: #fafafa; }
-.cell-2 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
-.cell-3 { 
-  grid-column: span 1; 
-  grid-row: span 2; 
-  background-color: #fafafa;
-  align-items: center;
-  justify-content: center;
-}
-@media (min-width: 1024px) {
-  .cell-3 .cell-text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg); /* Make it read top-to-bottom */
-    font-size: clamp(2rem, 5vh, 3.5rem) !important;
-    letter-spacing: 0.15em;
-  }
-}
-.cell-4 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
-.cell-cta { 
-  grid-column: span 2; 
-  grid-row: span 2; 
-  background-color: #ffffff;
+/* Default cells stacked on mobile */
+.cell-cta {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,12 +175,7 @@ p {
   text-align: center;
   border-width: 3px !important;
 }
-.cell-6 { grid-column: span 1; grid-row: span 1; background-color: #fafafa; }
-.cell-7 { grid-column: span 1; grid-row: span 1; background-color: #fcfcfc; }
-.cell-8 { grid-column: span 2; grid-row: span 1; background-color: #fafafa; }
-.cell-9 { grid-column: span 2; grid-row: span 1; background-color: #fcfcfc; }
 
-/* Interactive Hover States */
 .poster-cell:hover {
   background-color: var(--accent-light);
   transform: translateY(-6px);
@@ -217,6 +187,59 @@ p {
   background-color: #ffffff;
   transform: translateY(-6px) scale(1.01);
   box-shadow: 12px 12px 0px var(--border);
+}
+
+/* Desktop absolute scattered paper collage layout */
+@media (min-width: 1024px) {
+  .hero-grid-poster {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    display: block; /* Turn off grid layout, use absolute canvas positioning */
+  }
+
+  .poster-cell {
+    position: absolute;
+    width: 250px;
+    height: 160px;
+    box-sizing: border-box;
+  }
+
+  /* Scattered coordinates, distinct scales & rotations mimicking an uneven collage */
+  .cell-1 { top: 10%; left: 8%; width: 230px; height: 160px; transform: rotate(-3.5deg); z-index: 1; }
+  .cell-2 { top: 7%; left: 34%; width: 250px; height: 150px; transform: rotate(2deg); z-index: 2; }
+  .cell-3 { top: 11%; left: 63%; width: 240px; height: 180px; transform: rotate(-2.5deg); z-index: 1; }
+  .cell-4 { top: 40%; left: 5%; width: 240px; height: 160px; transform: rotate(3deg); z-index: 2; }
+  
+  .cell-cta { 
+    top: 26%; 
+    left: 28%; 
+    width: 390px; 
+    height: 290px; 
+    transform: rotate(-1deg) scale(1.03); 
+    z-index: 5; 
+    box-shadow: 8px 8px 0px var(--border);
+  }
+  
+  .cell-6 { top: 42%; left: 66%; width: 230px; height: 160px; transform: rotate(-1.5deg); z-index: 1; }
+  .cell-7 { top: 70%; left: 9%; width: 230px; height: 160px; transform: rotate(2.5deg); z-index: 3; }
+  .cell-8 { top: 73%; left: 35%; width: 250px; height: 155px; transform: rotate(-3deg); z-index: 2; }
+  .cell-9 { top: 69%; left: 65%; width: 250px; height: 175px; transform: rotate(1.8deg); z-index: 1; }
+
+  /* Interactive Hover overrides to flatten, pop out, and lift card */
+  .poster-cell:hover {
+    transform: scale(1.1) rotate(0deg) translateZ(40px) !important;
+    z-index: 20 !important;
+    box-shadow: 12px 12px 0px var(--border) !important;
+  }
+  .cell-cta:hover {
+    transform: scale(1.1) rotate(0deg) translateZ(40px) !important;
+    z-index: 20 !important;
+    box-shadow: 15px 15px 0px var(--border) !important;
+  }
 }
 
 /* Dynamic Grid Crayon Accent Overrides (Assigned in JS Loop) */
