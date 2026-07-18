@@ -222,10 +222,23 @@
         <!-- One full size design representing liquid blood -->
         <div class="liquid-blood-container">
           <svg class="liquid-blood-svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <!-- Organic liquid flow waves with CSS morph animations -->
-            <path class="liquid-wave wave-1" d="M 0,250 C 350,180 550,500 850,350 C 1150,200 1200,450 1200,800 L 0,800 Z" fill="rgba(255, 255, 255, 0.05)" />
-            <path class="liquid-wave wave-2" d="M 0,450 C 250,250 650,650 850,450 C 1050,250 1200,550 1200,800 L 0,800 Z" fill="rgba(255, 255, 255, 0.08)" />
-            <path class="liquid-wave wave-3" d="M -100,-100 C 250,-50 450,250 350,450 C 250,650 -100,550 -100,-100 Z" fill="rgba(255, 255, 255, 0.03)" />
+            <defs>
+              <!-- Premium Gooey Liquid Glass Filter -->
+              <filter id="liquid-glass-filter">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -12" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+              </filter>
+            </defs>
+            
+            <!-- Group applying the gooey liquid filter -->
+            <g filter="url(#liquid-glass-filter)">
+              <circle class="liquid-blob blob-1" cx="300" cy="400" r="170" fill="rgba(255, 255, 255, 0.08)" />
+              <circle class="liquid-blob blob-2" cx="600" cy="300" r="210" fill="rgba(255, 255, 255, 0.11)" />
+              <circle class="liquid-blob blob-3" cx="900" cy="500" r="160" fill="rgba(255, 255, 255, 0.07)" />
+              <circle class="liquid-blob blob-4" cx="450" cy="200" r="130" fill="rgba(255, 255, 255, 0.09)" />
+              <circle class="liquid-blob blob-5" cx="750" cy="600" r="190" fill="rgba(255, 255, 255, 0.08)" />
+            </g>
           </svg>
         </div>
 
