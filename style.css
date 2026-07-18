@@ -148,12 +148,12 @@ p {
   width: 100%;
   height: 100vh;
   border: 1px solid var(--border);
-  background-color: var(--bg);
+  background-color: #d62828;
 }
 
 .poster-cell {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: clamp(1rem, 3vh, 2.2rem) clamp(1rem, 3vw, 2.5rem);
   display: flex;
   flex-direction: column;
@@ -163,6 +163,8 @@ p {
   transition: background-color 0.4s ease;
   overflow: hidden;
   text-align: left;
+  background-color: #d62828;
+  color: #ffffff;
 }
 
 .poster-cell:nth-child(3n) {
@@ -174,72 +176,85 @@ p {
 }
 
 .poster-cell:hover {
-  background-color: var(--accent-light);
+  background-color: #b81d1d !important;
 }
 
-/* Dynamic Grid Crayon Backgrounds */
-.poster-cell.bg-crayon-blue { background-color: #e0f2fe !important; }
-.poster-cell.bg-crayon-orange { background-color: #ffedd5 !important; }
-.poster-cell.bg-crayon-green { background-color: #dcfce7 !important; }
-.poster-cell.bg-crayon-pink { background-color: #fce7f3 !important; }
-.poster-cell.bg-crayon-yellow { background-color: #fef3c7 !important; }
-.poster-cell.bg-crayon-purple { background-color: #f3e8ff !important; }
+/* Center CTA Card (White and Stark in the center of red grid) */
+.poster-cell.cell-cta {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-/* Technical Blueprint Patterns (Blue) */
+.poster-cell.cell-cta:hover {
+  background-color: #f7f7f7 !important;
+}
+
+.poster-cell.cell-cta .cta-brand-title {
+  color: #000000 !important;
+}
+
+.poster-cell.cell-cta .btn-primary {
+  background-color: #d62828;
+  color: #ffffff;
+  border: 1px solid #d62828;
+}
+
+.poster-cell.cell-cta .btn-primary:hover {
+  background-color: transparent;
+  color: #d62828;
+}
+
+/* Technical Blueprint Patterns (White on Red) */
 .bg-pattern-dot-grid {
-  background-image: radial-gradient(rgba(0, 102, 204, 0.08) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
 }
 .bg-pattern-dot-grid:hover {
-  background-image: radial-gradient(rgba(0, 102, 204, 0.18) 1.5px, transparent 1.5px);
-  background-color: #fafafa !important;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
 }
 
 .bg-pattern-graph-paper {
   background-image: 
-    linear-gradient(rgba(0, 102, 204, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 102, 204, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 .bg-pattern-graph-paper:hover {
   background-image: 
-    linear-gradient(rgba(0, 102, 204, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 102, 204, 0.1) 1px, transparent 1px);
-  background-color: #fafafa !important;
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
 }
 
 .bg-pattern-crosshair {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,102,204,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
   background-position: center;
 }
 .bg-pattern-crosshair:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,102,204,0.3)' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-color: #fafafa !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(255,255,255,0.35)' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 .bg-pattern-blueprint-nodes {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Ccircle cx='50' cy='30' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='50' cy='30' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
 }
 .bg-pattern-blueprint-nodes:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3C/svg%3E");
-  background-color: #fafafa !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
 }
 
 .bg-pattern-diagonal {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 102, 204, 0.03) 10px, rgba(0, 102, 204, 0.03) 11px);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.04) 10px, rgba(255, 255, 255, 0.04) 11px);
 }
 .bg-pattern-diagonal:hover {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 102, 204, 0.08) 10px, rgba(0, 102, 204, 0.08) 11px);
-  background-color: #fafafa !important;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.1) 10px, rgba(255, 255, 255, 0.1) 11px);
 }
 
 .bg-pattern-radar {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
   background-position: center;
 }
 .bg-pattern-radar:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3C/svg%3E");
-  background-color: #fafafa !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
 }
 
 
@@ -250,6 +265,14 @@ p {
   letter-spacing: 0.15em;
   color: var(--text-secondary);
   text-transform: uppercase;
+}
+
+.poster-cell:not(.cell-cta) .cell-label {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.poster-cell:not(.cell-cta) .cell-text {
+  color: #ffffff !important;
 }
 
 .cell-text {
