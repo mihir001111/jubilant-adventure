@@ -179,32 +179,32 @@ p {
   background-color: #f7f7f7 !important;
 }
 
-/* Center CTA Card (Stark black card inside white grid) */
+/* Center CTA Card (White card, with a bold 3px border outline) */
 .poster-cell.cell-cta {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  z-index: 10; /* render over surrounding grid borders */
 }
 
 .poster-cell.cell-cta:hover {
-  background-color: #111111 !important;
+  background-color: #f7f7f7 !important;
 }
 
 .poster-cell.cell-cta .cta-brand-title {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .poster-cell.cell-cta .btn-primary {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  background-color: #d62828;
+  color: #ffffff;
+  border: 1px solid #d62828;
 }
 
 .poster-cell.cell-cta .btn-primary:hover {
   background-color: transparent;
-  color: #ffffff;
-  border-color: #ffffff;
+  color: #d62828;
+  border-color: #d62828;
 }
 
 
