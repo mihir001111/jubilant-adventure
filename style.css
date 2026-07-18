@@ -149,8 +149,6 @@ p {
   height: 100vh;
   border: 1px solid var(--border);
   background-color: var(--bg);
-  position: relative;
-  overflow: hidden;
 }
 
 .poster-cell {
@@ -165,8 +163,6 @@ p {
   transition: background-color 0.4s ease;
   overflow: hidden;
   text-align: left;
-  background-color: transparent; /* allow bloodstream background to weave through */
-  z-index: 1; /* keep content above the bloodstream */
 }
 
 .poster-cell:nth-child(3n) {
@@ -178,37 +174,73 @@ p {
 }
 
 .poster-cell:hover {
-  background-color: rgba(241, 243, 240, 0.45) !important; /* semi-transparent to reveal bloodstream under hovered card */
+  background-color: var(--accent-light);
 }
 
-/* Continuous Bloodstream Background Ecosystem */
-.bloodstream-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* behind poster-cell content */
-  pointer-events: none; /* allow card hovers to trigger */
+/* Dynamic Grid Crayon Backgrounds */
+.poster-cell.bg-crayon-blue { background-color: #e0f2fe !important; }
+.poster-cell.bg-crayon-orange { background-color: #ffedd5 !important; }
+.poster-cell.bg-crayon-green { background-color: #dcfce7 !important; }
+.poster-cell.bg-crayon-pink { background-color: #fce7f3 !important; }
+.poster-cell.bg-crayon-yellow { background-color: #fef3c7 !important; }
+.poster-cell.bg-crayon-purple { background-color: #f3e8ff !important; }
+
+/* Technical Blueprint Patterns (Blue) */
+.bg-pattern-dot-grid {
+  background-image: radial-gradient(rgba(0, 102, 204, 0.08) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+.bg-pattern-dot-grid:hover {
+  background-image: radial-gradient(rgba(0, 102, 204, 0.18) 1.5px, transparent 1.5px);
+  background-color: #fafafa !important;
 }
 
-.bloodstream-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.bg-pattern-graph-paper {
+  background-image: 
+    linear-gradient(rgba(0, 102, 204, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 204, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.bg-pattern-graph-paper:hover {
+  background-image: 
+    linear-gradient(rgba(0, 102, 204, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 204, 0.1) 1px, transparent 1px);
+  background-color: #fafafa !important;
 }
 
-.blood-vessel {
-  stroke-linecap: round;
-  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+.bg-pattern-crosshair {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,102,204,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: center;
+}
+.bg-pattern-crosshair:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(0,102,204,0.3)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
 }
 
-.poster-cell.bg-crayon-blue { background-color: rgba(224, 242, 254, 0.85) !important; }
-.poster-cell.bg-crayon-orange { background-color: rgba(255, 237, 213, 0.85) !important; }
-.poster-cell.bg-crayon-green { background-color: rgba(220, 252, 231, 0.85) !important; }
-.poster-cell.bg-crayon-pink { background-color: rgba(252, 231, 243, 0.85) !important; }
-.poster-cell.bg-crayon-yellow { background-color: rgba(254, 243, 199, 0.85) !important; }
-.poster-cell.bg-crayon-purple { background-color: rgba(243, 232, 255, 0.85) !important; }
+.bg-pattern-blueprint-nodes {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Ccircle cx='50' cy='30' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='rgba(0,102,204,0.1)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.bg-pattern-blueprint-nodes:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(0,102,204,0.3)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-diagonal {
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 102, 204, 0.03) 10px, rgba(0, 102, 204, 0.03) 11px);
+}
+.bg-pattern-diagonal:hover {
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 102, 204, 0.08) 10px, rgba(0, 102, 204, 0.08) 11px);
+  background-color: #fafafa !important;
+}
+
+.bg-pattern-radar {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,102,204,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: center;
+}
+.bg-pattern-radar:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(0,102,204,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+  background-color: #fafafa !important;
+}
 
 
 .cell-label {
