@@ -1147,25 +1147,4 @@ document.addEventListener('DOMContentLoaded', () => {
     copyReferralLink('success-ref-link', 'btn-success-copy');
   });
 
-  // ==========================================================================
-  // X. DYNAMIC RANDOM GRID HIGHLIGHTS
-  // ==========================================================================
-  const startGridRandomizer = () => {
-    const cells = Array.from(document.querySelectorAll('.poster-cell'));
-    if (cells.length < 9) return;
-    
-    const colorClasses = ['bg-crayon-blue', 'bg-crayon-orange', 'bg-crayon-green', 'bg-crayon-pink', 'bg-crayon-yellow', 'bg-crayon-purple'];
-    
-    setInterval(() => {
-      // Reset color classes on the center cell (index 4)
-      colorClasses.forEach(cls => cells[4].classList.remove(cls));
-
-      // Assign a random color to the center cell (index 4)
-      const randomColor = colorClasses[Math.floor(Math.random() * colorClasses.length)];
-      cells[4].classList.add(randomColor);
-    }, 4000); // Change every 4 seconds
-  };
-  
-  startGridRandomizer();
-
 });

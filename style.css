@@ -179,31 +179,32 @@ p {
   background-color: #b81d1d !important;
 }
 
-/* Center CTA Card (White and Stark in the center of red grid) */
+/* Center CTA Card (Red to match the other grid cells, with a stark white button) */
 .poster-cell.cell-cta {
-  background-color: #ffffff !important;
-  color: #000000 !important;
+  background-color: #d62828 !important;
+  color: #ffffff !important;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .poster-cell.cell-cta:hover {
-  background-color: #f7f7f7 !important;
+  background-color: #b81d1d !important;
 }
 
 .poster-cell.cell-cta .cta-brand-title {
-  color: #000000 !important;
+  color: #ffffff !important;
 }
 
 .poster-cell.cell-cta .btn-primary {
-  background-color: #d62828;
-  color: #ffffff;
-  border: 1px solid #d62828;
+  background-color: #ffffff;
+  color: #d62828;
+  border: 1px solid #ffffff;
 }
 
 .poster-cell.cell-cta .btn-primary:hover {
   background-color: transparent;
-  color: #d62828;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 /* Technical Blueprint Patterns (White on Red) */
