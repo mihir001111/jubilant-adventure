@@ -148,7 +148,9 @@ p {
   width: 100%;
   height: 100vh;
   border: 1px solid var(--border);
-  background-color: #d62828;
+  background-color: #d62828; /* Solid red poster background */
+  position: relative;
+  overflow: hidden;
 }
 
 .poster-cell {
@@ -163,8 +165,9 @@ p {
   transition: background-color 0.4s ease;
   overflow: hidden;
   text-align: left;
-  background-color: #d62828;
+  background-color: transparent; /* transparent to show the full-size liquid blood behind it */
   color: #ffffff;
+  z-index: 1; /* keep content above background SVG */
 }
 
 .poster-cell:nth-child(3n) {
@@ -176,19 +179,12 @@ p {
 }
 
 .poster-cell:hover {
-  background-color: #b81d1d !important;
+  background-color: rgba(255, 255, 255, 0.08) !important; /* light translucent white hover glow */
 }
 
-/* Center CTA Card (Red to match the other grid cells, with a stark white button) */
+/* Center CTA Card - Transparent red background but with white button */
 .poster-cell.cell-cta {
-  background-color: #d62828 !important;
-  color: #ffffff !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.poster-cell.cell-cta:hover {
-  background-color: #b81d1d !important;
+  background-color: transparent !important;
 }
 
 .poster-cell.cell-cta .cta-brand-title {
@@ -207,55 +203,65 @@ p {
   border-color: #ffffff;
 }
 
-/* Technical Blueprint Patterns (White on Red) */
-.bg-pattern-dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
-}
-.bg-pattern-dot-grid:hover {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
-}
-
-.bg-pattern-graph-paper {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-.bg-pattern-graph-paper:hover {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+/* One Full-Size Design: Morphing Liquid Blood Plasma */
+.liquid-blood-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.bg-pattern-crosshair {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
-  background-position: center;
-}
-.bg-pattern-crosshair:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(255,255,255,0.35)' stroke-width='1.5'/%3E%3C/svg%3E");
+.liquid-blood-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.bg-pattern-blueprint-nodes {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='50' cy='30' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='rgba(255,255,255,0.15)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
-}
-.bg-pattern-blueprint-nodes:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='10' cy='10' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Ccircle cx='50' cy='30' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Ccircle cx='30' cy='50' r='2' fill='rgba(255,255,255,0.35)'/%3E%3Cline x1='10' y1='10' x2='50' y2='30' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='50' y1='30' x2='30' y2='50' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='30' y1='50' x2='10' y2='10' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
+.liquid-wave {
+  transform-origin: center center;
 }
 
-.bg-pattern-diagonal {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.04) 10px, rgba(255, 255, 255, 0.04) 11px);
-}
-.bg-pattern-diagonal:hover {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.1) 10px, rgba(255, 255, 255, 0.1) 11px);
+/* Smooth organic flowing wave animations */
+@keyframes waveDrift1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.05) rotate(3deg);
+  }
 }
 
-.bg-pattern-radar {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
-  background-position: center;
+@keyframes waveDrift2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-40px, 30px) scale(0.95) rotate(-4deg);
+  }
 }
-.bg-pattern-radar:hover {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='rgba(255,255,255,0.18)' stroke-width='1'/%3E%3C/svg%3E");
+
+@keyframes blobMorph {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(50px, 40px) scale(1.08) rotate(10deg);
+  }
+}
+
+.wave-1 {
+  animation: waveDrift1 25s ease-in-out infinite alternate;
+}
+
+.wave-2 {
+  animation: waveDrift2 35s ease-in-out infinite alternate;
+}
+
+.wave-3 {
+  animation: blobMorph 45s ease-in-out infinite alternate;
 }
 
 
