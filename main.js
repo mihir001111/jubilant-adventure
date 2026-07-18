@@ -47,6 +47,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.counter-num');
   let countersAnimated = false;
 
+  async function updateDynamicCounters() {
+    try {
+      if (!window.supabaseClient) return;
+
+      // 1. Fetch exact total signups (Waitlisted Users)
+      const { count: profilesCount, error: profilesError } = await window.supabaseClient
+        .from('profiles')
+        .select('*', { count: 'exact', head: true });
+
+      if (!profilesError && profilesCount !== null && profilesCount > 0) {
+        const waitlistCounter = document.querySelector('.counter-card:nth-child(1) .counter-num');
+        if (waitlistCounter) {
+          waitlistCounter.setAttribute('data-target', profilesCount);
+          if (countersAnimated) {
+            waitlistCounter.textContent = profilesCount.toLocaleString();
+          }
+        }
+      }
+
+      // 2. Fetch total unique institutions (Universities)
+      const { count: instCount, error: instError } = await window.supabaseClient
+        .from('institutions')
+        .select('*', { count: 'exact', head: true });
+
+      if (!instError && instCount !== null && instCount > 0) {
+        const univCounter = document.querySelector('.counter-card:nth-child(2) .counter-num');
+        if (univCounter) {
+          univCounter.setAttribute('data-target', instCount);
+          if (countersAnimated) {
+            univCounter.textContent = instCount.toLocaleString();
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Error fetching dynamic counters:', e);
+    }
+  }
+
+  // Pre-fetch real-time stats
+  updateDynamicCounters();
+
   const animateCounters = () => {
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute('data-target'), 10);

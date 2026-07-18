@@ -7,6 +7,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // Initialize client (supabase global comes from CDN script)
 const _supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+window.supabaseClient = _supabaseClient;
 
 // --------------------------------------------------------------------------
 // Role mapping: Web form values → DB user_type
