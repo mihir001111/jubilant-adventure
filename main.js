@@ -1147,6 +1147,72 @@ document.addEventListener('DOMContentLoaded', () => {
     copyReferralLink('success-ref-link', 'btn-success-copy');
   });
 
+  // ─── TEXT SCRAMBLE DECODER EFFECT ───
+  const scrambleTextToWord = (el, targetWord) => {
+    if (el.dataset.scrambling === 'true') return;
+    el.dataset.scrambling = 'true';
+    const chars = '[]/\\_{}#*+=?!@$%&';
+    let iterations = 0;
+    
+    const interval = setInterval(() => {
+      el.textContent = targetWord
+        .split('')
+        .map((char, index) => {
+          if (index < iterations) {
+            return targetWord[index] || '';
+          }
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join('');
+      
+      if (iterations >= targetWord.length) {
+        clearInterval(interval);
+        el.textContent = targetWord;
+        el.dataset.scrambling = 'false';
+      }
+      iterations += 1/3;
+    }, 20);
+  };
+
+  const scrambleCurrentText = (el) => {
+    const word = el.textContent.trim();
+    scrambleTextToWord(el, word);
+  };
+
+  // Scramble on hover
+  const outerCells = document.querySelectorAll('.poster-cell:not(.cell-cta)');
+  outerCells.forEach(cell => {
+    cell.addEventListener('mouseenter', () => {
+      const textSpan = cell.querySelector('.cell-text');
+      if (textSpan) {
+        scrambleCurrentText(textSpan);
+      }
+    });
+  });
+
+  // ─── 3D PARALLAX TILT EFFECT ───
+  const heroSection = document.getElementById('hero');
+  const posterGrid = document.querySelector('.hero-grid-poster');
+  if (heroSection && posterGrid) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xc = rect.width / 2;
+      const yc = rect.height / 2;
+      
+      // Rotate grid by max +/- 6 degrees
+      const rotateX = ((yc - y) / yc) * 6;
+      const rotateY = ((x - xc) / xc) * 6;
+      
+      posterGrid.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    heroSection.addEventListener('mouseleave', () => {
+      posterGrid.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+
   // ==========================================================================
   // X. DYNAMIC RANDOM GRID HIGHLIGHTS
   // ==========================================================================
@@ -1179,14 +1245,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const sentences = fullSentences[lang] || fullSentences['en'];
       const currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
 
-      // 3. Update all outer texts to form the 9-word sentence
+      // 3. Update all outer texts to form the 9-word sentence with scramble
       const outerIndices = [0, 1, 2, 3, 5, 6, 7, 8];
       outerIndices.forEach((idx, i) => {
         const textSpan = cells[idx].querySelector('.cell-text');
         if (textSpan) {
-          textSpan.innerHTML = currentSentence[i];
-          // Update the data-i18n attribute dynamically too so it's correct
+          const newWord = currentSentence[i];
           textSpan.setAttribute('data-i18n', `hero_dynamic_${i}`);
+          scrambleTextToWord(textSpan, newWord);
         }
       });
 

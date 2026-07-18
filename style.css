@@ -149,6 +149,8 @@ p {
   height: 100vh;
   border: 1px solid var(--border);
   background-color: var(--bg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
 }
 
 .poster-cell {
@@ -160,9 +162,10 @@ p {
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), outline 0.4s ease;
   overflow: hidden;
   text-align: left;
+  background-color: var(--bg);
 }
 
 .poster-cell:nth-child(3n) {
@@ -175,6 +178,10 @@ p {
 
 .poster-cell:hover {
   background-color: var(--accent-light);
+  transform: scale(1.03) translateZ(20px);
+  z-index: 10;
+  outline: 1px solid var(--border);
+  box-shadow: 8px 8px 0px var(--border);
 }
 
 /* Dynamic Grid Crayon Backgrounds */
