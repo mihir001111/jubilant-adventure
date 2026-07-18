@@ -90,12 +90,12 @@ const translations = {
     // Community
     com_title: "The Sovereign Network.",
     com_desc: "We are currently operating in stealth pre-launch. Invitations are strictly controlled to ensure the integrity of the network.",
-    com_1: "Founding Students",
-    com_2: "Waitlisted Residents",
-    com_3: "Hospitals Represented",
-    com_4: "Medical Specialties",
-    com_5: "Abuse Reports Verified",
-    com_6: "Sovereign Connections",
+    com_1: "Waitlisted Users",
+    com_2: "Universities",
+    com_3: "Abuse Reports Verified",
+    com_4: "",
+    com_5: "",
+    com_6: "",
 
     // Onboarding
     on_title_1: "break",
@@ -204,12 +204,12 @@ const translations = {
     // Community
     com_title: "La Rete Sovrana.",
     com_desc: "Attualmente stiamo operando in modalità pre-lancio riservata. Gli inviti sono rigorosamente controllati per garantire l'integrità della rete.",
-    com_1: "Studenti Fondatori",
-    com_2: "Specializzandi in Lista",
-    com_3: "Ospedali Rappresentati",
-    com_4: "Specializzazioni Mediche",
-    com_5: "Abusi Verificati",
-    com_6: "Connessioni Sovrane",
+    com_1: "Utenti in Lista d'Attesa",
+    com_2: "Università",
+    com_3: "Segnalazioni di Abuso Verificate",
+    com_4: "",
+    com_5: "",
+    com_6: "",
 
     // Onboarding
     on_title_1: "spezza",
