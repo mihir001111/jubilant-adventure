@@ -56,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .from('profiles')
         .select('*', { count: 'exact', head: true });
 
+      console.log('[Dynamic Counters] Profiles Count:', profilesCount, 'Error:', profilesError);
+
       if (!profilesError && profilesCount !== null && profilesCount > 0) {
-        const waitlistCounter = document.querySelector('.counter-card:nth-child(1) .counter-num');
+        const waitlistCounter = counters[0];
         if (waitlistCounter) {
           waitlistCounter.setAttribute('data-target', profilesCount);
           if (countersAnimated) {
@@ -71,8 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .from('institutions')
         .select('*', { count: 'exact', head: true });
 
+      console.log('[Dynamic Counters] Institutions Count:', instCount, 'Error:', instError);
+
       if (!instError && instCount !== null && instCount > 0) {
-        const univCounter = document.querySelector('.counter-card:nth-child(2) .counter-num');
+        const univCounter = counters[1];
         if (univCounter) {
           univCounter.setAttribute('data-target', instCount);
           if (countersAnimated) {
@@ -90,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const animateCounters = () => {
     counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-target'), 10);
       const duration = 2000; // 2 seconds animation
       const startTime = performance.now();
 
       const updateCount = (currentTime) => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         
