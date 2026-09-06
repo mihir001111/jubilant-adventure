@@ -55,7 +55,7 @@ h1, h2, h3 {
   font-family: var(--font-serif);
   font-weight: 300;
   line-height: 1.2;
-  color: var(--text);
+  color: #952bff;
   letter-spacing: -0.01em;
 }
 
@@ -71,7 +71,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1.15rem;
-  background-color: var(--accent);
+  background-color: #952bff;
   color: #ffffff;
   border: 1px solid var(--accent);
   border-radius: 4px;
@@ -476,7 +476,7 @@ p {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 300;
   font-style: italic;
-  color: var(--text);
+  color: #952bff;
   margin-bottom: 1.5rem;
 }
 
@@ -871,7 +871,7 @@ section.evidence-section {
 .evidence-title {
   font-family: var(--font-serif);
   font-size: clamp(2.2rem, 4vw, 3rem);
-  color: var(--text);
+  color: #952bff;
   margin-bottom: 1.5rem;
   line-height: 1.15;
   font-style: italic;
@@ -1091,7 +1091,7 @@ section.evidence-section {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(99, 12, 239, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(28, 27, 25, 0.08);
@@ -1127,6 +1127,7 @@ section.evidence-section {
   position: relative;
   transition: color 0.3s ease;
   padding: 0.4rem 0;
+  color: #fff;
 }
 
 .floating-nav-dock .nav-link-item::after {
@@ -1152,9 +1153,9 @@ section.evidence-section {
   transform-origin: left;
 }
 
-.floating-nav-dock .nav-link-item.active {
+/* .floating-nav-dock .nav-link-item.active {
   color: var(--text);
-}
+} */
 
 .floating-nav-dock .nav-btn-cta {
   font-family: var(--font-sans);
@@ -1162,8 +1163,8 @@ section.evidence-section {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #ffffff;
-  background-color: var(--accent);
+  color: blue;
+  background-color: #fff;
   border: 1px solid var(--accent);
   border-radius: 30px;
   padding: 0.6rem 1.4rem;
@@ -2956,7 +2957,7 @@ img { max-width: 100%; height: auto; }
   font-weight: 900;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: #952bff;
   text-transform: uppercase;
   margin-top: 2rem;
 }
@@ -2986,7 +2987,7 @@ img { max-width: 100%; height: auto; }
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1.1;
   font-weight: 400;
-  color: var(--text);
+  color: #952bff;
   margin-bottom: 0;
   text-transform: lowercase;
   letter-spacing: -0.02em;
