@@ -1706,7 +1706,7 @@
 
   .social-posts-title,
   .social-posts-copy h2 {
-    font-size: clamp(2rem, 20vw, 3rem) !important;
+    font-size: clamp(2rem, 10vw, 3rem) !important;
     line-height: 1.05 !important;
   }
 

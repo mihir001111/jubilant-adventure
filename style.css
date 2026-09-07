@@ -2948,7 +2948,7 @@ img { max-width: 100%; height: auto; }
 
 .big-philosophy-statement .highlight-red {
   font-style: italic;
-  color: #d62828; /* Blood red accent */
+  color: blue; /* Blood red accent */
 }
 
 .big-philosophy-statement .highlight-bold {
