@@ -7,14 +7,17 @@
   <title>After Trials App — The Sovereign Healthcare Network</title>
 
   <!-- SEO & Social Meta -->
-  <meta name="description" content="After Trials — The sovereign healthcare network for doctors, residents, and medical students.">
+  <meta name="description"
+    content="After Trials — The sovereign healthcare network for doctors, residents, and medical students.">
   <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://aftertrials.com/app">
 
   <!-- Google Fonts: Cormorant Garamond (editorial serif from index.html) + Inter (sans-serif) + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <!-- Supabase CDN + Auth Helper -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -46,7 +49,9 @@
       --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -66,7 +71,6 @@
       color: var(--text);
       overflow-x: hidden;
       line-height: 1.5;
-      padding-top: 5rem; /* Clearance for floating top nav dock */
     }
 
     a {
@@ -94,7 +98,10 @@
     }
 
     /* Typography */
-    h1, h2, h3, .serif-heading {
+    h1,
+    h2,
+    h3,
+    .serif-heading {
       font-family: var(--font-serif);
       font-weight: 300;
       line-height: 1.08;
@@ -102,7 +109,9 @@
       letter-spacing: -0.02em;
     }
 
-    h1 em, h2 em, h3 em {
+    h1 em,
+    h2 em,
+    h3 em {
       font-style: italic;
       font-weight: 300;
       color: var(--at-blue);
@@ -131,7 +140,8 @@
       background-color: var(--at-blue);
       color: #ffffff;
       border: 1px solid var(--at-blue);
-      border-radius: 9999px; /* Curvy */
+      border-radius: 9999px;
+      /* Curvy */
       font-family: var(--font-sans);
       font-size: 0.85rem;
       font-weight: 600;
@@ -158,7 +168,8 @@
       background-color: transparent;
       color: var(--at-blue);
       border: 1.5px solid var(--at-blue);
-      border-radius: 9999px; /* Curvy */
+      border-radius: 9999px;
+      /* Curvy */
       font-family: var(--font-sans);
       font-size: 0.85rem;
       font-weight: 600;
@@ -175,136 +186,6 @@
       transform: translateY(-1px);
     }
 
-    /* ==========================================================================
-       FLOATING TOP NAVIGATION DOCK (STYLE OF INDEX.HTML, AT TOP, CURVY & BLUE)
-       ========================================================================== */
-    .floating-nav-dock {
-      position: fixed;
-      top: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(13, 143, 233, 0.25);
-      border-radius: 9999px; /* Curvy */
-      padding: 0.45rem 0.6rem 0.45rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      z-index: 1000;
-      box-shadow: none !important;
-      transition: all 0.3s ease;
-      max-width: 92vw;
-    }
-
-    .brand-logo-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
-
-    .brand-logo-text {
-      font-family: var(--brand-font);
-      font-style: italic;
-      font-weight: 500;
-      font-size: 1.35rem;
-      color: var(--at-blue);
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-    }
-
-    .floating-nav-dock .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    .floating-nav-dock .nav-link-item {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-secondary);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.2s ease;
-      padding: 0.35rem 0;
-      white-space: nowrap;
-    }
-
-    .floating-nav-dock .nav-link-item:hover,
-    .floating-nav-dock .nav-link-item.active {
-      color: var(--at-blue);
-    }
-
-    .floating-nav-dock .nav-link-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1.5px;
-      background-color: var(--at-blue);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.25s ease;
-    }
-
-    .floating-nav-dock .nav-link-item:hover::after,
-    .floating-nav-dock .nav-link-item.active::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .floating-nav-dock .nav-btn-cta {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #ffffff;
-      background-color: var(--at-blue);
-      border: 1px solid var(--at-blue);
-      border-radius: 9999px; /* Curvy */
-      padding: 0.55rem 1.4rem;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .floating-nav-dock .nav-btn-cta:hover {
-      background-color: var(--at-blue-hover);
-      border-color: var(--at-blue-hover);
-      transform: translateY(-1px);
-    }
-
-    @media (max-width: 768px) {
-      .floating-nav-dock {
-        top: 0.75rem;
-        padding: 0.35rem 0.4rem 0.35rem 1rem;
-        gap: 0.75rem;
-        width: calc(100% - 24px);
-        justify-content: space-between;
-      }
-      .floating-nav-dock .brand-logo-text {
-        font-size: 1.15rem;
-      }
-      .floating-nav-dock .nav-links {
-        gap: 0.65rem;
-      }
-      .floating-nav-dock .nav-link-item {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
-      }
-      .floating-nav-dock .nav-btn-cta {
-        font-size: 0.65rem;
-        padding: 0.45rem 0.95rem;
-      }
-    }
 
     /* ==========================================================================
        SECTION 1: HERO
@@ -344,7 +225,7 @@
       font-family: var(--font-sans);
       font-size: 1.12rem;
       line-height: 1.7;
-      color: var(--text-secondary);
+      color: blue;
       max-width: 520px;
       margin-bottom: 2.5rem;
       font-weight: 400;
@@ -453,7 +334,102 @@
     }
 
     /* ==========================================================================
-       SECTION 3: APP DETAILS 2 (COMMUNITY ECOSYSTEM)
+       SECTION 3: THE HUMAN LAYER — NOISE OUTSIDE, SIGNAL INSIDE
+       ========================================================================== */
+    .section-human-layer {
+      padding: 7.5rem 0 8rem;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .human-layer-wrap {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.7fr);
+      gap: clamp(3rem, 7vw, 7rem);
+      align-items: center;
+    }
+
+    .human-layer-copy {
+      max-width: 470px;
+    }
+
+    .human-layer-title {
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .human-layer-desc {
+      font-family: var(--font-sans);
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 430px;
+    }
+
+    .human-layer-note {
+      margin-top: 2.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .human-layer-note::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--at-blue);
+      flex: 0 0 auto;
+    }
+
+    .human-layer-image {
+      width: 100%;
+      overflow: hidden;
+
+    }
+
+    .human-layer-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .human-layer-wrap {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .human-layer-copy {
+        max-width: 720px;
+      }
+
+      .human-layer-desc {
+        max-width: 620px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .section-human-layer {
+        padding: 5.5rem 0 6rem;
+      }
+
+      .human-layer-title {
+        font-size: clamp(2.8rem, 14vw, 4.2rem);
+      }
+
+      .human-layer-image {
+        border-radius: 10px;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 4: APP DETAILS 2 (COMMUNITY ECOSYSTEM)
        ========================================================================== */
     .section-ecosystem {
       padding: 6.5rem 0;
@@ -508,6 +484,108 @@
       height: auto;
       display: block;
     }
+
+    /* ==========================================================================
+       SECTION 5: COMMUNITY CONVERSATIONS — LAST TWO IMAGES
+       ========================================================================== */
+    .section-community-conversations {
+      padding: 6.5rem 0 7rem;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .community-conversations-head {
+      max-width: 900px;
+      margin-bottom: 4rem;
+    }
+
+    .community-conversations-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .community-conversations-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .community-conversations-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .community-conversations-card {
+      width: 100%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .community-conversations-card:hover {
+      border-color: var(--at-blue);
+      transform: translateY(-3px);
+    }
+
+    .community-conversations-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION 6: NEXT FEATURE / SINGLE VISUAL
+       ========================================================================== */
+    .section-next-feature {
+      padding: 7rem 0 8rem;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .next-feature-head {
+      max-width: 900px;
+      margin-bottom: 4rem;
+    }
+
+    .next-feature-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .next-feature-image {
+      width: 100%;
+      overflow: hidden;
+
+    }
+
+    .next-feature-image {
+      width: 100%;
+      margin: 0;
+    }
+
+    .next-feature-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+
+      .section-community-conversations,
+      .section-next-feature {
+        padding: 5.5rem 0 6rem;
+      }
+
+      .community-conversations-head,
+      .next-feature-head {
+        margin-bottom: 3rem;
+      }
+    }
+
 
     /* ==========================================================================
        SECTION 4: ONBOARDING / SIGNUP FORM (EXACTLY LIKE INDEX.HTML)
@@ -623,7 +701,8 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      border-radius: 9999px; /* Curvy */
+      border-radius: 9999px;
+      /* Curvy */
       background-color: var(--at-blue);
       color: #ffffff;
       border: 1px solid var(--at-blue);
@@ -758,17 +837,21 @@
       .petition-prose {
         line-height: 2.3;
       }
-      .inline-input, .inline-select {
+
+      .inline-input,
+      .inline-select {
         width: 100% !important;
         text-align: left;
         text-align-last: left;
         margin: 0.5rem 0;
         padding: 0.3rem 0;
       }
+
       .petition-actions {
         flex-direction: column;
         align-items: stretch;
       }
+
       .btn-submit-petition {
         width: 100%;
         text-align: center;
@@ -869,22 +952,7 @@
 
 <body>
 
-  <!-- ========================================================================
-       FLOATING TOP NAVIGATION DOCK (LIKE INDEX.HTML, AT TOP, CURVY & BLUE)
-       ======================================================================== -->
-  <nav class="floating-nav-dock">
-    <a href="app.html" class="brand-logo-link">
-      <span class="brand-logo-text">After Trials</span>
-    </a>
 
-    <div class="nav-links">
-      <a href="#hero" class="nav-link-item active">Index</a>
-      <a href="#feed-preview" class="nav-link-item">Feed</a>
-      <a href="#network-graph" class="nav-link-item">Network</a>
-      <a href="index.html" class="nav-link-item">Portal</a>
-      <a href="#onboarding" class="nav-btn-cta">Claim &rarr;</a>
-    </div>
-  </nav>
 
 
   <!-- ========================================================================
@@ -895,15 +963,12 @@
 
       <!-- Left: Minimalist High-Impact Editorial Typography -->
       <div>
-        <span class="kicker">The Sovereign Healthcare Network</span>
-
         <h1 class="hero-title">
-          the sovereign<br>
-          <em>network for medicine.</em>
+          after trials<br>
         </h1>
 
-        <p class="hero-desc">
-          Unfiltered peer exchange for medical students, residents, and practicing doctors. Built to reclaim professional autonomy.
+        <p class="hero-desc"> <i>
+            Explore the network ↓ </i>
         </p>
 
         <div class="hero-cta-group">
@@ -919,21 +984,13 @@
       <!-- Right: Raw Real User Interaction Posts -->
       <div class="hero-post-display">
         <div class="hero-post-item">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-1_qp4lgq.png"
-            alt="Medical post on After Trials"
-            loading="eager"
-            decoding="async"
-          >
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-1_qp4lgq.png"
+            alt="Medical post on After Trials" loading="eager" decoding="async">
         </div>
 
         <div class="hero-post-item offset">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795065/Tweet_ts6s77.png"
-            alt="Medical case discussion post"
-            loading="eager"
-            decoding="async"
-          >
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795065/Tweet_ts6s77.png"
+            alt="Medical case discussion post" loading="eager" decoding="async">
         </div>
       </div>
 
@@ -948,10 +1005,9 @@
     <div class="container">
 
       <div class="section-head">
-        <span class="kicker">Inside the Network</span>
         <h2 class="section-title-large">
-          real discussions.<br>
-          <em>zero algorithms.</em>
+          Talk cases. Talk research.<br>
+          <em>Talk medicine.</em>
         </h2>
       </div>
 
@@ -959,58 +1015,34 @@
       <div class="crazy-posts-grid">
 
         <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-1_qp4lgq.png"
-            alt="Clinical discussion post"
-            loading="lazy"
-            decoding="async"
-          >
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973981/Tweet_-7_olsdpc.png"
+            alt="Clinical discussion post" loading="lazy" decoding="async">
         </figure>
 
         <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795065/Tweet_ts6s77.png"
-            alt="Clinical debate post"
-            loading="lazy"
-            decoding="async"
-          >
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973980/Tweet_-5_dpye9e.png"
+            alt="Clinical debate post" loading="lazy" decoding="async">
         </figure>
 
         <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-2_ievdqo.png"
-            alt="Residency and training post"
-            loading="lazy"
-            decoding="async"
-          >
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973980/Tweet_-4_swx4ue.png"
+            alt="Residency and training post" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- <figure class="post-grid-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973979/Tweet_ovm6bz.png"
+            alt="Peer verification post" loading="lazy" decoding="async">
+        </figure> -->
+
+        <!-- <figure class="post-grid-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973980/Tweet_-6_f9m599.png"
+            alt="Medical student advice post" loading="lazy" decoding="async">
         </figure>
 
         <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795065/Tweet_ts6s77.png"
-            alt="Peer verification post"
-            loading="lazy"
-            decoding="async"
-          >
-        </figure>
-
-        <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-2_ievdqo.png"
-            alt="Medical student advice post"
-            loading="lazy"
-            decoding="async"
-          >
-        </figure>
-
-        <figure class="post-grid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-1_qp4lgq.png"
-            alt="Hospital rounds post"
-            loading="lazy"
-            decoding="async"
-          >
-        </figure>
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788973980/Tweet_-3_ts4wh6.png"
+            alt="Hospital rounds post" loading="lazy" decoding="async">
+        </figure> -->
 
       </div>
 
@@ -1019,47 +1051,51 @@
 
 
   <!-- ========================================================================
-       3. APP DETAILS 2: THE COMMUNITY ECOSYSTEM
+       3. THE HUMAN LAYER: A CREATIVE VISUAL BREAK
+       ======================================================================== -->
+  <section class="section-human-layer" id="human-layer">
+    <div class="container human-layer-wrap">
+
+      <div class="human-layer-copy">
+
+        <h2 class="human-layer-title">
+          Medicine is bigger than your<br>
+          <em>workplace.</em>
+        </h2>
+
+        <p class="human-layer-desc">
+          After Trials is built to make those conversations easier to find — without turning them into content.
+        </p>
+
+      </div>
+
+      <figure class="human-layer-image">
+        <img
+          src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1789039350/Add_a_little_bit_of_body_text_ocqfet.png"
+          alt="After Trials medical community visual" loading="lazy" decoding="async">
+      </figure>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================
+       4. APP DETAILS 2: THE COMMUNITY ECOSYSTEM
        ======================================================================== -->
   <section class="section-ecosystem" id="network-graph">
     <div class="container">
 
       <div class="section-head">
-        <span class="kicker">The Community</span>
         <h2 class="section-title-large">
-          one collective.<br>
-          <em>open to every medical voice.</em>
+          If medicine is your world,<br>
+          <em>welcome home.</em>
         </h2>
       </div>
 
       <!-- Panoramic Community Frame from index.html -->
       <div class="ecosystem-panoramic-frame">
-        <img
-          src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788789760/section_hrtfcg.png"
-          alt="After Trials community platform"
-          loading="lazy"
-          decoding="async"
-        >
-      </div>
-
-      <!-- Two Supporting Real User Interaction Cards -->
-      <div class="ecosystem-subgrid">
-        <div class="subgrid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-1_qp4lgq.png"
-            alt="Medical community thread"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
-        <div class="subgrid-card">
-          <img
-            src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788795066/Tweet_-2_ievdqo.png"
-            alt="Medical student network thread"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
+        <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788974024/Group_1_xox19c.png"
+          alt="After Trials community platform" loading="lazy" decoding="async">
       </div>
 
     </div>
@@ -1067,7 +1103,72 @@
 
 
   <!-- ========================================================================
-       4. SIGNUP / ONBOARDING SECTION (EXACTLY LIKE INDEX.HTML)
+       5. COMMUNITY CONVERSATIONS — INDEPENDENT SECTION
+       ======================================================================== -->
+  <section class="section-community-conversations" id="community-conversations">
+    <div class="container">
+
+      <div class="community-conversations-head">
+        <h2 class="community-conversations-title">
+          The conversations<br>
+          <em>find jobs.</em>
+          <em> connect with peers.</em>
+          <em> socilise.</em>
+        </h2>
+      </div>
+
+      <div class="community-conversations-grid">
+        <figure class="community-conversations-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+            alt="Medical community thread" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="community-conversations-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+            alt="Medical student network thread" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="community-conversations-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+            alt="Medical student network thread" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="community-conversations-card">
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+            alt="Medical student network thread" loading="lazy" decoding="async">
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================
+       6. NEXT FEATURE — TITLE ABOVE SINGLE IMAGE
+       ======================================================================== -->
+  <section class="section-next-feature" id="next-feature">
+    <div class="container">
+
+      <div class="next-feature-head">
+        <h2 class="next-feature-title">
+          More than a network.<br>
+          <em>A place to belong.</em>
+        </h2>
+      </div>
+
+      <figure class="next-feature-image">
+        <!-- Replace the src below with the image you want to attach here. -->
+        <img
+          src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1789066941/copy_of_chatgpt_imagek_sep_10_2026_11_12_13_pm_yiv0ho.png"
+          alt="After Trials community feature" loading="lazy" decoding="async">
+      </figure>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================
+       7. SIGNUP / ONBOARDING SECTION (EXACTLY LIKE INDEX.HTML)
        ======================================================================== -->
   <section class="section-onboarding" id="onboarding">
     <div class="container onboarding-wrap">
@@ -1077,15 +1178,15 @@
         <!-- PHASE 1: Simple signup details (Prose Form) -->
         <div id="phase-prose" class="onboarding-phase">
           <div class="petition-prose" id="petitionProse">
-            <span style="display:block; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--at-blue); font-weight: 600; margin-bottom: 2rem;">
-              JOIN AFTER TRIALS
-            </span>
-            <h2 style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1; letter-spacing: -0.04em; margin-bottom: 2rem;">
+
+            <h2
+              style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1; letter-spacing: -0.04em; margin-bottom: 2rem;">
               <span>join</span> <em>the community.</em>
             </h2>
 
             Hi, I’m
-            <input type="text" id="input-name" class="inline-input" placeholder="your full name" required autocomplete="name">.
+            <input type="text" id="input-name" class="inline-input" placeholder="your full name" required
+              autocomplete="name">.
             I’m joining as a
             <select id="input-role" class="inline-select" required>
               <option value="" disabled selected>choose your role</option>
@@ -1112,18 +1213,22 @@
               <input type="text" id="input-specialty-custom" class="inline-input" placeholder="type your area">
             </span>.
             You can reach me at
-            <input type="email" id="input-email" class="inline-input" placeholder="your email" required autocomplete="email">
+            <input type="email" id="input-email" class="inline-input" placeholder="your email" required
+              autocomplete="email">
             or
-            <input type="tel" id="input-phone" class="inline-input" placeholder="your phone number" required autocomplete="tel">.
+            <input type="tel" id="input-phone" class="inline-input" placeholder="your phone number" required
+              autocomplete="tel">.
           </div>
 
           <div class="petition-actions" id="petitionActions">
             <button type="submit" class="btn-submit-petition" id="submitPetitionBtn">Continue &rarr;</button>
-            <span style="font-size: 0.75rem; letter-spacing: 0.05em; color: var(--text-secondary);">Your information is securely protected.</span>
+            <span style="font-size: 0.75rem; letter-spacing: 0.05em; color: var(--text-secondary);">Your contact details
+              are private and will never be visible to other users.</span>
           </div>
 
           <div style="margin-top: 2rem;">
-            <button type="button" class="btn-link-toggle" onclick="showSignInPhase()">Already have an account? Sign in &rarr;</button>
+            <button type="button" class="btn-link-toggle" onclick="showSignInPhase()">Already have an account? Sign in
+              &rarr;</button>
           </div>
         </div>
 
@@ -1134,7 +1239,8 @@
             <input type="email" id="login-email" class="inline-input" placeholder="your email" autocomplete="email">
             and password
             <span class="password-input-wrapper-inline">
-              <input type="password" id="login-password" class="inline-input" placeholder="your password" autocomplete="current-password">
+              <input type="password" id="login-password" class="inline-input" placeholder="your password"
+                autocomplete="current-password">
               <button type="button" class="toggle-password-btn" data-target="login-password" tabindex="-1">show</button>
             </span>.
           </div>
@@ -1146,7 +1252,8 @@
           <div class="petition-actions">
             <div>
               <button type="button" class="btn-secondary" onclick="showProsePhase()">&larr; Back</button>
-              <button type="button" class="btn-submit-petition" id="btn-login-submit" onclick="submitLogin()" style="margin-left: 1rem;">Sign In &rarr;</button>
+              <button type="button" class="btn-submit-petition" id="btn-login-submit" onclick="submitLogin()"
+                style="margin-left: 1rem;">Sign In &rarr;</button>
             </div>
           </div>
         </div>
@@ -1155,18 +1262,25 @@
         <div id="phase-authenticated" class="onboarding-phase hidden">
           <div style="padding: 3rem 0;">
             <span class="kicker">YOU’RE SIGNED IN</span>
-            <h3 id="auth-email-display" style="color: var(--text-secondary); margin-bottom: 1rem; font-family: var(--font-sans); font-size: 1.2rem;">—</h3>
-            <p style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; font-style: italic; line-height: 1.2; color: var(--text); margin-bottom: 2.5rem;">
+            <h3 id="auth-email-display"
+              style="color: var(--text-secondary); margin-bottom: 1rem; font-family: var(--font-sans); font-size: 1.2rem;">
+              —</h3>
+            <p
+              style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; font-style: italic; line-height: 1.2; color: var(--text); margin-bottom: 2.5rem;">
               Invite your peers and help grow the After Trials community.
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px;">
               <span class="footer-label">YOUR INVITE LINK</span>
               <div style="display: flex; align-items: stretch; width: 100%;">
-                <input type="text" id="auth-ref-link" class="inline-input" readonly style="flex: 1; border: 1px solid var(--border); border-right: none; border-radius: 9999px 0 0 9999px; padding: 0.85rem 1.25rem; text-align: left;" placeholder="Loading your link...">
-                <button type="button" class="btn-primary" id="btn-auth-copy" style="border-radius: 0 9999px 9999px 0; padding: 0.85rem 1.8rem;">Copy</button>
+                <input type="text" id="auth-ref-link" class="inline-input" readonly
+                  style="flex: 1; border: 1px solid var(--border); border-right: none; border-radius: 9999px 0 0 9999px; padding: 0.85rem 1.25rem; text-align: left;"
+                  placeholder="Loading your link...">
+                <button type="button" class="btn-primary" id="btn-auth-copy"
+                  style="border-radius: 0 9999px 9999px 0; padding: 0.85rem 1.8rem;">Copy</button>
               </div>
-              <button type="button" class="btn-secondary" id="btn-auth-signout" onclick="signOutAccount()" style="align-self: flex-start; margin-top: 1rem;">Sign Out</button>
+              <button type="button" class="btn-secondary" id="btn-auth-signout" onclick="signOutAccount()"
+                style="align-self: flex-start; margin-top: 1rem;">Sign Out</button>
             </div>
           </div>
         </div>
@@ -1176,13 +1290,16 @@
           <div class="petition-prose">
             Create a password for your account.
             <span class="password-input-wrapper-inline">
-              <input type="password" id="reg-password" class="inline-input" placeholder="at least 6 characters" autocomplete="new-password">
+              <input type="password" id="reg-password" class="inline-input" placeholder="at least 6 characters"
+                autocomplete="new-password">
               <button type="button" class="toggle-password-btn" data-target="reg-password" tabindex="-1">show</button>
             </span>
             Then enter it again:
             <span class="password-input-wrapper-inline">
-              <input type="password" id="reg-confirm-password" class="inline-input" placeholder="repeat password" autocomplete="new-password">
-              <button type="button" class="toggle-password-btn" data-target="reg-confirm-password" tabindex="-1">show</button>
+              <input type="password" id="reg-confirm-password" class="inline-input" placeholder="repeat password"
+                autocomplete="new-password">
+              <button type="button" class="toggle-password-btn" data-target="reg-confirm-password"
+                tabindex="-1">show</button>
             </span>.
           </div>
 
@@ -1194,7 +1311,8 @@
 
           <div class="petition-actions">
             <button type="button" class="btn-secondary" onclick="showProsePhase()">&larr; Back</button>
-            <button type="button" class="btn-submit-petition" id="btn-create-account" onclick="submitPasswordStep()">Create Account &rarr;</button>
+            <button type="button" class="btn-submit-petition" id="btn-create-account"
+              onclick="submitPasswordStep()">Create Account &rarr;</button>
           </div>
         </div>
 
@@ -1202,7 +1320,8 @@
         <div id="phase-otp" class="onboarding-phase hidden">
           <div id="otp-notification" class="otp-notification"></div>
           <div class="petition-prose">
-            We sent a 6-digit code to <span id="otp-target-email" style="text-decoration: underline; color: var(--at-blue);">your email</span>.
+            We sent a 6-digit code to <span id="otp-target-email"
+              style="text-decoration: underline; color: var(--at-blue);">your email</span>.
             Enter it below to verify your email.
           </div>
 
@@ -1225,7 +1344,8 @@
           </div>
 
           <div class="petition-actions">
-            <button type="button" class="btn-submit-petition" id="btn-verify-otp" onclick="verifyOTPStep()">Verify Email &rarr;</button>
+            <button type="button" class="btn-submit-petition" id="btn-verify-otp" onclick="verifyOTPStep()">Verify Email
+              &rarr;</button>
           </div>
         </div>
 
@@ -1234,9 +1354,13 @@
           <div class="complete-icon">&#10003;</div>
           <h3 class="complete-title">You’re in.</h3>
           <p class="complete-desc">Your After Trials account is ready. Share your invite link with your peers.</p>
-          <div style="margin-top: 2.5rem; display: flex; align-items: stretch; justify-content: center; max-width: 600px; margin-inline: auto;">
-            <input type="text" id="success-ref-link" class="inline-input" readonly style="flex: 1; border: 1.5px solid var(--border); border-right: none; border-radius: 9999px 0 0 9999px; margin: 0; padding: 1rem 1.5rem; text-align: center; font-size: 1.05rem;" placeholder="Loading your link...">
-            <button type="button" class="btn-primary" id="btn-success-copy" onclick="copySuccessLink()" style="border-radius: 0 9999px 9999px 0; padding: 1rem 2.2rem; min-width: 120px;">Copy</button>
+          <div
+            style="margin-top: 2.5rem; display: flex; align-items: stretch; justify-content: center; max-width: 600px; margin-inline: auto;">
+            <input type="text" id="success-ref-link" class="inline-input" readonly
+              style="flex: 1; border: 1.5px solid var(--border); border-right: none; border-radius: 9999px 0 0 9999px; margin: 0; padding: 1rem 1.5rem; text-align: center; font-size: 1.05rem;"
+              placeholder="Loading your link...">
+            <button type="button" class="btn-primary" id="btn-success-copy" onclick="copySuccessLink()"
+              style="border-radius: 0 9999px 9999px 0; padding: 1rem 2.2rem; min-width: 120px;">Copy</button>
           </div>
           <div style="margin-top: 3rem;">
             <a href="index.html" class="btn-link-toggle">Return to Web Portal &rarr;</a>
@@ -1250,7 +1374,7 @@
 
 
   <!-- ========================================================================
-       5. FOOTER (MATCHING INDEX.HTML MINIMAL DASHBOARD)
+       8. FOOTER (MATCHING INDEX.HTML MINIMAL DASHBOARD)
        ======================================================================== -->
   <footer class="site-footer" id="footer">
     <div class="container">
@@ -1271,6 +1395,8 @@
             <a href="#hero">Overview</a>
             <a href="#feed-preview">User Posts</a>
             <a href="#network-graph">Community Graph</a>
+            <a href="#community-conversations">Conversations</a>
+            <a href="#next-feature">More to explore</a>
             <a href="#onboarding">Join Platform</a>
           </div>
         </div>
@@ -1644,7 +1770,7 @@
           let refCode = 'AFTERTRIALS';
           try {
             refCode = await window.SupabaseAuth.getReferralCode();
-          } catch (e) {}
+          } catch (e) { }
 
           const shareUrl = `${window.location.origin}/app.html?ref=${refCode || 'JOIN'}`;
           document.getElementById('success-ref-link').value = shareUrl;
@@ -1680,7 +1806,7 @@
           let refCode = 'MEMBER';
           try {
             refCode = await window.SupabaseAuth.getReferralCode();
-          } catch (e) {}
+          } catch (e) { }
 
           const shareUrl = `${window.location.origin}/app.html?ref=${refCode || 'JOIN'}`;
           document.getElementById('auth-email-display').textContent = email;
@@ -1699,7 +1825,7 @@
       window.signOutAccount = async function () {
         try {
           await window.SupabaseAuth.signOut();
-        } catch (e) {}
+        } catch (e) { }
         showProsePhase();
       };
 
@@ -1723,13 +1849,13 @@
               let refCode = 'MEMBER';
               try {
                 refCode = await window.SupabaseAuth.getReferralCode();
-              } catch (e) {}
+              } catch (e) { }
               document.getElementById('auth-ref-link').value = `${window.location.origin}/app.html?ref=${refCode || 'JOIN'}`;
               phaseProse.classList.add('hidden');
               phaseAuthenticated.classList.remove('hidden');
             }
           }
-        } catch (e) {}
+        } catch (e) { }
       });
 
     })();
