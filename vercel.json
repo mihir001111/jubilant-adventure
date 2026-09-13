@@ -4,24 +4,53 @@
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/privacy", "destination": "/privacy-policy.html" },
-    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
-    { "source": "/terms", "destination": "/terms-of-service.html" },
-    { "source": "/terms-of-service", "destination": "/terms-of-service.html" },
-    { "source": "/cookie", "destination": "/cookie-policy.html" },
-    { "source": "/cookie-policy", "destination": "/cookie-policy.html" },
-    { "source": "/disclaimer", "destination": "/disclaimer.html" },
-    { "source": "/medical-disclaimer", "destination": "/disclaimer.html" },
-    { "source": "/guidelines", "destination": "/guidelines.html" },
-    { "source": "/community-guidelines", "destination": "/guidelines.html" },
-    { "source": "/support", "destination": "/support.html" },
-    { "source": "/careers", "destination": "/careers.html" }
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/medical-disclaimer",
+      "destination": "/medical-disclaimer.html"
+    },
+    {
+      "source": "/gdpr",
+      "destination": "/gdpr.html"
+    },
+    {
+      "source": "/cookie",
+      "destination": "/cookie.html"
+    },
+    {
+      "source": "/guidelines",
+      "destination": "/guidelines.html"
+    },
+    {
+      "source": "/careers",
+      "destination": "/careers.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    }
   ]
 }
