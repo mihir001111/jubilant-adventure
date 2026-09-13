@@ -1,0 +1,1237 @@
+/* =========================================================
+   AFTER TRIALS — LEGAL PAGES
+   Shared stylesheet for:
+   Privacy Policy
+   Terms of Service
+   Medical Disclaimer
+   Cookie Policy
+   GDPR
+   ========================================================= */
+
+
+/* =========================================================
+   01. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+
+  /* Brand */
+  --at-blue: #0d8fe9;
+  --at-blue-hover: #0873be;
+  --at-blue-subtle: #f0f8ff;
+  --at-blue-border: #bae6fd;
+
+  /* Text */
+  --at-black: #111111;
+  --at-text: #1e293b;
+  --at-secondary: #475569;
+  --at-muted: #64748b;
+
+  /* Borders */
+  --at-border: #e2e8f0;
+  --at-border-light: #edf2f7;
+
+  /* Backgrounds */
+  --at-bg: #ffffff;
+  --at-soft-bg: #f8fafc;
+
+  /* Typography */
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --brand: "Baloo Bhai 2", sans-serif;
+
+  /* Layout */
+  --content-width: 1180px;
+  --reading-width: 820px;
+
+  /* Effects */
+  --legal-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+
+}
+
+
+/* =========================================================
+   02. RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: var(--at-bg);
+  color: var(--at-text);
+  font-family: var(--sans);
+  line-height: 1.75;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--at-blue);
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   03. SHARED CONTAINER
+   ========================================================= */
+
+.legal-container {
+  width: min(
+    var(--content-width),
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   04. TOP BAR
+   ========================================================= */
+
+.topbar {
+  width: 100%;
+
+  border-bottom: 1px solid var(--at-border);
+
+  background: rgba(255, 255, 255, 0.96);
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+.topbar-inner {
+  width: min(
+    var(--content-width),
+    calc(100% - 48px)
+  );
+
+  min-height: 76px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   05. BRAND
+   ========================================================= */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+
+  font-family: var(--brand);
+  font-size: 1.55rem;
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+
+  color: var(--at-black);
+
+  white-space: nowrap;
+}
+
+
+.brand span {
+  color: var(--at-black);
+}
+
+
+/* =========================================================
+   06. BACK LINK
+   ========================================================= */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--at-secondary);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  letter-spacing: -0.01em;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.back-link:hover {
+  color: var(--at-blue);
+
+  transform: translateX(-2px);
+}
+
+
+/* =========================================================
+   07. LEGAL HERO
+   ========================================================= */
+
+.legal-hero {
+  width: min(
+    var(--content-width),
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+
+  padding:
+    clamp(82px, 11vw, 140px)
+    0
+    clamp(70px, 9vw, 115px);
+
+  border-bottom: 1px solid var(--at-border);
+}
+
+
+.legal-hero-inner {
+  max-width: 900px;
+}
+
+
+/* =========================================================
+   08. EYEBROW
+   ========================================================= */
+
+.legal-eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+
+  color: var(--at-blue);
+
+  font-family: var(--mono);
+
+  font-size: 0.7rem;
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+.legal-eyebrow::before {
+  content: "";
+
+  width: 28px;
+  height: 1px;
+
+  background: var(--at-blue);
+}
+
+
+/* =========================================================
+   09. HERO TITLE
+   ========================================================= */
+
+.legal-hero h1 {
+  max-width: 900px;
+
+  color: var(--at-black);
+
+  font-family: var(--serif);
+
+  font-size: clamp(4rem, 8vw, 7.4rem);
+
+  font-weight: 500;
+
+  line-height: 0.88;
+
+  letter-spacing: -0.055em;
+}
+
+
+.legal-hero h1 em {
+  color: var(--at-blue);
+
+  font-style: italic;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   10. HERO DESCRIPTION
+   ========================================================= */
+
+.legal-hero-description {
+  max-width: 760px;
+
+  margin-top: 42px;
+
+  color: var(--at-secondary);
+
+  font-size: clamp(1rem, 1.5vw, 1.16rem);
+
+  line-height: 1.85;
+}
+
+
+/* =========================================================
+   11. LAST UPDATED
+   ========================================================= */
+
+.legal-updated {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 32px;
+
+  color: var(--at-muted);
+
+  font-family: var(--mono);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.025em;
+}
+
+
+.legal-updated::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--at-blue);
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   12. HERO IMPORTANT NOTICE
+   ========================================================= */
+
+.legal-hero-notice {
+  max-width: 760px;
+
+  margin-top: 34px;
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   13. MAIN CONTENT LAYOUT
+   ========================================================= */
+
+.legal-content-shell {
+  width: min(
+    var(--content-width),
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    210px
+    minmax(0, 1fr);
+
+  gap: clamp(60px, 9vw, 130px);
+
+  padding:
+    clamp(70px, 9vw, 115px)
+    0
+    clamp(90px, 11vw, 140px);
+}
+
+
+/* =========================================================
+   14. TABLE OF CONTENTS
+   ========================================================= */
+
+.legal-toc {
+  position: sticky;
+
+  top: 112px;
+
+  align-self: start;
+}
+
+
+.legal-toc-label {
+  margin-bottom: 18px;
+
+  color: var(--at-muted);
+
+  font-family: var(--mono);
+
+  font-size: 0.64rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
+}
+
+
+.legal-toc-list {
+  list-style: none;
+
+  border-left: 1px solid var(--at-border);
+}
+
+
+.legal-toc-list li {
+  margin: 0;
+}
+
+
+.legal-toc-list a {
+  display: block;
+
+  padding: 7px 0 7px 17px;
+
+  color: var(--at-muted);
+
+  font-size: 0.76rem;
+
+  line-height: 1.45;
+
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+
+.legal-toc-list a:hover {
+  color: var(--at-blue);
+
+  padding-left: 21px;
+}
+
+
+/* =========================================================
+   15. ARTICLE
+   ========================================================= */
+
+.legal-article {
+  max-width: var(--reading-width);
+}
+
+
+/* =========================================================
+   16. POLICY SECTION
+   ========================================================= */
+
+.legal-section {
+  padding: 0 0 70px;
+
+  margin-bottom: 70px;
+
+  border-bottom: 1px solid var(--at-border-light);
+}
+
+
+.legal-section:last-child {
+  margin-bottom: 0;
+
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   17. SECTION NUMBER
+   ========================================================= */
+
+.legal-section-number {
+  margin-bottom: 13px;
+
+  color: var(--at-blue);
+
+  font-family: var(--mono);
+
+  font-size: 0.66rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   18. SECTION HEADINGS
+   ========================================================= */
+
+.legal-section h2 {
+  margin-bottom: 27px;
+
+  color: var(--at-black);
+
+  font-family: var(--serif);
+
+  font-size: clamp(2.2rem, 4vw, 3.35rem);
+
+  font-weight: 500;
+
+  line-height: 1.03;
+
+  letter-spacing: -0.035em;
+}
+
+
+/* =========================================================
+   19. PARAGRAPHS
+   ========================================================= */
+
+.legal-section p {
+  margin-bottom: 19px;
+
+  color: var(--at-secondary);
+
+  font-size: 0.96rem;
+
+  line-height: 1.9;
+}
+
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   20. STRONG TEXT
+   ========================================================= */
+
+.legal-section strong {
+  color: var(--at-black);
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   21. LISTS
+   ========================================================= */
+
+.legal-section ul {
+  margin: 20px 0 25px;
+
+  padding-left: 23px;
+}
+
+
+.legal-section li {
+  margin-bottom: 8px;
+
+  color: var(--at-secondary);
+
+  font-size: 0.96rem;
+
+  line-height: 1.8;
+}
+
+
+.legal-section li::marker {
+  color: var(--at-blue);
+}
+
+
+/* =========================================================
+   22. NOTICE / CALLOUT
+   ========================================================= */
+
+.legal-notice {
+  margin: 31px 0;
+
+  padding: 25px 27px;
+
+  background: var(--at-blue-subtle);
+
+  border: 1px solid var(--at-blue-border);
+
+  border-radius: 12px;
+}
+
+
+.legal-notice-label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--at-blue);
+
+  font-family: var(--mono);
+
+  font-size: 0.64rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+.legal-notice p {
+  margin: 0;
+
+  color: #17324a;
+
+  font-size: 0.93rem;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   23. CONTACT CARD
+   ========================================================= */
+
+.legal-contact-card {
+  margin-top: 26px;
+
+  padding: 30px;
+
+  border: 1px solid var(--at-border);
+
+  border-radius: 14px;
+
+  background: var(--at-soft-bg);
+}
+
+
+.legal-contact-card p {
+  margin-bottom: 14px;
+}
+
+
+.legal-contact-card p:last-child {
+  margin-bottom: 0;
+}
+
+
+.legal-contact-email {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--at-blue);
+
+  font-size: 0.94rem;
+
+  font-weight: 700;
+
+  transition: color 0.2s ease;
+}
+
+
+.legal-contact-email:hover {
+  color: var(--at-blue-hover);
+}
+
+
+.legal-contact-email::after {
+  content: "↗";
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   24. RELATED POLICIES
+   ========================================================= */
+
+.legal-related-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-top: 29px;
+}
+
+
+.legal-related-card {
+  min-height: 130px;
+
+  padding: 22px;
+
+  border: 1px solid var(--at-border);
+
+  border-radius: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.legal-related-card:hover {
+  border-color: var(--at-blue-border);
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--legal-shadow);
+}
+
+
+.legal-related-card small {
+  color: var(--at-muted);
+
+  font-family: var(--mono);
+
+  font-size: 0.6rem;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+
+.legal-related-card span {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  gap: 10px;
+
+  color: var(--at-black);
+
+  font-family: var(--serif);
+
+  font-size: 1.4rem;
+
+  line-height: 1;
+}
+
+
+.legal-related-card span::after {
+  content: "↗";
+
+  color: var(--at-blue);
+
+  font-family: var(--sans);
+
+  font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   25. FOOTER
+   SHARED ACROSS ALL LEGAL PAGES
+   ========================================================= */
+
+footer {
+  border-top: 1px solid var(--at-border);
+
+  background: #ffffff;
+}
+
+
+.legal-footer-inner {
+  width: min(
+    var(--content-width),
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+
+  padding: 70px 0 32px;
+}
+
+
+.legal-footer-top {
+  display: grid;
+
+  grid-template-columns:
+    minmax(240px, 1.5fr)
+    repeat(3, 1fr);
+
+  gap: 50px;
+
+  padding-bottom: 70px;
+}
+
+
+/* =========================================================
+   26. FOOTER BRAND
+   ========================================================= */
+
+.legal-footer-brand {
+  font-family: var(--brand);
+
+  font-size: 2rem;
+
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+
+  color: var(--at-black);
+}
+
+
+.legal-footer-brand span {
+  color: var(--at-black);
+}
+
+
+/* =========================================================
+   27. FOOTER MOTTO
+   ========================================================= */
+
+.legal-footer-motto {
+  max-width: 260px;
+
+  margin-top: 14px;
+
+  color: var(--at-muted);
+
+  font-family: var(--serif);
+
+  font-size: 1.25rem;
+
+  font-style: italic;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   28. FOOTER COLUMN TITLES
+   ========================================================= */
+
+.legal-footer-column-title {
+  margin-bottom: 16px;
+
+  color: var(--at-muted);
+
+  font-family: var(--mono);
+
+  font-size: 0.61rem;
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   29. FOOTER LINKS
+   ========================================================= */
+
+.legal-footer-links {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+}
+
+
+.legal-footer-links a {
+  color: var(--at-secondary);
+
+  font-size: 0.78rem;
+
+  transition: color 0.2s ease;
+}
+
+
+.legal-footer-links a:hover {
+  color: var(--at-blue);
+}
+
+
+/* =========================================================
+   30. FOOTER BOTTOM
+   ========================================================= */
+
+.legal-footer-bottom {
+  padding-top: 22px;
+
+  border-top: 1px solid var(--at-border);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: var(--at-muted);
+
+  font-family: var(--mono);
+
+  font-size: 0.61rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   31. RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .legal-content-shell {
+    grid-template-columns: 1fr;
+
+    gap: 42px;
+  }
+
+
+  .legal-toc {
+    position: relative;
+
+    top: auto;
+
+    order: -1;
+  }
+
+
+  .legal-toc-list {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .legal-toc-list a {
+    padding-left: 12px;
+  }
+
+
+  .legal-toc-list a:hover {
+    padding-left: 15px;
+  }
+
+
+  .legal-footer-top {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .legal-footer-brand-block {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =========================================================
+   32. RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .topbar-inner,
+  .legal-hero,
+  .legal-content-shell,
+  .legal-footer-inner {
+
+    width: min(
+      100% - 32px,
+      var(--content-width)
+    );
+
+  }
+
+
+  .topbar-inner {
+    min-height: 66px;
+  }
+
+
+  .brand {
+    font-size: 1.35rem;
+  }
+
+
+  .back-link {
+    font-size: 0.72rem;
+  }
+
+
+  /* Hero */
+
+  .legal-hero {
+    padding-top: 70px;
+
+    padding-bottom: 65px;
+  }
+
+
+  .legal-eyebrow {
+    margin-bottom: 20px;
+
+    font-size: 0.62rem;
+  }
+
+
+  .legal-hero h1 {
+    font-size:
+      clamp(
+        3.4rem,
+        17vw,
+        5.2rem
+      );
+
+    line-height: 0.88;
+  }
+
+
+  .legal-hero-description {
+    margin-top: 30px;
+
+    font-size: 0.92rem;
+
+    line-height: 1.8;
+  }
+
+
+  .legal-updated {
+    margin-top: 25px;
+
+    font-size: 0.59rem;
+  }
+
+
+  /* Content */
+
+  .legal-content-shell {
+    padding-top: 60px;
+
+    padding-bottom: 80px;
+  }
+
+
+  .legal-toc-list {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .legal-toc-list a {
+    font-size: 0.67rem;
+  }
+
+
+  /* Sections */
+
+  .legal-section {
+    padding-bottom: 53px;
+
+    margin-bottom: 53px;
+  }
+
+
+  .legal-section h2 {
+    margin-bottom: 22px;
+
+    font-size: 2.45rem;
+  }
+
+
+  .legal-section p,
+  .legal-section li {
+    font-size: 0.88rem;
+
+    line-height: 1.82;
+  }
+
+
+  .legal-section ul {
+    padding-left: 19px;
+  }
+
+
+  /* Notice */
+
+  .legal-notice {
+    padding: 21px;
+
+    margin: 25px 0;
+  }
+
+
+  .legal-notice p {
+    font-size: 0.86rem;
+  }
+
+
+  /* Contact */
+
+  .legal-contact-card {
+    padding: 23px;
+  }
+
+
+  /* Related */
+
+  .legal-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .legal-related-card {
+    min-height: 112px;
+  }
+
+
+  /* Footer */
+
+  .legal-footer-inner {
+    padding-top: 55px;
+  }
+
+
+  .legal-footer-top {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 35px 25px;
+
+    padding-bottom: 50px;
+  }
+
+
+  .legal-footer-brand-block {
+    grid-column: 1 / -1;
+  }
+
+
+  .legal-footer-motto {
+    font-size: 1.15rem;
+  }
+
+
+  .legal-footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   33. VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .legal-toc-list {
+    grid-template-columns: 1fr;
+  }
+
+
+  .legal-footer-top {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   34. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible {
+  outline: 2px solid var(--at-blue);
+
+  outline-offset: 4px;
+
+  border-radius: 3px;
+}
+
+
+/* =========================================================
+   35. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+  }
+
+}

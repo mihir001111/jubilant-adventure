@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>After Trials App — The Sovereign Healthcare Network</title>
+  <title>After Trials — professional network for medicine</title>
 
   <!-- SEO & Social Meta -->
   <meta name="description"
-    content="After Trials — The sovereign healthcare network for doctors, residents, and medical students.">
+    content="After Trials — The professionalhealthcare network for doctors, residents, and medical students.">
   <meta name="theme-color" content="#ffffff">
-  <link rel="canonical" href="https://aftertrials.com/app">
+  <link rel="canonical" href="https://aftertrials.com/">
 
   <!-- Google Fonts: Cormorant Garamond (editorial serif from index.html) + Inter (sans-serif) + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Dancing+Script:wght@400..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap"
     rel="stylesheet">
 
   <!-- Supabase CDN + Auth Helper -->
@@ -191,15 +192,35 @@
        SECTION 1: HERO
        ========================================================================== */
     .section-hero {
-      padding: 4rem 0 6rem;
+      padding: 1.25rem 0 6rem;
       border-bottom: 1px solid var(--border);
       background: #ffffff;
     }
 
     @media (min-width: 992px) {
       .section-hero {
-        padding: 6rem 0 8rem;
+        padding: 1.5rem 0 8rem;
       }
+    }
+
+    /* Centered, smaller After Trials wordmark */
+    .hero-top-brand {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.75rem 1.5rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-top-brand .hero-brand-word {
+      font-family: 'Baloo Bhai 2', sans-serif;
+      font-size: clamp(1.45rem, 2.2vw, 1.8rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--text);
     }
 
     .hero-grid {
@@ -216,19 +237,47 @@
       }
     }
 
+
+    /* Hero is now a simple centered composition: logo first, message below */
+    .section-hero .hero-grid {
+      display: block;
+      text-align: center;
+    }
+
+    .section-hero .hero-grid>div:first-child {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
     .hero-title {
-      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-size: clamp(2.8rem, 3.5vw, 2.2rem);
       margin-bottom: 1.5rem;
+      display: block;
+      text-align: center;
+    }
+
+    /* Baloo Bhai 2 for the After Trials wordmark at the top */
+    .hero-brand-word {
+      display: inline-block;
+      vertical-align: baseline;
+      font-family: 'Baloo Bhai 2', sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-brand-sans {
+      margin-left: 0.08em;
     }
 
     .hero-desc {
-      font-family: var(--font-sans);
-      font-size: 1.12rem;
-      line-height: 1.7;
-      color: blue;
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-      font-weight: 400;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: black;
+      max-width: 620px;
+      margin: 2.2rem auto 2.5rem;
+      text-align: center;
+      font-weight: 500;
     }
 
     .hero-cta-group {
@@ -269,6 +318,14 @@
     }
 
     @media (max-width: 768px) {
+      .hero-top-brand {
+        padding-top: 0.5rem;
+      }
+
+      .hero-top-brand .hero-brand-word {
+        font-size: 1.4rem;
+      }
+
       .hero-post-item.offset {
         margin-left: 0;
       }
@@ -906,7 +963,7 @@
       font-style: italic;
       font-size: 1.4rem;
       font-weight: 500;
-      color: var(--at-blue);
+      color: black;
       letter-spacing: -0.01em;
     }
 
@@ -947,6 +1004,214 @@
       font-size: 0.8rem;
       color: var(--text-muted);
     }
+
+    /* ==========================================================================
+       MOBILE RHYTHM — TIGHTER SECTION SPACING
+       Keeps the page airy, but removes the large vertical gaps on phones.
+       ========================================================================== */
+    @media (max-width: 600px) {
+      .container {
+        padding-inline: 1.1rem;
+      }
+
+      .section-hero {
+        padding: 0.75rem 0 4rem;
+      }
+
+      .section-hero .hero-grid {
+        gap: 2.25rem;
+      }
+
+      .hero-desc {
+        font-size: clamp(2rem, 9.5vw, 2.4rem);
+        line-height: 1.05;
+        margin: 1.5rem auto 2rem;
+      }
+
+      .hero-post-display {
+        gap: 1rem;
+      }
+
+      .section-posts-grid {
+        padding: 4rem 0;
+      }
+
+      .section-head {
+        margin-bottom: 2.25rem;
+      }
+
+      .section-title-large {
+        font-size: clamp(2.35rem, 11vw, 3.5rem);
+        line-height: 1.02;
+      }
+
+      .crazy-posts-grid {
+        gap: 1rem;
+      }
+
+      .section-human-layer {
+        padding: 4.25rem 0 4.75rem;
+      }
+
+      .human-layer-wrap {
+        gap: 2rem;
+      }
+
+      .human-layer-title {
+        font-size: clamp(2.65rem, 13vw, 4rem);
+        margin-bottom: 1rem;
+      }
+
+      .human-layer-desc {
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      .human-layer-note {
+        margin-top: 1.5rem;
+      }
+
+      .section-ecosystem {
+        padding: 4rem 0;
+      }
+
+      .ecosystem-panoramic-frame {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-community-conversations,
+      .section-next-feature {
+        padding: 4rem 0 4.5rem;
+      }
+
+      .community-conversations-head,
+      .next-feature-head {
+        margin-bottom: 2.25rem;
+      }
+
+      .community-conversations-title,
+      .next-feature-title {
+        font-size: clamp(2.45rem, 11vw, 3.8rem);
+        line-height: 1.02;
+      }
+
+      .community-conversations-grid {
+        gap: 1rem;
+      }
+
+      .section-onboarding {
+        padding: 4.25rem 0 5rem;
+      }
+
+      .petition-prose {
+        font-size: clamp(1.25rem, 6.5vw, 1.8rem);
+        line-height: 1.9;
+        margin-bottom: 2.25rem;
+      }
+
+      .petition-prose h2 {
+        margin-bottom: 1.35rem !important;
+      }
+
+      .otp-inputs-wrapper-inline {
+        margin: 1.75rem 0;
+      }
+
+      .otp-inputs-container {
+        gap: 7px;
+        justify-content: space-between;
+      }
+
+      .otp-digit {
+        width: 46px;
+        height: 52px;
+      }
+
+      .complete-splash {
+        padding: 2.5rem 0;
+      }
+
+      .site-footer {
+        padding: 3.5rem 0 2.5rem;
+      }
+
+      .footer-grid {
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .footer-cell {
+        gap: 0.75rem;
+      }
+
+      .footer-bottom {
+        padding-top: 1.5rem;
+      }
+    }
+
+
+
+    /* ==========================================================================
+       DESKTOP HERO — MATCH REFERENCE
+       Left: After Trials + hero message
+       Right: two stacked post visuals
+       Mobile styles remain unchanged below.
+       ========================================================================== */
+    @media (min-width: 992px) {
+      .section-hero {
+        padding: 6rem 0 8rem;
+      }
+
+      .section-hero .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(420px, 1fr);
+        gap: clamp(3rem, 6vw, 5rem);
+        align-items: center;
+        text-align: left;
+      }
+
+      .section-hero .hero-grid>div:first-child {
+        width: 100%;
+        max-width: 700px;
+        margin: 0;
+        text-align: left;
+      }
+
+      .section-hero .hero-title {
+        display: block;
+        text-align: left;
+        margin: 0 0 1.25rem;
+      }
+
+      .section-hero .hero-brand-word {
+        font-size: clamp(2.2rem, 3vw, 3rem);
+        line-height: 1;
+      }
+
+      .section-hero .hero-desc {
+        font-size: clamp(3.6rem, 5vw, 5.5rem);
+        line-height: 0.98;
+        max-width: 650px;
+        margin: 0 0 2.5rem;
+        text-align: left;
+      }
+
+      .section-hero .hero-post-display {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .section-hero .hero-post-item.offset {
+        margin-left: 2rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .section-hero .hero-desc {
+        font-size: clamp(4rem, 5vw, 5.5rem);
+      }
+    }
   </style>
 </head>
 
@@ -964,20 +1229,16 @@
       <!-- Left: Minimalist High-Impact Editorial Typography -->
       <div>
         <h1 class="hero-title">
-          after trials<br>
+          <span class="hero-brand-word hero-brand-serif">after trials</span>
         </h1>
 
         <p class="hero-desc"> <i>
-            Explore the network ↓ </i>
+            Medicine is a big world.
+            Start meeting the people in it. </i>
         </p>
 
         <div class="hero-cta-group">
-          <a href="#onboarding" class="btn-primary">
-            Join the community &rarr;
-          </a>
-          <a href="#feed-preview" class="btn-secondary">
-            View user posts &darr;
-          </a>
+
         </div>
       </div>
 
@@ -1006,8 +1267,8 @@
 
       <div class="section-head">
         <h2 class="section-title-large">
-          Talk cases. Talk research.<br>
-          <em>Talk medicine.</em>
+          talk cases. talk research.<br>
+          <i> <em>talk medicine.</em> </i>
         </h2>
       </div>
 
@@ -1059,8 +1320,8 @@
       <div class="human-layer-copy">
 
         <h2 class="human-layer-title">
-          Medicine is bigger than your<br>
-          <em>workplace.</em>
+          medicine is bigger than your<br>
+          <i> <em class="workplace-word"> workplace.</em> </i>
         </h2>
 
         <p class="human-layer-desc">
@@ -1087,7 +1348,7 @@
 
       <div class="section-head">
         <h2 class="section-title-large">
-          If medicine is your world,<br>
+          if medicine is your world,<br>
           <em>welcome home.</em>
         </h2>
       </div>
@@ -1110,31 +1371,32 @@
 
       <div class="community-conversations-head">
         <h2 class="community-conversations-title">
-          The conversations<br>
+          the conversations<br>
           <em>find jobs.</em>
           <em> connect with peers.</em>
-          <em> socilise.</em>
+          <em> build your reputation</em>
         </h2>
       </div>
 
       <div class="community-conversations-grid">
         <figure class="community-conversations-card">
-          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/c_auto,h_540,w_1564/3_cr2b3i.png"
             alt="Medical community thread" loading="lazy" decoding="async">
         </figure>
 
         <figure class="community-conversations-card">
-          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/c_auto,h_540,w_1564/1_u0qrgb.png"
             alt="Medical student network thread" loading="lazy" decoding="async">
         </figure>
 
         <figure class="community-conversations-card">
-          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+          <img
+            src="https://res.cloudinary.com/dn1hjjczy/image/upload/c_crop,g_north_west,h_503,w_1520,x_42,y_184/Add_a_little_bit_of_body_text_2_kvcv4j.png"
             alt="Medical student network thread" loading="lazy" decoding="async">
         </figure>
 
         <figure class="community-conversations-card">
-          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/v1788982837/Tweet_1_enrien.png"
+          <img src="https://res.cloudinary.com/dn1hjjczy/image/upload/t_crop_b1e009/2_ydhame.png"
             alt="Medical student network thread" loading="lazy" decoding="async">
         </figure>
       </div>
@@ -1151,8 +1413,8 @@
 
       <div class="next-feature-head">
         <h2 class="next-feature-title">
-          More than a network.<br>
-          <em>A place to belong.</em>
+          more than a network.<br>
+          <em>a place to belong.</em>
         </h2>
       </div>
 
@@ -1383,7 +1645,6 @@
 
         <!-- Cell 1: Brand Logo using root brand font -->
         <div class="footer-cell">
-          <span class="footer-label">PLATFORM</span>
           <span class="footer-brand">After Trials</span>
           <p class="footer-motto">No healthcare professional should stand alone.</p>
         </div>
