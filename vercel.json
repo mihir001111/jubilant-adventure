@@ -1,5 +1,6 @@
 {
   "cleanUrls": true,
+
   "headers": [
     {
       "source": "/robots.txt",
@@ -15,42 +16,56 @@
       ]
     }
   ],
+
   "rewrites": [
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     },
+
     {
       "source": "/privacy",
       "destination": "/privacy.html"
     },
+
     {
       "source": "/terms",
       "destination": "/terms.html"
     },
+
     {
       "source": "/medical-disclaimer",
       "destination": "/medical-disclaimer.html"
     },
+
     {
       "source": "/gdpr",
       "destination": "/gdpr.html"
     },
+
     {
       "source": "/cookie",
       "destination": "/cookie.html"
     },
+
     {
       "source": "/guidelines",
       "destination": "/guidelines.html"
     },
+
     {
       "source": "/careers",
       "destination": "/careers.html"
     },
+
     {
       "source": "/contact",
       "destination": "/contact.html"
+    },
+
+    {
+      "source": "/blog/:slug",
+      "destination": "/blogs.html?slug=:slug"
     }
   ]
 }

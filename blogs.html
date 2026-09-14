@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Blog — After Trials</title>
+  <meta
+    name="description"
+    content="Ideas, stories, research and perspectives from the medical community."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-auth.js?v=2"></script>
+
+  <!-- DOMPurify for safe blog HTML rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+  <style>
+    :root {
+      --blue: #0d8fe9;
+      --blue-dark: #0877c5;
+      --text: #111111;
+      --muted: #737373;
+      --border: #e8e8e8;
+      --soft: #f7f9fb;
+      --white: #ffffff;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(232, 232, 232, 0.9);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      font-weight: 600;
+      letter-spacing: -0.7px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: white !important;
+      padding: 11px 20px;
+      border-radius: 999px;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue-dark);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: white;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      padding: 105px 0 75px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(58px, 8vw, 104px);
+      line-height: 0.88;
+      font-weight: 500;
+      letter-spacing: -4px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 570px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       CONTROLS
+    ========================= */
+
+    .controls {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      margin-bottom: 60px;
+    }
+
+    .controls-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: #555;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: white;
+    }
+
+    .search-box {
+      width: 240px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0 17px;
+      outline: none;
+      font-size: 12px;
+      color: var(--text);
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: var(--blue);
+    }
+
+    /* =========================
+       FEATURED
+    ========================= */
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .featured {
+      margin-bottom: 85px;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      min-height: 430px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+    }
+
+    .featured-image {
+      min-height: 430px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(13, 143, 233, 0.12),
+          rgba(13, 143, 233, 0.02)
+        );
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(
+          circle at 30% 30%,
+          rgba(13, 143, 233, 0.13),
+          transparent 40%
+        ),
+        #f6f9fb;
+      color: var(--blue);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 70px;
+    }
+
+    .featured-content {
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .post-category {
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #bbb;
+    }
+
+    .featured-content h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 0.98;
+      font-weight: 500;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .featured-content p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .read-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .read-link:hover span {
+      transform: translateX(4px);
+    }
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .latest {
+      padding-bottom: 110px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .blog-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.055);
+    }
+
+    .blog-card-image {
+      height: 220px;
+      overflow: hidden;
+      background: #f6f9fb;
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.03);
+    }
+
+    .blog-card-content {
+      padding: 25px;
+    }
+
+    .blog-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 29px;
+      font-weight: 600;
+      line-height: 1.03;
+      letter-spacing: -0.5px;
+      margin-bottom: 13px;
+    }
+
+    .blog-card-excerpt {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 21px;
+    }
+
+    .blog-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       EMPTY / LOADING / ERROR
+    ========================= */
+
+    .state {
+      text-align: center;
+      padding: 80px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--muted);
+    }
+
+    .state h3 {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--text);
+      font-size: 34px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .state p {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #e8e8e8;
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 18px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       ARTICLE READER
+    ========================= */
+
+    .article-view {
+      display: none;
+      padding: 80px 0 110px;
+    }
+
+    .article-view.visible {
+      display: block;
+    }
+
+    .article-header {
+      max-width: 850px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .article-header .post-meta {
+      justify-content: center;
+    }
+
+    .article-header h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.95;
+      font-weight: 500;
+      letter-spacing: -2.5px;
+      margin-bottom: 25px;
+    }
+
+    .article-header .article-excerpt {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .article-cover {
+      width: min(950px, 100%);
+      margin: 0 auto 55px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f6f9fb;
+    }
+
+    .article-cover img {
+      width: 100%;
+      max-height: 560px;
+      object-fit: cover;
+    }
+
+    .article-content {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.9;
+      color: #292929;
+    }
+
+    .article-content h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin: 45px 0 16px;
+      color: var(--text);
+    }
+
+    .article-content h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin: 35px 0 14px;
+      color: var(--text);
+    }
+
+    .article-content p {
+      margin-bottom: 22px;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin: 0 0 25px 25px;
+    }
+
+    .article-content li {
+      margin-bottom: 9px;
+    }
+
+    .article-content blockquote {
+      border-left: 3px solid var(--blue);
+      padding: 5px 0 5px 25px;
+      margin: 35px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 27px;
+      line-height: 1.35;
+      color: #333;
+    }
+
+    .article-content img {
+      border-radius: 15px;
+      margin: 30px auto;
+    }
+
+    .article-content a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .article-content strong {
+      font-weight: 700;
+    }
+
+    .article-content code {
+      background: #f4f4f4;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 auto 50px;
+      width: fit-content;
+      border: 0;
+      background: transparent;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 65px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 55px;
+    }
+
+    .footer-brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 600;
+    }
+
+    .footer-motto {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+      margin-top: 12px;
+      max-width: 260px;
+    }
+
+    .footer-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 700;
+      margin-bottom: 17px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #999;
+      font-size: 10px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px;
+      }
+
+      .nav-cta {
+        text-align: center;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image {
+        min-height: 300px;
+      }
+
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .hero {
+        padding: 75px 0 55px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .controls {
+        margin-bottom: 40px;
+      }
+
+      .controls-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .categories {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+
+      .category-btn {
+        white-space: nowrap;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .featured-content {
+        padding: 30px 24px;
+      }
+
+      .featured-content h2 {
+        font-size: 42px;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-card-image {
+        height: 230px;
+      }
+
+      .article-view {
+        padding-top: 50px;
+      }
+
+      .article-header h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .article-content {
+        font-size: 15px;
+      }
+
+      .article-content blockquote {
+        font-size: 24px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 25px;
+      }
+
+      .footer-grid > :first-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+    <div class="container nav">
+
+      <a href="index.html" class="brand">
+        After <span>Trials</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="blogs.html" class="active">Blog</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html#join" class="nav-cta">Join After Trials</a>
+      </nav>
+
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       BLOG HOME
+  ========================= -->
+
+  <main id="blogHome">
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="eyebrow">
+          After Trials Journal
+        </div>
+
+        <h1>
+          ideas in <span>medicine.</span>
+        </h1>
+
+        <p>
+          Stories, perspectives and conversations from the people
+          shaping medicine — and the community growing around them.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <section class="controls">
+      <div class="container controls-inner">
+
+        <div class="categories" id="categories">
+          <button
+            class="category-btn active"
+            data-category="all"
+          >
+            All
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="medicine"
+          >
+            Medicine
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="careers"
+          >
+            Careers
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="community"
+          >
+            Community
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="research"
+          >
+            Research
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="perspectives"
+          >
+            Perspectives
+          </button>
+        </div>
+
+        <div class="search-box">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search stories..."
+            autocomplete="off"
+          >
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FEATURED -->
+
+    <section class="featured">
+      <div class="container">
+
+        <div class="section-label">
+          Featured
+        </div>
+
+        <div id="featuredContainer">
+          <div class="state">
+            <div class="spinner"></div>
+            <p>Loading stories...</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- LATEST -->
+
+    <section class="latest">
+      <div class="container">
+
+        <div class="section-label">
+          Latest stories
+        </div>
+
+        <div id="blogGrid">
+          <div class="state">
+            <div class="spinner"></div>
+            <p>Loading stories...</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       ARTICLE READER
+  ========================= -->
+
+  <main id="articleView" class="article-view">
+
+    <div class="container">
+
+      <button
+        class="back-btn"
+        id="backButton"
+        type="button"
+      >
+        ← Back to stories
+      </button>
+
+      <article>
+
+        <header class="article-header">
+
+          <div class="post-meta" id="articleMeta"></div>
+
+          <h1 id="articleTitle"></h1>
+
+          <p
+            class="article-excerpt"
+            id="articleExcerpt"
+          ></p>
+
+        </header>
+
+        <div
+          class="article-cover"
+          id="articleCover"
+        ></div>
+
+        <div
+          class="article-content"
+          id="articleContent"
+        ></div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">
+            After Trials
+          </div>
+
+          <p class="footer-motto">
+            No healthcare professional should stand alone.
+          </p>
+        </div>
+
+
+        <div>
+          <div class="footer-title">
+            Explore
+          </div>
+
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="blogs.html">Blog</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+
+        <div>
+          <div class="footer-title">
+            Legal
+          </div>
+
+          <div class="footer-links">
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+          </div>
+        </div>
+
+
+        <div>
+          <div class="footer-title">
+            Connect
+          </div>
+
+          <div class="footer-links">
+            <a href="index.html#join">Join After Trials</a>
+            <a href="contact.html">Get in touch</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="currentYear"></span> After Trials. All rights reserved.
+        </span>
+
+        <span>
+          Built for the medical community.
+        </span>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    /* =========================================================
+       AFTER TRIALS — SUPABASE BLOG
+       ========================================================= */
+
+    let allBlogs = [];
+    let activeCategory = "all";
+    let searchTerm = "";
+
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+
+    function escapeHtml(value) {
+      const div = document.createElement("div");
+      div.textContent = value ?? "";
+      return div.innerHTML;
+    }
+
+
+    function formatCategory(category) {
+      if (!category) return "General";
+
+      return category
+        .replace(/[-_]/g, " ")
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+
+    function formatDate(dateString) {
+      if (!dateString) return "";
+
+      const date = new Date(dateString);
+
+      if (Number.isNaN(date.getTime())) {
+        return "";
+      }
+
+      return new Intl.DateTimeFormat("en", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      }).format(date);
+    }
+
+
+    function getReadTime(blog) {
+      return blog.read_time
+        ? `${blog.read_time} read`
+        : "";
+    }
+
+
+    function getBlogImage(blog, large = false) {
+      if (!blog.cover_image) {
+        return `
+          <div class="image-placeholder">
+            AT
+          </div>
+        `;
+      }
+
+      return `
+        <img
+          src="${escapeHtml(blog.cover_image)}"
+          alt="${escapeHtml(blog.title)}"
+          loading="${large ? "eager" : "lazy"}"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-placeholder&quot;>AT</div>';"
+        >
+      `;
+    }
+
+
+    function createMeta(blog) {
+      const category = formatCategory(blog.category);
+      const date = formatDate(blog.published_at);
+      const readTime = getReadTime(blog);
+
+      let html = `
+        <span class="post-category">
+          ${escapeHtml(category)}
+        </span>
+      `;
+
+      if (date) {
+        html += `
+          <span class="dot"></span>
+          <span>${escapeHtml(date)}</span>
+        `;
+      }
+
+      if (readTime) {
+        html += `
+          <span class="dot"></span>
+          <span>${escapeHtml(readTime)}</span>
+        `;
+      }
+
+      if (blog.author_name) {
+        html += `
+          <span class="dot"></span>
+          <span>By ${escapeHtml(blog.author_name)}</span>
+        `;
+      }
+
+      return html;
+    }
+
+
+    function normalizeText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .trim();
+    }
+
+
+    /* =========================================================
+       LOAD BLOGS FROM SUPABASE
+       ========================================================= */
+
+    async function loadBlogs() {
+
+      const featuredContainer =
+        document.getElementById("featuredContainer");
+
+      const blogGrid =
+        document.getElementById("blogGrid");
+
+      try {
+
+        if (!window.supabaseClient) {
+          throw new Error(
+            "Supabase client was not initialized."
+          );
+        }
+
+
+        const {
+          data,
+          error
+        } = await window.supabaseClient
+          .from("blogs")
+          .select(`
+            id,
+            title,
+            slug,
+            excerpt,
+            content,
+            category,
+            author_name,
+            cover_image,
+            read_time,
+            featured,
+            published,
+            published_at
+          `)
+          .eq("published", true)
+          .order("published_at", {
+            ascending: false,
+            nullsFirst: false
+          });
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        allBlogs = Array.isArray(data)
+          ? data
+          : [];
+
+
+        renderBlogs();
+
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load blogs:",
+          error
+        );
+
+
+        featuredContainer.innerHTML = `
+          <div class="state">
+            <h3>Unable to load stories.</h3>
+            <p>
+              We couldn't load the journal right now.
+              Please try again in a moment.
+            </p>
+          </div>
+        `;
+
+        blogGrid.innerHTML = "";
+
+      }
+
+    }
+
+
+    /* =========================================================
+       FILTER BLOGS
+       ========================================================= */
+
+    function getFilteredBlogs() {
+
+      return allBlogs.filter(blog => {
+
+        const matchesCategory =
+          activeCategory === "all" ||
+          normalizeText(blog.category) ===
+            normalizeText(activeCategory);
+
+
+        if (!matchesCategory) {
+          return false;
+        }
+
+
+        if (!searchTerm) {
+          return true;
+        }
+
+
+        const searchableText = [
+          blog.title,
+          blog.excerpt,
+          blog.category,
+          blog.author_name
+        ]
+          .map(normalizeText)
+          .join(" ");
+
+
+        return searchableText.includes(
+          normalizeText(searchTerm)
+        );
+
+      });
+
+    }
+
+
+    /* =========================================================
+       RENDER BLOGS
+       ========================================================= */
+
+    function renderBlogs() {
+
+      const featuredContainer =
+        document.getElementById("featuredContainer");
+
+      const blogGrid =
+        document.getElementById("blogGrid");
+
+
+      const filteredBlogs =
+        getFilteredBlogs();
+
+
+      if (!filteredBlogs.length) {
+
+        featuredContainer.innerHTML = "";
+
+        blogGrid.innerHTML = `
+          <div class="state">
+            <h3>No stories found.</h3>
+            <p>
+              Try another category or search term.
+            </p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      /*
+       * Featured article:
+       * Use the first featured article from the
+       * filtered result. If there isn't one,
+       * use the newest article.
+       */
+
+      const featuredBlog =
+        filteredBlogs.find(blog => blog.featured) ||
+        filteredBlogs[0];
+
+
+      renderFeatured(
+        featuredBlog,
+        featuredContainer
+      );
+
+
+      /*
+       * Do not duplicate the featured article
+       * inside the latest grid.
+       */
+
+      const latestBlogs =
+        filteredBlogs.filter(
+          blog => blog.id !== featuredBlog.id
+        );
+
+
+      if (!latestBlogs.length) {
+
+        blogGrid.innerHTML = `
+          <div class="state">
+            <p>
+              You're viewing the featured story.
+            </p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      blogGrid.innerHTML =
+        latestBlogs
+          .map(createBlogCard)
+          .join("");
+
+    }
+
+
+    /* =========================================================
+       FEATURED CARD
+       ========================================================= */
+
+    function renderFeatured(
+      blog,
+      container
+    ) {
+
+      container.innerHTML = `
+        <div
+          class="featured-card"
+          data-slug="${escapeHtml(blog.slug)}"
+        >
+
+          <div class="featured-image">
+            ${getBlogImage(blog, true)}
+          </div>
+
+          <div class="featured-content">
+
+            <div class="post-meta">
+              ${createMeta(blog)}
+            </div>
+
+            <h2>
+              ${escapeHtml(blog.title)}
+            </h2>
+
+            ${
+              blog.excerpt
+                ? `
+                  <p>
+                    ${escapeHtml(blog.excerpt)}
+                  </p>
+                `
+                : ""
+            }
+
+            <a
+              href="?slug=${encodeURIComponent(blog.slug)}"
+              class="read-link"
+              data-slug="${escapeHtml(blog.slug)}"
+            >
+              Read story
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </div>
+      `;
+
+
+      const card =
+        container.querySelector(".featured-card");
+
+
+      card.addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target.closest("a")
+          ) {
+            return;
+          }
+
+          openArticle(blog.slug);
+
+        }
+      );
+
+
+      const link =
+        container.querySelector(".read-link");
+
+
+      link.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+          openArticle(blog.slug);
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       BLOG CARD
+       ========================================================= */
+
+    function createBlogCard(blog) {
+
+      return `
+        <article
+          class="blog-card"
+          data-slug="${escapeHtml(blog.slug)}"
+        >
+
+          <div class="blog-card-image">
+            ${getBlogImage(blog)}
+          </div>
+
+          <div class="blog-card-content">
+
+            <div class="post-meta">
+              ${createMeta(blog)}
+            </div>
+
+            <h3>
+              ${escapeHtml(blog.title)}
+            </h3>
+
+            ${
+              blog.excerpt
+                ? `
+                  <p class="blog-card-excerpt">
+                    ${escapeHtml(blog.excerpt)}
+                  </p>
+                `
+                : ""
+            }
+
+            <div class="blog-card-footer">
+
+              <span>
+                ${escapeHtml(
+                  formatDate(blog.published_at)
+                )}
+              </span>
+
+              <span>
+                Read →
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }
+
+
+    /* =========================================================
+       OPEN ARTICLE
+       ========================================================= */
+
+    function openArticle(slug) {
+
+      const blog =
+        allBlogs.find(
+          item => item.slug === slug
+        );
+
+
+      if (!blog) {
+        showBlogHome();
+        return;
+      }
+
+
+      const blogHome =
+        document.getElementById("blogHome");
+
+      const articleView =
+        document.getElementById("articleView");
+
+
+      blogHome.style.display = "none";
+      articleView.classList.add("visible");
+
+
+      document.getElementById(
+        "articleMeta"
+      ).innerHTML = createMeta(blog);
+
+
+      document.getElementById(
+        "articleTitle"
+      ).textContent = blog.title;
+
+
+      document.getElementById(
+        "articleExcerpt"
+      ).textContent =
+        blog.excerpt || "";
+
+
+      const articleCover =
+        document.getElementById("articleCover");
+
+
+      if (blog.cover_image) {
+
+        articleCover.innerHTML = `
+          <img
+            src="${escapeHtml(blog.cover_image)}"
+            alt="${escapeHtml(blog.title)}"
+          >
+        `;
+
+      } else {
+
+        articleCover.innerHTML = `
+          <div
+            class="image-placeholder"
+            style="min-height:320px;"
+          >
+            AT
+          </div>
+        `;
+
+      }
+
+
+      const articleContent =
+        document.getElementById(
+          "articleContent"
+        );
+
+
+      /*
+       * Blog content is sanitized before being
+       * inserted into the page.
+       *
+       * This allows trusted admin content to
+       * contain paragraphs, headings, lists,
+       * links, images, blockquotes, etc.
+       */
+
+      if (blog.content) {
+
+        articleContent.innerHTML =
+          window.DOMPurify
+            ? DOMPurify.sanitize(
+                blog.content,
+                {
+                  USE_PROFILES: {
+                    html: true
+                  }
+                }
+              )
+            : escapeHtml(blog.content)
+                .replace(/\n/g, "<br>");
+
+      } else {
+
+        articleContent.innerHTML = `
+          <p>
+            This story doesn't have any content yet.
+          </p>
+        `;
+
+      }
+
+
+      document.title =
+        `${blog.title} — After Trials`;
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+
+      const url =
+        `${window.location.pathname}?slug=${encodeURIComponent(blog.slug)}`;
+
+      history.pushState(
+        {
+          blogSlug: blog.slug
+        },
+        "",
+        url
+      );
+
+    }
+
+
+    /* =========================================================
+       SHOW BLOG HOME
+       ========================================================= */
+
+    function showBlogHome(
+      updateHistory = true
+    ) {
+
+      const blogHome =
+        document.getElementById("blogHome");
+
+      const articleView =
+        document.getElementById("articleView");
+
+
+      articleView.classList.remove("visible");
+      blogHome.style.display = "";
+
+
+      document.title =
+        "Blog — After Trials";
+
+
+      if (updateHistory) {
+
+        history.pushState(
+          {},
+          "",
+          window.location.pathname
+        );
+
+      }
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================================================
+       CATEGORY FILTER
+       ========================================================= */
+
+    document
+      .getElementById("categories")
+      .addEventListener(
+        "click",
+        event => {
+
+          const button =
+            event.target.closest(
+              ".category-btn"
+            );
+
+
+          if (!button) {
+            return;
+          }
+
+
+          document
+            .querySelectorAll(".category-btn")
+            .forEach(item => {
+              item.classList.remove(
+                "active"
+              );
+            });
+
+
+          button.classList.add("active");
+
+
+          activeCategory =
+            button.dataset.category;
+
+
+          renderBlogs();
+
+        }
+      );
+
+
+    /* =========================================================
+       SEARCH
+       ========================================================= */
+
+    document
+      .getElementById("searchInput")
+      .addEventListener(
+        "input",
+        event => {
+
+          searchTerm =
+            event.target.value;
+
+
+          renderBlogs();
+
+        }
+      );
+
+
+    /* =========================================================
+       BLOG CARD CLICK
+       ========================================================= */
+
+    document
+      .getElementById("blogGrid")
+      .addEventListener(
+        "click",
+        event => {
+
+          const card =
+            event.target.closest(
+              ".blog-card"
+            );
+
+
+          if (!card) {
+            return;
+          }
+
+
+          const slug =
+            card.dataset.slug;
+
+
+          if (slug) {
+            openArticle(slug);
+          }
+
+        }
+      );
+
+
+    /* =========================================================
+       BACK BUTTON
+       ========================================================= */
+
+    document
+      .getElementById("backButton")
+      .addEventListener(
+        "click",
+        () => {
+          showBlogHome();
+        }
+      );
+
+
+    /* =========================================================
+       BROWSER BACK / FORWARD
+       ========================================================= */
+
+    window.addEventListener(
+      "popstate",
+      () => {
+
+        const params =
+          new URLSearchParams(
+            window.location.search
+          );
+
+
+        const slug =
+          params.get("slug");
+
+
+        if (slug) {
+          openArticleWithoutHistory(slug);
+        } else {
+          showBlogHome(false);
+        }
+
+      }
+    );
+
+
+    function openArticleWithoutHistory(slug) {
+
+      const blog =
+        allBlogs.find(
+          item => item.slug === slug
+        );
+
+
+      if (!blog) {
+        showBlogHome(false);
+        return;
+      }
+
+
+      const blogHome =
+        document.getElementById("blogHome");
+
+      const articleView =
+        document.getElementById("articleView");
+
+
+      blogHome.style.display = "none";
+      articleView.classList.add("visible");
+
+
+      document.getElementById(
+        "articleMeta"
+      ).innerHTML = createMeta(blog);
+
+
+      document.getElementById(
+        "articleTitle"
+      ).textContent = blog.title;
+
+
+      document.getElementById(
+        "articleExcerpt"
+      ).textContent =
+        blog.excerpt || "";
+
+
+      const articleCover =
+        document.getElementById("articleCover");
+
+
+      if (blog.cover_image) {
+
+        articleCover.innerHTML = `
+          <img
+            src="${escapeHtml(blog.cover_image)}"
+            alt="${escapeHtml(blog.title)}"
+          >
+        `;
+
+      } else {
+
+        articleCover.innerHTML = `
+          <div
+            class="image-placeholder"
+            style="min-height:320px;"
+          >
+            AT
+          </div>
+        `;
+
+      }
+
+
+      const articleContent =
+        document.getElementById(
+          "articleContent"
+        );
+
+
+      if (blog.content) {
+
+        articleContent.innerHTML =
+          window.DOMPurify
+            ? DOMPurify.sanitize(
+                blog.content,
+                {
+                  USE_PROFILES: {
+                    html: true
+                  }
+                }
+              )
+            : escapeHtml(blog.content)
+                .replace(/\n/g, "<br>");
+
+      } else {
+
+        articleContent.innerHTML = `
+          <p>
+            This story doesn't have any content yet.
+          </p>
+        `;
+
+      }
+
+
+      document.title =
+        `${blog.title} — After Trials`;
+
+    }
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    document
+      .getElementById("mobileMenuBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          document
+            .getElementById("navLinks")
+            .classList.toggle("open");
+
+        }
+      );
+
+
+    document
+      .querySelectorAll("#navLinks a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            document
+              .getElementById("navLinks")
+              .classList.remove("open");
+
+          }
+        );
+
+      });
+
+
+    /* =========================================================
+       YEAR
+       ========================================================= */
+
+    document.getElementById(
+      "currentYear"
+    ).textContent =
+      new Date().getFullYear();
+
+
+    /* =========================================================
+       INITIAL LOAD
+       ========================================================= */
+
+    async function initializeBlog() {
+
+      await loadBlogs();
+
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+
+      const slug =
+        params.get("slug");
+
+
+      if (slug) {
+
+        openArticleWithoutHistory(
+          slug
+        );
+
+      }
+
+    }
+
+
+    initializeBlog();
+
+  </script>
+
+</body>
+</html>
