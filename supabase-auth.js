@@ -2,57 +2,79 @@
 // Supabase Auth Module for After Trials Web Landing Page
 // ==========================================================================
 
-const SUPABASE_URL = 'https://brcefnmohobhzizxfrfv.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmxlIiwicmVmIjoiYnJjZWZubW9ob2JoaXp4ZnJydiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU2OTE4ODYxLCJleHAiOjIwNzI0OTQ4NjF9.4hT8Czdi2hqrHJgNsP6pgB11angcTnVwvdMHgYXiik0';
+const SUPABASE_URL = 'https://mzcydbxztotigdubrabb.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im16Y3lkYnh6dG90aWdkdWJyYWJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMTYxMDMsImV4cCI6MjEwNDg5MjEwM30.cd9nk2c7h1SZ6pSV72Xo_Wees5yICK6qbBLHObkFVs4';
 
-// Initialize client (supabase global comes from CDN script)
-const _supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// ==========================================================================
+// Supabase Auth Module for After Trials — Minimal Landing Page
+// ==========================================================================
+//
+// This module is intentionally limited to the auth/profile features used by
+// the public index.html signup/login flow.
+//
+// IMPORTANT:
+// - The Supabase anon/publishable key is safe to use in browser code.
+// - Never put a Supabase service-role key, database password, or other secret
+//   in this file.
+//
+
+// Initialize client (supabase global comes from the CDN script).
+const _supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
 window.supabaseClient = _supabaseClient;
 
 // --------------------------------------------------------------------------
 // Role mapping: Web form values → DB user_type
-// The mobile app only uses 'student' and 'doctor'.
+// Must match the CHECK constraint in the new minimal profiles table.
 // --------------------------------------------------------------------------
 const ROLE_MAP = {
-  'Student': 'student',
-  'Doctor': 'doctor',
+  Student: 'medical_student',
+  Doctor: 'doctor',
 };
 
 function mapRoleToUserType(formRole) {
   return ROLE_MAP[formRole] || 'doctor';
 }
 
+// --------------------------------------------------------------------------
 // Map Course display string to DB degree string
+// --------------------------------------------------------------------------
 const COURSE_DEGREE_MAP = {
-  'Medicine': 'MD',
-  'Surgery': 'MS',
-  'Dentistry': 'BDS',
-  'Nursing': 'B.Sc Nursing',
-  'Physiotherapy': 'BPT',
+  Medicine: 'MD',
+  Surgery: 'MS',
+  Dentistry: 'BDS',
+  Nursing: 'B.Sc Nursing',
+  Physiotherapy: 'BPT',
 };
 
 function mapCourseToDegree(course) {
-  return COURSE_DEGREE_MAP[course] || course;
+  return COURSE_DEGREE_MAP[course] || course || null;
 }
 
 // --------------------------------------------------------------------------
-// Username generation (mirrors mobile app logic)
+// Username generation
+//
+// The new minimal profiles table does NOT contain a username column, so this
+// is retained only for compatibility with existing index.html code.
 // --------------------------------------------------------------------------
 function generateUsername(fullName) {
-  let clean = fullName
+  let clean = String(fullName || '')
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '_')
-    .replace(/_+/g, '_');
-
-  clean = clean.replace(/^_+|_+$/g, '');
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
 
   if (!clean) clean = 'user';
 
-  const parts = clean.split('_').filter(p => p.length > 0);
+  const parts = clean.split('_').filter(Boolean);
   const first = parts.length > 0 ? parts[0] : clean;
 
   if (parts.length > 1) {
-    const candidate = `${parts[0]}_${parts[parts.length - 1]}`.substring(0, 12);
+    const candidate =
+      `${parts[0]}_${parts[parts.length - 1]}`.substring(0, 12);
 
     if (candidate.length >= 3) {
       return candidate;
@@ -67,7 +89,28 @@ function generateUsername(fullName) {
 }
 
 // --------------------------------------------------------------------------
-// 1. Sign Up — creates auth user, triggers real OTP email from Supabase
+// Referral code generation
+// --------------------------------------------------------------------------
+function generateReferralCode() {
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === 'function'
+  ) {
+    return `AT-${window.crypto
+      .randomUUID()
+      .replace(/-/g, '')
+      .substring(0, 10)
+      .toUpperCase()}`;
+  }
+
+  return `AT-${Date.now().toString(36).toUpperCase()}-${Math.random()
+    .toString(36)
+    .substring(2, 8)
+    .toUpperCase()}`;
+}
+
+// --------------------------------------------------------------------------
+// 1. Sign Up — creates auth user and sends the real Supabase OTP email
 // --------------------------------------------------------------------------
 async function signUpUser(email, password, userType) {
   const { data, error } = await _supabaseClient.auth.signUp({
@@ -84,20 +127,22 @@ async function signUpUser(email, password, userType) {
     throw new Error(error.message);
   }
 
-  // Check if user already exists
-  // Supabase returns a user with no identities in this case.
+  // Supabase can return a user with no identities when the email already
+  // exists. Give the user a clear message instead of continuing the flow.
   if (
     data.user &&
     (!data.user.identities || data.user.identities.length === 0)
   ) {
-    throw new Error('This email is already in use. Please try logging in.');
+    throw new Error(
+      'This email is already in use. Please try logging in.'
+    );
   }
 
   return data;
 }
 
 // --------------------------------------------------------------------------
-// 2. Verify OTP — confirms the signup with the 6-digit code from email
+// 2. Verify OTP — confirms signup with the 6-digit email code
 // --------------------------------------------------------------------------
 async function verifySignupOTP(email, token) {
   const { data, error } = await _supabaseClient.auth.verifyOtp({
@@ -114,13 +159,33 @@ async function verifySignupOTP(email, token) {
 }
 
 // --------------------------------------------------------------------------
-// 3. Create Profile — upserts into the profiles table after OTP verification
+// 3. Create Profile
+//
+// Matches the new minimal schema:
+//
+// profiles:
+//   id
+//   full_name
+//   user_type
+//   degree
+//   specialization
+//   referral_code
+//   referred_by
+//   verification_status
+//   created_at
+//   updated_at
+//
+// user_private_info:
+//   id
+//   phone_number
+//   created_at
+//   updated_at
 // --------------------------------------------------------------------------
-// University/institution has been removed from the web signup flow.
 async function createProfile({
   fullName,
   userType,
   course,
+  degree,
   specialization,
   phone,
 }) {
@@ -132,42 +197,57 @@ async function createProfile({
     throw new Error('Not authenticated. Please try again.');
   }
 
-  const username = generateUsername(fullName);
-  const degree = mapCourseToDegree(course);
+  const resolvedDegree = degree || mapCourseToDegree(course);
+
+  // A referral code is generated for every new profile.
+  // If the profile already has one, keep it.
+  let existingReferralCode = null;
+
+  const {
+    data: existingProfile,
+    error: existingProfileError,
+  } = await _supabaseClient
+    .from('profiles')
+    .select('referral_code')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  if (!existingProfileError && existingProfile) {
+    existingReferralCode = existingProfile.referral_code;
+  }
+
+  const referralCode =
+    existingReferralCode || generateReferralCode();
 
   const profileData = {
     id: user.id,
     full_name: fullName,
-    username: username,
     user_type: userType,
-    degree: degree,
-    specialization: specialization,
+    degree: resolvedDegree,
+    specialization: specialization || null,
+    referral_code: referralCode,
     verification_status: 'pending',
     updated_at: new Date().toISOString(),
   };
 
   // ------------------------------------------------------------------------
-  // Resolve referral code from localStorage
+  // Referral tracking
+  //
+  // The new minimal schema stores referred_by as TEXT.
+  // Therefore we store the referral code itself instead of querying another
+  // user's profile.
   // ------------------------------------------------------------------------
   const refCode = localStorage.getItem('at_referral_code');
 
-  if (refCode) {
-    try {
-      const {
-        data: referrer,
-        error: refError,
-      } = await _supabaseClient
-        .from('profiles')
-        .select('id')
-        .eq('referral_code', refCode.trim().toLowerCase())
-        .maybeSingle();
+  if (refCode && refCode.trim()) {
+    const normalizedRefCode = refCode.trim();
 
-      if (referrer && !refError) {
-        profileData.referred_by = referrer.id;
-        console.log('Assigned referred_by:', referrer.id);
-      }
-    } catch (e) {
-      console.warn('Failed to resolve referrer ID:', e);
+    // Never mark a user as their own referrer.
+    if (
+      normalizedRefCode.toUpperCase() !==
+      referralCode.toUpperCase()
+    ) {
+      profileData.referred_by = normalizedRefCode;
     }
   }
 
@@ -176,22 +256,31 @@ async function createProfile({
   // ------------------------------------------------------------------------
   const { error: profileError } = await _supabaseClient
     .from('profiles')
-    .upsert(profileData);
+    .upsert(profileData, {
+      onConflict: 'id',
+    });
 
   if (profileError) {
     throw new Error(profileError.message);
   }
 
   // ------------------------------------------------------------------------
-  // Save secure private info
+  // Save private phone information
   // ------------------------------------------------------------------------
-  if (phone) {
-    const { error: privateInfoError } = await _supabaseClient
-      .from('user_private_info')
-      .upsert({
-        id: user.id,
-        phone_number: phone,
-      });
+  if (phone && phone.trim()) {
+    const { error: privateInfoError } =
+      await _supabaseClient
+        .from('user_private_info')
+        .upsert(
+          {
+            id: user.id,
+            phone_number: phone.trim(),
+            updated_at: new Date().toISOString(),
+          },
+          {
+            onConflict: 'id',
+          }
+        );
 
     if (privateInfoError) {
       console.error(
@@ -201,26 +290,25 @@ async function createProfile({
 
       throw new Error(
         'Profile created but failed to save secure contact details: ' +
-        privateInfoError.message
+          privateInfoError.message
       );
     }
   }
 
-  // ------------------------------------------------------------------------
-  // Clear referral code on successful profile creation
-  // ------------------------------------------------------------------------
+  // Referral has been consumed successfully.
   if (refCode) {
     localStorage.removeItem('at_referral_code');
   }
 
   return {
     userId: user.id,
-    username,
+    username: generateUsername(fullName),
+    referralCode: referralCode,
   };
 }
 
 // --------------------------------------------------------------------------
-// 4. Resend OTP — re-sends the signup OTP email
+// 4. Resend OTP
 // --------------------------------------------------------------------------
 async function resendSignupOTP(email) {
   const { error } = await _supabaseClient.auth.resend({
@@ -245,52 +333,23 @@ async function getCurrentUser() {
 }
 
 // --------------------------------------------------------------------------
-// Fetch waitlist stats using the RPC function
-// --------------------------------------------------------------------------
-async function getWaitlistStats(userId) {
-  const { data, error } = await _supabaseClient.rpc(
-    'get_waitlist_stats',
-    {
-      p_user_id: userId,
-    }
-  );
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-// --------------------------------------------------------------------------
-// Fetch list of users referred by this user
-// --------------------------------------------------------------------------
-async function getReferrals(userId) {
-  const { data, error } = await _supabaseClient
-    .from('profiles')
-    .select(
-      'username, user_type, verification_status, created_at'
-    )
-    .eq('referred_by', userId)
-    .order('created_at', {
-      ascending: false,
-    });
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-// --------------------------------------------------------------------------
-// Fetch user referral code
+// Get current user's referral code
 // --------------------------------------------------------------------------
 async function getReferralCode(userId) {
+  const {
+    data: { user },
+  } = await _supabaseClient.auth.getUser();
+
+  const targetUserId = userId || user?.id;
+
+  if (!targetUserId) {
+    throw new Error('Not authenticated.');
+  }
+
   const { data, error } = await _supabaseClient
     .from('profiles')
     .select('referral_code')
-    .eq('id', userId)
+    .eq('id', targetUserId)
     .single();
 
   if (error) {
@@ -301,7 +360,7 @@ async function getReferralCode(userId) {
 }
 
 // --------------------------------------------------------------------------
-// Sign in a user with email and password
+// Sign in with email and password
 // --------------------------------------------------------------------------
 async function signIn(email, password) {
   const { data, error } =
@@ -318,55 +377,7 @@ async function signIn(email, password) {
 }
 
 // --------------------------------------------------------------------------
-// Fetch published blogs
-// --------------------------------------------------------------------------
-async function getPublishedBlogs() {
-  const { data, error } = await _supabaseClient
-    .from('blogs')
-    .select(
-      'title, slug, excerpt, cover_image, published_at, read_time_minutes'
-    )
-    .eq('published', true)
-    .order('published_at', {
-      ascending: false,
-    });
-
-  if (error) {
-    console.error(
-      'Error fetching blogs:',
-      error.message
-    );
-
-    return [];
-  }
-
-  return data;
-}
-
-// --------------------------------------------------------------------------
-// Fetch a single blog by slug
-// --------------------------------------------------------------------------
-async function getBlogBySlug(slug) {
-  const { data, error } = await _supabaseClient
-    .from('blogs')
-    .select('*')
-    .eq('slug', slug)
-    .single();
-
-  if (error) {
-    console.error(
-      'Error fetching blog:',
-      error.message
-    );
-
-    return null;
-  }
-
-  return data;
-}
-
-// --------------------------------------------------------------------------
-// Sign out the current user
+// Sign out
 // --------------------------------------------------------------------------
 async function signOut() {
   const { error } =
@@ -378,7 +389,29 @@ async function signOut() {
 }
 
 // --------------------------------------------------------------------------
-// Export to global scope for use in main.js
+// Compatibility stubs
+//
+// These belonged to the old larger Supabase setup and are not needed by
+// the new landing-page-only database.
+// --------------------------------------------------------------------------
+async function getWaitlistStats() {
+  return null;
+}
+
+async function getReferrals() {
+  return [];
+}
+
+async function getPublishedBlogs() {
+  return [];
+}
+
+async function getBlogBySlug() {
+  return null;
+}
+
+// --------------------------------------------------------------------------
+// Export to global scope for index.html / main.js
 // --------------------------------------------------------------------------
 window.SupabaseAuth = {
   signUpUser,
@@ -386,6 +419,7 @@ window.SupabaseAuth = {
   createProfile,
   resendSignupOTP,
   mapRoleToUserType,
+  mapCourseToDegree,
   generateUsername,
   getCurrentUser,
   getWaitlistStats,
