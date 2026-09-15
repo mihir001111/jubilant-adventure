@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  console.log('After Trials landing page initialized.');
+
 
   // Capture referral code from URL query string
   const urlParams = new URLSearchParams(window.location.search);
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (refCode) {
     localStorage.setItem('at_referral_code', refCode);
-    console.log('Saved referral code:', refCode);
   }
 
 
@@ -60,12 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
           .from('profiles')
           .select('*', { count: 'exact', head: true });
 
-      console.log(
-        '[Dynamic Counters] Profiles Count:',
-        profilesCount,
-        'Error:',
-        profilesError
-      );
 
       if (!profilesError && profilesCount !== null && profilesCount > 0) {
         const waitlistCounter = counters[0];
@@ -85,12 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
           .from('institutions')
           .select('*', { count: 'exact', head: true });
 
-      console.log(
-        '[Dynamic Counters] Institutions Count:',
-        instCount,
-        'Error:',
-        instError
-      );
+
 
       if (!instError && instCount !== null && instCount > 0) {
         const univCounter = counters[1];
@@ -2430,9 +2418,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       await checkSession();
 
-      console.log(
-        'Login success'
-      );
+
 
 
     } catch (err) {
@@ -2472,9 +2458,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await window.SupabaseAuth
         .signOut();
 
-      console.log(
-        'Signed out from main'
-      );
+
 
 
       // Reset input fields
