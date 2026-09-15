@@ -891,6 +891,25 @@ footer {
   color: var(--at-blue);
 }
 
+.footer-social-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.footer-social-links a {
+  color: var(--at-secondary);
+  display: inline-flex;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.footer-social-links a:hover {
+  opacity: 1;
+  color: var(--at-blue);
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
