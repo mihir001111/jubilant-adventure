@@ -41,7 +41,7 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
@@ -138,36 +138,74 @@
 
 
     /* =========================================================
-       HEADER — LOGO ONLY
+       HEADER — TOPBAR (MATCHING ALL PAGES)
     ========================================================= */
 
-    header {
+    .topbar {
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
       border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-
-    .nav {
+    .topbar-inner {
+      width: min(1180px, calc(100% - 48px));
       min-height: 76px;
-
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
+      gap: 24px;
     }
-
 
     .brand {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 31px;
-      font-weight: 600;
-      letter-spacing: -0.7px;
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Baloo Bhai 2', var(--sans);
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #111111;
       white-space: nowrap;
+      text-decoration: none;
     }
 
-
     .brand span {
+      color: #111111;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
       color: var(--blue);
+      transform: translateX(-2px);
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        width: min(100% - 32px, 1180px);
+        min-height: 66px;
+      }
+      .brand {
+        font-size: 1.35rem;
+      }
+      .back-link {
+        font-size: 0.72rem;
+      }
     }
 
 
@@ -1033,102 +1071,105 @@
 
 
     /* =========================================================
-       FOOTER
+       FOOTER (MATCHING ALL PAGES)
     ========================================================= */
 
-    footer {
+    .site-footer {
+      width: 100%;
+      background: #ffffff;
       border-top: 1px solid var(--border);
-
-      padding: 60px 0 28px;
+      padding: 5rem 0 3rem;
     }
 
+    .site-footer-container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
 
     .footer-grid {
       display: grid;
-
-      grid-template-columns:
-        1.5fr 1fr 1fr 1fr;
-
-      gap: 40px;
-
-      padding-bottom: 50px;
+      grid-template-columns: minmax(240px, 1.5fr) repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 4rem;
     }
 
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .footer-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-label {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
     .footer-brand {
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 33px;
-
-      font-weight: 600;
+      font-family: 'Baloo Bhai 2', var(--sans);
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #111111;
+      text-decoration: none;
+      display: inline-block;
     }
-
 
     .footer-motto {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.15rem;
       color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.7;
-
-      margin-top: 10px;
-
-      max-width: 260px;
+      line-height: 1.4;
+      max-width: 280px;
     }
 
-
-    .footer-title {
-      font-size: 10px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 1.4px;
-
-      font-weight: 700;
-
-      margin-bottom: 16px;
-    }
-
-
-    .footer-links {
+    .footer-links-col {
       display: flex;
-
       flex-direction: column;
-
-      gap: 10px;
+      gap: 0.75rem;
     }
 
-
-    .footer-links a {
+    .footer-links-col a {
+      font-family: var(--sans);
+      font-size: 0.85rem;
       color: var(--muted);
-
-      font-size: 11px;
-
-      transition:
-        color 0.2s ease;
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-
-    .footer-links a:hover {
+    .footer-links-col a:hover {
       color: var(--blue);
     }
 
-
     .footer-bottom {
-      border-top: 1px solid var(--border);
-
-      padding-top: 23px;
-
       display: flex;
-
       align-items: center;
       justify-content: space-between;
-
-      gap: 20px;
-
-      color: #999;
-
-      font-size: 9px;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
 
@@ -1323,17 +1364,10 @@
        HEADER — LOGO ONLY
   ========================================================= -->
 
-  <header>
-    <div class="container nav">
-
-      <a
-        href="index.html"
-        class="brand"
-        aria-label="After Trials home"
-      >
-        After <span>Trials</span>
-      </a>
-
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="brand" aria-label="After Trials home">After <span>Trials</span></a>
+      <a href="/" class="back-link">← Back to After Trials</a>
     </div>
   </header>
 
@@ -1581,118 +1615,60 @@
        FOOTER
   ========================================================= -->
 
-  <footer>
-
-    <div class="container">
+  <footer class="site-footer" id="footer">
+    <div class="site-footer-container">
 
       <div class="footer-grid">
 
-        <div>
-
-          <div class="footer-brand">
-            After Trials
-          </div>
-
-          <p class="footer-motto">
-            No healthcare professional should stand alone.
-          </p>
-
+        <!-- Cell 1: Brand & Motto -->
+        <div class="footer-cell">
+          <a href="/" class="footer-brand" aria-label="After Trials home">After Trials</a>
+          <p class="footer-motto">No healthcare professional should stand alone.</p>
         </div>
 
-
-        <div>
-
-          <div class="footer-title">
-            Explore
+        <!-- Cell 2: Explore -->
+        <div class="footer-cell">
+          <span class="footer-label">EXPLORE</span>
+          <div class="footer-links-col">
+            <a href="/">Home</a>
+            <a href="/blogs">Dispatches</a>
+            <a href="/careers">Careers</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/guidelines">Community Guidelines</a>
           </div>
-
-          <div class="footer-links">
-
-            <a href="index.html">
-              Home
-            </a>
-
-            <a href="blogs.html">
-              Blog
-            </a>
-
-            <a href="careers.html">
-              Careers
-            </a>
-
-            <a href="contact.html">
-              Contact
-            </a>
-
-          </div>
-
         </div>
 
-
-        <div>
-
-          <div class="footer-title">
-            Legal
+        <!-- Cell 3: Connect -->
+        <div class="footer-cell">
+          <span class="footer-label">CONNECT</span>
+          <div class="footer-links-col">
+            <a href="/contact">Support &amp; Inquiries</a>
+            <a href="mailto:hello@aftertrials.com">hello@aftertrials.com</a>
+            <a href="mailto:support@aftertrials.com">support@aftertrials.com</a>
+            <a href="mailto:careers@aftertrials.com">careers@aftertrials.com</a>
           </div>
-
-          <div class="footer-links">
-
-            <a href="terms.html">
-              Terms
-            </a>
-
-            <a href="privacy.html">
-              Privacy
-            </a>
-
-            <a href="cookie-policy.html">
-              Cookie Policy
-            </a>
-
-          </div>
-
         </div>
 
-
-        <div>
-
-          <div class="footer-title">
-            Connect
+        <!-- Cell 4: Compliance & Legal -->
+        <div class="footer-cell">
+          <span class="footer-label">COMPLIANCE &amp; LEGAL</span>
+          <div class="footer-links-col">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/medical-disclaimer">Medical Disclaimer</a>
+            <a href="/gdpr">GDPR &amp; Sovereignty</a>
+            <a href="/cookie">Cookie Policy</a>
           </div>
-
-          <div class="footer-links">
-
-            <a href="index.html#join">
-              Join After Trials
-            </a>
-
-            <a href="contact.html">
-              Get in touch
-            </a>
-
-          </div>
-
         </div>
 
       </div>
 
-
       <div class="footer-bottom">
-
-        <span>
-          ©
-          <span id="currentYear"></span>
-          After Trials. All rights reserved.
-        </span>
-
-        <span>
-          Built for the medical community.
-        </span>
-
+        <span>&copy; 2026 After Trials. All rights reserved.</span>
+        <span>Built for physicians, not corporations.</span>
       </div>
 
     </div>
-
   </footer>
 
 

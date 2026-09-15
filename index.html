@@ -942,6 +942,19 @@
       padding: 5rem 0 3rem;
     }
 
+    .site-footer-container {
+      width: 100%;
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .site-footer-container {
+        padding-inline: 3rem;
+      }
+    }
+
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr repeat(3, 1fr);
@@ -1665,45 +1678,48 @@
        8. FOOTER (MATCHING INDEX.HTML MINIMAL DASHBOARD)
        ======================================================================== -->
   <footer class="site-footer" id="footer">
-    <div class="container">
+    <div class="site-footer-container">
 
       <div class="footer-grid">
 
-        <!-- Cell 1: Brand -->
+        <!-- Cell 1: Brand & Motto -->
         <div class="footer-cell">
-          <span class="footer-brand">After Trials</span>
+          <a href="/" class="footer-brand" aria-label="After Trials home">After Trials</a>
           <p class="footer-motto">No healthcare professional should stand alone.</p>
         </div>
 
-        <!-- Cell 2: Careers -->
+        <!-- Cell 2: Explore -->
         <div class="footer-cell">
-          <span class="footer-label">CAREERS</span>
+          <span class="footer-label">EXPLORE</span>
           <div class="footer-links-col">
+            <a href="/">Home</a>
+            <a href="/blogs">Dispatches</a>
             <a href="/careers">Careers</a>
-            <a href="careers#open-positions">Open Positions</a>
-            <a href="careers#internships">Internships</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/guidelines">Community Guidelines</a>
           </div>
         </div>
 
-        <!-- Cell 3: Contact -->
+        <!-- Cell 3: Connect -->
         <div class="footer-cell">
-          <span class="footer-label">CONTACT</span>
+          <span class="footer-label">CONNECT</span>
           <div class="footer-links-col">
-            <a href="/contact">Contact Us</a>
-            <a href="mailto:hello@aftertrials.com">Email Us</a>
+            <a href="/contact">Support &amp; Inquiries</a>
+            <a href="mailto:hello@aftertrials.com">hello@aftertrials.com</a>
+            <a href="mailto:support@aftertrials.com">support@aftertrials.com</a>
+            <a href="mailto:careers@aftertrials.com">careers@aftertrials.com</a>
           </div>
         </div>
 
         <!-- Cell 4: Compliance & Legal -->
         <div class="footer-cell">
-          <span class="footer-label">COMPLIANCE & LEGAL</span>
+          <span class="footer-label">COMPLIANCE &amp; LEGAL</span>
           <div class="footer-links-col">
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms of Service</a>
             <a href="/medical-disclaimer">Medical Disclaimer</a>
-            <a href="/gdpr">GDPR & Sovereignty</a>
-            <a href="/cookie">Cookies</a>
-            <a href="/guidelines">Guidelines</a>
+            <a href="/gdpr">GDPR &amp; Sovereignty</a>
+            <a href="/cookie">Cookie Policy</a>
           </div>
         </div>
 

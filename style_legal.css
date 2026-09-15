@@ -802,134 +802,106 @@ footer {
 }
 
 
-.legal-footer-top {
+/* =========================================================
+   25. UNIFIED SITE FOOTER (MATCHING ALL PAGES)
+   ========================================================= */
+
+.site-footer {
+  width: 100%;
+  background: var(--at-bg);
+  border-top: 1px solid var(--at-border);
+  padding: 5rem 0 3rem;
+}
+
+.site-footer-container {
+  width: min(var(--content-width), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.footer-grid {
   display: grid;
-
-  grid-template-columns:
-    minmax(240px, 1.5fr)
-    repeat(3, 1fr);
-
-  gap: 50px;
-
-  padding-bottom: 70px;
+  grid-template-columns: minmax(240px, 1.5fr) repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 4rem;
 }
 
-
-/* =========================================================
-   26. FOOTER BRAND
-   ========================================================= */
-
-.legal-footer-brand {
-  font-family: var(--brand);
-
-  font-size: 2rem;
-
-  font-weight: 700;
-
-  letter-spacing: -0.025em;
-
-  color: var(--at-black);
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
 }
 
-
-.legal-footer-brand span {
-  color: var(--at-black);
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
-
-/* =========================================================
-   27. FOOTER MOTTO
-   ========================================================= */
-
-.legal-footer-motto {
-  max-width: 260px;
-
-  margin-top: 14px;
-
-  color: var(--at-muted);
-
-  font-family: var(--serif);
-
-  font-size: 1.25rem;
-
-  font-style: italic;
-
-  line-height: 1.35;
-}
-
-
-/* =========================================================
-   28. FOOTER COLUMN TITLES
-   ========================================================= */
-
-.legal-footer-column-title {
-  margin-bottom: 16px;
-
-  color: var(--at-muted);
-
-  font-family: var(--mono);
-
-  font-size: 0.61rem;
-
-  letter-spacing: 0.09em;
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   29. FOOTER LINKS
-   ========================================================= */
-
-.legal-footer-links {
+.footer-cell {
   display: flex;
-
   flex-direction: column;
-
-  align-items: flex-start;
-
-  gap: 8px;
+  gap: 1rem;
 }
 
+.footer-label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--at-muted);
+}
 
-.legal-footer-links a {
+.footer-brand {
+  font-family: var(--brand);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--at-black);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer-motto {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
   color: var(--at-secondary);
+  line-height: 1.4;
+  max-width: 280px;
+}
 
-  font-size: 0.78rem;
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
+.footer-links-col a {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--at-secondary);
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
-
-.legal-footer-links a:hover {
+.footer-links-col a:hover {
   color: var(--at-blue);
 }
 
-
-/* =========================================================
-   30. FOOTER BOTTOM
-   ========================================================= */
-
-.legal-footer-bottom {
-  padding-top: 22px;
-
-  border-top: 1px solid var(--at-border);
-
+.footer-bottom {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  gap: 20px;
-
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--at-border);
+  font-family: var(--sans);
+  font-size: 0.8rem;
   color: var(--at-muted);
-
-  font-family: var(--mono);
-
-  font-size: 0.61rem;
-
-  line-height: 1.5;
 }
 
 

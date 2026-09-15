@@ -75,20 +75,12 @@
 </head>
 <body>
 
-  <!-- Clean Website Navigation Header -->
-  <nav class="site-nav">
-    <a href="/" class="brand-link">
-      <span>After Trials</span>
-    </a>
-    <ul class="nav-menu">
-      <li><a href="/">Overview</a></li>
-      <li><a href="/#feed-preview">Dispatches</a></li>
-      <li><a href="/#network-graph">Network</a></li>
-      <li><a href="support">Support</a></li>
-      <li><a href="careers">Careers</a></li>
-      <li><a href="privacy-policy" class="active">Privacy</a></li>
-    </ul>
-  </nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="brand" aria-label="After Trials home">After <span>Trials</span></a>
+      <a href="/" class="back-link">← Back to After Trials</a>
+    </div>
+  </header>
 
   <!-- Page Header -->
   <header class="page-header-section">
@@ -225,47 +217,59 @@
     </article>
   </main>
 
-  <!-- Clean Footer -->
-  <footer class="site-footer">
-    <div class="footer-container">
+  <footer class="site-footer" id="footer">
+    <div class="site-footer-container">
+
       <div class="footer-grid">
+
+        <!-- Cell 1: Brand & Motto -->
         <div class="footer-cell">
-          <span class="footer-brand">After Trials</span>
+          <a href="/" class="footer-brand" aria-label="After Trials home">After Trials</a>
           <p class="footer-motto">No healthcare professional should stand alone.</p>
         </div>
+
+        <!-- Cell 2: Explore -->
         <div class="footer-cell">
-          <span class="footer-label">NAVIGATION</span>
+          <span class="footer-label">EXPLORE</span>
           <div class="footer-links-col">
-            <a href="/">Overview</a>
-            <a href="/#feed-preview">Dispatches</a>
-            <a href="/#network-graph">Community Graph</a>
-            <a href="/#community-conversations">Conversations</a>
+            <a href="/">Home</a>
+            <a href="/blogs">Dispatches</a>
+            <a href="/careers">Careers</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/guidelines">Community Guidelines</a>
           </div>
         </div>
+
+        <!-- Cell 3: Connect -->
         <div class="footer-cell">
-          <span class="footer-label">SUPPORT & CAREERS</span>
+          <span class="footer-label">CONNECT</span>
           <div class="footer-links-col">
-            <a href="support">Support Center</a>
-            <a href="careers">Careers & Opportunities</a>
-            <a href="support#verification">Credential Verification</a>
-            <a href="support#contact">Contact Support</a>
+            <a href="/contact">Support &amp; Inquiries</a>
+            <a href="mailto:hello@aftertrials.com">hello@aftertrials.com</a>
+            <a href="mailto:support@aftertrials.com">support@aftertrials.com</a>
+            <a href="mailto:careers@aftertrials.com">careers@aftertrials.com</a>
           </div>
         </div>
+
+        <!-- Cell 4: Compliance & Legal -->
         <div class="footer-cell">
-          <span class="footer-label">COMPLIANCE & LEGAL</span>
+          <span class="footer-label">COMPLIANCE &amp; LEGAL</span>
           <div class="footer-links-col">
-            <a href="privacy-policy">Privacy Policy</a>
-            <a href="terms-of-service">Terms of Service</a>
-            <a href="disclaimer">Medical Disclaimer</a>
-            <a href="cookie-policy">Cookie Policy</a>
-            <a href="guidelines">Community Guidelines</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/medical-disclaimer">Medical Disclaimer</a>
+            <a href="/gdpr">GDPR &amp; Sovereignty</a>
+            <a href="/cookie">Cookie Policy</a>
           </div>
         </div>
+
       </div>
+
       <div class="footer-bottom">
         <span>&copy; 2026 After Trials. All rights reserved.</span>
-        <span>Built for physicians & healthcare professionals, not corporations.</span>
+        <span>Built for physicians, not corporations.</span>
       </div>
+
     </div>
   </footer>
 

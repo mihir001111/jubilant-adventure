@@ -78,6 +78,16 @@
     },
 
     {
+      "source": "/blogs",
+      "destination": "/blogs.html"
+    },
+
+    {
+      "source": "/blog",
+      "destination": "/blogs.html"
+    },
+
+    {
       "source": "/blog/:slug",
       "destination": "/blogs.html?slug=:slug"
     }
